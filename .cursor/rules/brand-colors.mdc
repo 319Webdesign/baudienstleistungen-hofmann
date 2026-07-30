@@ -1,0 +1,29 @@
+---
+description: Markenfarben für Baudienstleistungen Hofmann
+alwaysApply: true
+---
+
+# Brand Colors – Baudienstleistungen Hofmann
+
+## Primärfarbe
+
+- **Primary:** `#1C3D5A` (CSS: `--color-primary`, Tailwind: `primary` / `anthracite`)
+- **Primary Dark:** `#152F47` (CSS: `--color-dark-gray`, Tailwind: `dark-gray`)
+
+## Akzent
+
+- **Accent / Buttons:** `#D92D20` (`orange`) – Buttons, Icons, aktive Navigation, Hover
+- **Accent Light:** `#E8453A` (`orange-light`) – Hover-Zustand
+
+## Flächen / Text
+
+- Surface: `#F5F5F2`
+- Text: `#202224`
+- Muted: `#64696D`
+
+## Verwendung
+
+- Hero-Overlay, PageHero, Footer, ProcessSection, Contact-Sidebar, CTA und dunkle Flächen: **Primary `#1C3D5A`**
+- Überschriften und sekundäre Buttons: Primary
+- CTA-Buttons (primär): Accent `#D92D20`
+- Keine Anthrazit-/Schwarzflächen mehr als Hauptfarbe – Primary Blue ersetzen

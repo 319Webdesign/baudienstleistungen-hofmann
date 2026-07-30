@@ -1,0 +1,119 @@
+@import "tailwindcss";
+
+:root {
+  /* Primärfarbe / Brand */
+  --color-primary: #1c3d5a;
+  --color-anthracite: #1c3d5a;
+  --color-dark-gray: #152f47;
+  --color-orange: #d92d20;
+  --color-orange-light: #e8453a;
+  --color-bg: #f5f5f2;
+  --color-white: #ffffff;
+  --color-text: #202224;
+  --color-text-muted: #64696d;
+  --header-height: 5.75rem;
+}
+
+@theme inline {
+  --color-primary: var(--color-primary);
+  --color-anthracite: var(--color-anthracite);
+  --color-dark-gray: var(--color-dark-gray);
+  --color-orange: var(--color-orange);
+  --color-orange-light: var(--color-orange-light);
+  --color-surface: var(--color-bg);
+  --color-ink: var(--color-text);
+  --color-muted: var(--color-text-muted);
+  --font-sans: var(--font-source-sans);
+  --font-display: var(--font-archivo);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+body {
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-source-sans), system-ui, sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-archivo), system-ui, sans-serif;
+  letter-spacing: -0.02em;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--color-orange) 30%, white);
+  color: var(--color-primary);
+}
+
+/* Fade-in on scroll */
+.reveal {
+  opacity: 0;
+  transform: translateY(1.25rem);
+  transition:
+    opacity 0.7s ease,
+    transform 0.7s ease;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* Accordion */
+.accordion-panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.35s ease;
+}
+
+.accordion-panel[data-open="true"] {
+  grid-template-rows: 1fr;
+}
+
+.accordion-panel > div {
+  overflow: hidden;
+}
+
+/* Focus ring */
+:focus-visible {
+  outline: 2px solid var(--color-orange);
+  outline-offset: 3px;
+}
+
+/* Mobile contact bar spacing */
+.has-mobile-bar {
+  padding-bottom: 4.5rem;
+}
+
+@media (min-width: 768px) {
+  .has-mobile-bar {
+    padding-bottom: 0;
+  }
+}
