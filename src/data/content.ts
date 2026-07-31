@@ -27,25 +27,25 @@ export const trustPoints: TrustPoint[] = [
   {
     id: "erfahrung",
     title: "Erfahrung",
-    text: "25 Jahre Erfahrung im Bauwesen",
+    text: "Langjährige Erfahrung im Bauwesen und zahlreiche erfolgreich umgesetzte Bauprojekte.",
     icon: CalendarDays,
   },
   {
     id: "kompetenz",
     title: "Kompetenz",
-    text: "Maurermeister und Bautechniker",
+    text: "Meisterbetrieb mit technischem Know-how für durchdachte und sichere Lösungen.",
     icon: GraduationCap,
   },
   {
     id: "qualitaet",
     title: "Qualität",
-    text: "Saubere Ausführung",
+    text: "Saubere Ausführung, hochwertige Arbeit und ein Ergebnis, das überzeugt.",
     icon: BadgeCheck,
   },
   {
     id: "persoenlich",
     title: "Persönlich",
-    text: "Direkter Ansprechpartner vom ersten Gespräch bis zur Abnahme.",
+    text: "Ein Ansprechpartner, kurze Wege und ehrliche Beratung während des gesamten Projekts.",
     icon: Handshake,
   },
 ];
