@@ -26,7 +26,7 @@ export function AudienceSection() {
                 as="article"
                 className="flex h-full flex-col items-center rounded-xl bg-white px-4 py-6 text-center shadow-sm transition-transform duration-300 hover:-translate-y-1"
               >
-                <span className="flex h-12 w-12 items-center justify-center rounded-lg bg-orange/10 text-orange">
+                <span className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10 text-primary">
                   <Icon className="h-6 w-6" aria-hidden />
                 </span>
                 <h3 className="mt-4 text-sm font-bold text-anthracite">

@@ -8,16 +8,16 @@ import { FadeIn } from "@/components/ui/FadeIn";
 
 export function AboutSection() {
   return (
-    <section className="bg-surface py-16 sm:py-20 lg:py-24">
+    <section className="bg-white py-16 sm:py-20 lg:py-24">
       <div className="mx-auto grid max-w-7xl items-center gap-12 px-4 sm:px-6 lg:grid-cols-2 lg:px-8">
-        <FadeIn>
+        <FadeIn direction="from-center-left">
           <div className="relative aspect-[4/5] overflow-hidden rounded-xl shadow-[0_20px_50px_rgba(28,31,33,0.15)] sm:aspect-[5/6]">
             <Image
               src={images.about.src}
               alt={images.about.alt}
               fill
               sizes="(max-width: 1024px) 100vw, 50vw"
-              className="object-cover"
+              className="object-cover object-top"
             />
             <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-anthracite/80 to-transparent p-6">
               <p className="text-sm font-semibold uppercase tracking-[0.16em] text-orange-light">
@@ -30,7 +30,7 @@ export function AboutSection() {
           </div>
         </FadeIn>
 
-        <FadeIn delay={100}>
+        <FadeIn direction="from-center-right" delay={80}>
           <SectionHeading
             eyebrow="Über mich"
             title="Handwerk, Technik und Erfahrung"

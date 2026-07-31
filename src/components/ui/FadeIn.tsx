@@ -3,12 +3,21 @@
 import { useEffect, useRef } from "react";
 import { cn } from "@/lib/utils";
 
+type FadeInDirection = "up" | "from-center-left" | "from-center-right";
+
 type FadeInProps = {
   children: React.ReactNode;
   className?: string;
   delay?: number;
   id?: string;
+  direction?: FadeInDirection;
   as?: "div" | "section" | "article" | "li";
+};
+
+const directionClass: Record<FadeInDirection, string> = {
+  up: "reveal",
+  "from-center-left": "reveal-from-center-left",
+  "from-center-right": "reveal-from-center-right",
 };
 
 export function FadeIn({
@@ -16,6 +25,7 @@ export function FadeIn({
   className,
   delay = 0,
   id,
+  direction = "up",
   as: Tag = "div",
 }: FadeInProps) {
   const ref = useRef<HTMLElement>(null);
@@ -40,7 +50,7 @@ export function FadeIn({
           observer.unobserve(node);
         }
       },
-      { threshold: 0.12, rootMargin: "0px 0px -40px 0px" },
+      { threshold: 0.15, rootMargin: "0px 0px -50px 0px" },
     );
 
     observer.observe(node);
@@ -52,7 +62,7 @@ export function FadeIn({
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       ref={ref as any}
       id={id}
-      className={cn("reveal", className)}
+      className={cn(directionClass[direction], className)}
       style={delay ? { transitionDelay: `${delay}ms` } : undefined}
     >
       {children}

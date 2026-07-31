@@ -8,8 +8,8 @@ export const images = {
     alt: "Mauerarbeiten und Rohbau auf der Baustelle",
   },
   about: {
-    src: "https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&w=1200&q=80",
-    alt: "Platzhalterfoto – Thomas Hofmann / Baustellenarbeit",
+    src: "/thomas-hofmann.png",
+    alt: "Thomas Hofmann – Maurermeister und staatlich geprüfter Bautechniker",
   },
   services: {
     rohbau: {

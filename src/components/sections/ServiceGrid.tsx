@@ -12,12 +12,18 @@ const badges: Record<string, string> = {
 
 export function ServiceGrid() {
   return (
-    <section className="bg-surface py-16 sm:py-20 lg:py-24" id="leistungen">
+    <section className="bg-white py-16 sm:py-20 lg:py-24" id="leistungen">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <FadeIn>
           <SectionHeading
             eyebrow="Leistungen"
-            title="Vier Schwerpunkte. Ein Ansprechpartner."
+            title={
+              <>
+                Vier Schwerpunkte.
+                <br />
+                Ein Ansprechpartner.
+              </>
+            }
             description="Von klassischen Bauleistungen bis zu technisch anspruchsvollen Sonderlösungen – klar strukturiert und persönlich betreut."
           />
         </FadeIn>
