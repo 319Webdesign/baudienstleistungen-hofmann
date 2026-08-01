@@ -31,16 +31,16 @@ export const images = {
   },
   projects: {
     fundament: {
-      src: "https://images.unsplash.com/photo-1590725121839-892b458a74fe?auto=format&fit=crop&w=1000&q=80",
-      alt: "Fundamentarbeiten auf der Baustelle",
+      src: "/projekte/mobilfunkfundamente.png",
+      alt: "Mobilfunkfundament mit Betonplatte und Leerrohr",
     },
     stahltraeger: {
-      src: "https://images.unsplash.com/photo-1487958449943-2429e8be8624?auto=format&fit=crop&w=1000&q=80",
-      alt: "Stahlkonstruktion und Umbau im Bestand",
+      src: "/projekte/Projekt_Keisner/IMG_0065_ergebnis.webp",
+      alt: "Projekt Keisner – Umbau und Stahlträgereinbau",
     },
     anbau: {
-      src: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1000&q=80",
-      alt: "Rohbau eines Anbaus",
+      src: "/projekte/Projekt_Abel_Rüsselsheim/IMG_1695web.webp",
+      alt: "Projekt Abel Rüsselsheim – Rohbau",
     },
     pflaster: {
       src: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=1000&q=80",

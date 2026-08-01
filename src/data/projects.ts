@@ -5,6 +5,7 @@ export type ProjectCategory =
   | "Betonarbeiten"
   | "Umbau & Sanierung"
   | "Außenanlagen"
+  | "Spezialprojekt"
   | "Spezialprojekte"
   | "Sonderfundamente";
 
@@ -37,63 +38,81 @@ export const projectFilters: ProjectFilter[] = [
 
 export const projects: Project[] = [
   {
-    id: "fundament-technische-anlage",
-    title: "Fundamentarbeiten für technische Anlage",
+    id: "mobilfunkfundamente",
+    title: "Mobilfunkfundamente",
     category: "Sonderfundamente",
     filterCategories: ["Spezialprojekte", "Betonarbeiten"],
     description:
-      "Herstellung eines individuell geplanten Fundaments inklusive Aushub, Schalung, Bewehrung und Betonage.",
-    image: images.projects.fundament,
-    href: "/projekte#fundament-technische-anlage",
+      "Herstellung belastbarer Fundamente für technische Anlagen – inklusive Aushub, Schalung, Bewehrung und Betonage.",
+    image: {
+      src: images.projects.fundament.src,
+      alt: "Mobilfunkfundament – Betonfundament für technische Anlage",
+    },
+    href: "/projekte#mobilfunkfundamente",
   },
   {
-    id: "stahltraeger-bestand",
-    title: "Stahlträgereinbau im Bestand",
+    id: "stahltraegereinbau",
+    title: "Projekt Keisner",
     category: "Umbau & Sanierung",
     filterCategories: ["Umbau & Sanierung"],
     description:
-      "Fachgerechter Wanddurchbruch mit vorbereitender Abstützung und Einbau einer tragenden Stahlkonstruktion.",
-    image: images.projects.stahltraeger,
-    href: "/projekte#stahltraeger-bestand",
+      "Fachgerechter Einbau von Stahlträgern bei Wanddurchbrüchen und Umbauten im Bestand – nach statischen Vorgaben umgesetzt.",
+    image: {
+      src: images.projects.stahltraeger.src,
+      alt: "Projekt Keisner – Umbau und Sanierung",
+    },
+    href: "/projekte#stahltraegereinbau",
   },
   {
     id: "rohbau-anbau",
-    title: "Rohbau eines Anbaus",
+    title: "Projekt Abel Rüsselsheim",
     category: "Rohbau",
     filterCategories: ["Rohbau", "Betonarbeiten"],
     description:
-      "Erstellung der tragenden Konstruktion eines Anbaus inklusive Fundament- und Mauerarbeiten.",
-    image: images.projects.anbau,
+      "Ausführung der Rohbauarbeiten vom Fundament bis zum Mauerwerk. Solide geplant und sauber umgesetzt.",
+    image: {
+      src: images.projects.anbau.src,
+      alt: "Projekt Abel Rüsselsheim – Rohbau",
+    },
     href: "/projekte#rohbau-anbau",
   },
   {
-    id: "pflaster-aussenanlage",
-    title: "Pflasterarbeiten und Außenanlage",
-    category: "Außenanlagen",
-    filterCategories: ["Außenanlagen"],
-    description:
-      "Neugestaltung einer Außenfläche mit Unterbau, Entwässerung und Pflasterarbeiten.",
-    image: images.projects.pflaster,
-    href: "/projekte#pflaster-aussenanlage",
-  },
-  {
-    id: "lichtmast-fundament",
-    title: "Sonderfundament für Lichtmast",
-    category: "Spezialprojekte",
-    filterCategories: ["Spezialprojekte", "Betonarbeiten"],
-    description:
-      "Individuell dimensionierte Fundamentlösung für eine technische Außenanlage.",
-    image: images.projects.lichtmast,
-    href: "/projekte#lichtmast-fundament",
-  },
-  {
-    id: "hebebuehne-fundament",
-    title: "Betonfundament für Hebebühne",
+    id: "fundament-hebebuehne",
+    title: "Fundament für eine Hebebühne",
     category: "Betonarbeiten",
     filterCategories: ["Betonarbeiten", "Spezialprojekte"],
     description:
-      "Vorbereitung und Herstellung eines belastbaren Fundaments nach technischen Vorgaben.",
-    image: images.projects.hebebuehne,
-    href: "/projekte#hebebuehne-fundament",
+      "Herstellung eines passgenauen Betonfundaments nach den technischen Anforderungen der geplanten Hebebühne.",
+    image: {
+      src: images.projects.hebebuehne.src,
+      alt: "Betonfundament für eine Hebebühne",
+    },
+    href: "/projekte#fundament-hebebuehne",
+  },
+  {
+    id: "fundament-lichtmast",
+    title: "Fundament für einen Lichtmast",
+    category: "Spezialprojekt",
+    filterCategories: ["Spezialprojekte", "Betonarbeiten"],
+    description:
+      "Individuelle Fundamentlösung für einen Lichtmast – fachgerecht vorbereitet, bewehrt und betoniert.",
+    image: {
+      src: images.projects.lichtmast.src,
+      alt: "Fundament für einen Lichtmast",
+    },
+    href: "/projekte#fundament-lichtmast",
+  },
+  {
+    id: "garten-pflasterarbeiten",
+    title: "Garten- und Pflasterarbeiten",
+    category: "Außenanlagen",
+    filterCategories: ["Außenanlagen"],
+    description:
+      "Gestaltung und Befestigung von Außenflächen mit passendem Unterbau, Pflasterarbeiten und einer sauberen Ausführung.",
+    image: {
+      src: images.projects.pflaster.src,
+      alt: "Garten- und Pflasterarbeiten",
+    },
+    href: "/projekte#garten-pflasterarbeiten",
   },
 ];

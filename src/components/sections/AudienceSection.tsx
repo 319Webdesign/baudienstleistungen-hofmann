@@ -4,7 +4,7 @@ import { FadeIn } from "@/components/ui/FadeIn";
 
 export function AudienceSection() {
   return (
-    <section className="bg-surface py-16 sm:py-20 lg:py-24">
+    <section className="bg-white py-16 sm:py-20 lg:py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <FadeIn>
           <SectionHeading
@@ -24,7 +24,7 @@ export function AudienceSection() {
                 key={item.id}
                 delay={index * 60}
                 as="article"
-                className="flex h-full flex-col items-center rounded-xl bg-white px-4 py-6 text-center shadow-sm transition-transform duration-300 hover:-translate-y-1"
+                className="flex h-full flex-col items-center rounded-xl border border-primary/8 bg-surface px-4 py-6 text-center shadow-sm transition-transform duration-300 hover:-translate-y-1"
               >
                 <span className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10 text-primary">
                   <Icon className="h-6 w-6" aria-hidden />

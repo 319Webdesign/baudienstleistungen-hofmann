@@ -75,19 +75,18 @@ export function AboutSection() {
       </div>
 
       {/* Weicher Wellenübergang ins Weiß */}
-      <div className="pointer-events-none leading-[0]" aria-hidden>
-        <svg
-          className="relative block w-full"
-          viewBox="0 0 1440 80"
-          preserveAspectRatio="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            fill="#ffffff"
-            d="M0,40 C240,72 480,8 720,32 C960,56 1200,16 1440,40 L1440,80 L0,80 Z"
-          />
-        </svg>
-      </div>
+      <svg
+        className="pointer-events-none relative block h-14 w-full sm:h-16 lg:h-[4.5rem]"
+        viewBox="0 0 1440 80"
+        preserveAspectRatio="none"
+        xmlns="http://www.w3.org/2000/svg"
+        aria-hidden
+      >
+        <path
+          fill="#ffffff"
+          d="M0,28 C240,70 480,6 720,34 C960,62 1200,14 1440,36 L1440,81 L0,81 Z"
+        />
+      </svg>
     </section>
   );
 }

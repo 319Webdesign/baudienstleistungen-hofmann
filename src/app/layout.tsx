@@ -27,6 +27,9 @@ export const metadata: Metadata = {
     template: siteConfig.seo.titleTemplate,
   },
   description: siteConfig.seo.defaultDescription,
+  icons: {
+    icon: "/favicon.ico",
+  },
   openGraph: {
     type: "website",
     locale: siteConfig.seo.locale,

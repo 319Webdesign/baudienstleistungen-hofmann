@@ -4,8 +4,8 @@ import { FadeIn } from "@/components/ui/FadeIn";
 
 export function ProcessSection() {
   return (
-    <section className="bg-primary py-16 text-white sm:py-20 lg:py-24">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <section className="relative bg-primary pt-16 text-white sm:pt-20 lg:pt-24">
+      <div className="mx-auto max-w-7xl px-4 pb-16 sm:px-6 sm:pb-20 lg:px-8 lg:pb-24">
         <FadeIn>
           <SectionHeading
             eyebrow="Ablauf"
@@ -48,6 +48,20 @@ export function ProcessSection() {
           })}
         </ol>
       </div>
+
+      {/* Weicher Wellenübergang in die Zielgruppen-Sektion */}
+      <svg
+        className="pointer-events-none relative block h-14 w-full sm:h-16 lg:h-[4.5rem]"
+        viewBox="0 0 1440 80"
+        preserveAspectRatio="none"
+        xmlns="http://www.w3.org/2000/svg"
+        aria-hidden
+      >
+        <path
+          fill="#ffffff"
+          d="M0,28 C240,70 480,6 720,34 C960,62 1200,14 1440,36 L1440,81 L0,81 Z"
+        />
+      </svg>
     </section>
   );
 }
