@@ -4,11 +4,16 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 import { FadeIn } from "@/components/ui/FadeIn";
 
 const badges: Record<string, string> = {
+  mobilfunkfundamente: "MOBILFUNK",
   "rohbau-betonarbeiten": "ROHBAU",
   "umbau-sanierung": "UMBAU",
   "erdarbeiten-aussenanlagen": "AUSSEN",
-  spezialprojekte: "SPEZIAL",
 };
+
+/** Startseite: Spezialprojekte nur auf /leistungen zeigen */
+const homepageServices = services.filter(
+  (service) => service.id !== "spezialprojekte",
+);
 
 export function ServiceGrid() {
   return (
@@ -24,12 +29,12 @@ export function ServiceGrid() {
                 Ein Ansprechpartner.
               </>
             }
-            description="Von klassischen Bauleistungen bis zu technisch anspruchsvollen Sonderlösungen – klar strukturiert und persönlich betreut."
+            description="Von Mobilfunkfundamenten über klassische Bauleistungen bis zu technisch anspruchsvollen Sonderlösungen – klar strukturiert und persönlich betreut."
           />
         </FadeIn>
 
         <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4 lg:gap-6">
-          {services.map((service, index) => (
+          {homepageServices.map((service, index) => (
             <ServiceCard
               key={service.id}
               service={service}

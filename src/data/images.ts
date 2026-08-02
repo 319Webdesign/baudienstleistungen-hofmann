@@ -12,6 +12,10 @@ export const images = {
     alt: "Thomas Hofmann – Maurermeister und staatlich geprüfter Bautechniker",
   },
   services: {
+    mobilfunk: {
+      src: "/projekte/Projekt_Abel_Lippstadt/IMG_0284web.webp",
+      alt: "Mobilfunkfundament mit Betonplatte und Leerrohr",
+    },
     rohbau: {
       src: "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=1200&q=80",
       alt: "Rohbau und Betonarbeiten",

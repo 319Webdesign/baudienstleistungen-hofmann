@@ -61,7 +61,7 @@ export default async function ServiceDetailPage({ params }: PageProps) {
         <div className="mx-auto grid max-w-7xl gap-12 px-4 sm:px-6 lg:grid-cols-[1.1fr_0.9fr] lg:px-8">
           <FadeIn>
             <div className="flex items-center gap-3">
-              <span className="flex h-12 w-12 items-center justify-center rounded-lg bg-orange text-white">
+              <span className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary text-white">
                 <Icon className="h-6 w-6" aria-hidden />
               </span>
               <p className="text-sm font-semibold uppercase tracking-[0.16em] text-orange">

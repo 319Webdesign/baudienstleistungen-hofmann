@@ -9,7 +9,7 @@ export const faqs: FAQItem[] = [
     id: "leistungen",
     question: "Welche Bauleistungen übernimmt Baudienstleistungen Hofmann?",
     answer:
-      "Der Schwerpunkt liegt auf Rohbau- und Betonarbeiten, Umbauten, Sanierungen, Erdarbeiten, Außenanlagen sowie technisch anspruchsvollen Sonderprojekten.",
+      "Der Schwerpunkt liegt auf Mobilfunkfundamenten, Rohbau- und Betonarbeiten, Umbauten, Sanierungen, Erdarbeiten, Außenanlagen sowie technisch anspruchsvollen Sonderprojekten.",
   },
   {
     id: "kleinprojekte",
