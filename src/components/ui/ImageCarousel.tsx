@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import Image from "next/image";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -13,6 +13,7 @@ type ImageCarouselProps = {
 
 export function ImageCarousel({ images, className }: ImageCarouselProps) {
   const [index, setIndex] = useState(0);
+  const [mounted, setMounted] = useState(() => new Set([0]));
   const total = images.length;
 
   const goTo = useCallback(
@@ -25,6 +26,23 @@ export function ImageCarousel({ images, className }: ImageCarouselProps) {
 
   const previous = useCallback(() => goTo(index - 1), [goTo, index]);
   const next = useCallback(() => goTo(index + 1), [goTo, index]);
+
+  const preloadIndexes = useMemo(() => {
+    if (total <= 1) return [0];
+    return [
+      index,
+      (index - 1 + total) % total,
+      (index + 1) % total,
+    ];
+  }, [index, total]);
+
+  useEffect(() => {
+    setMounted((prev) => {
+      const nextSet = new Set(prev);
+      for (const i of preloadIndexes) nextSet.add(i);
+      return nextSet;
+    });
+  }, [preloadIndexes]);
 
   useEffect(() => {
     if (total <= 1) return;
@@ -40,20 +58,31 @@ export function ImageCarousel({ images, className }: ImageCarouselProps) {
 
   if (total === 0) return null;
 
-  const current = images[index];
-
   return (
     <div className={cn("space-y-4", className)}>
       <div className="relative aspect-[16/10] overflow-hidden rounded-xl bg-surface shadow-lg">
-        <Image
-          key={current.src}
-          src={current.src}
-          alt={current.alt}
-          fill
-          sizes="(max-width: 1024px) 100vw, 70vw"
-          className="object-cover"
-          priority={index === 0}
-        />
+        {images.map((image, imageIndex) => {
+          if (!mounted.has(imageIndex)) return null;
+
+          const isActive = imageIndex === index;
+
+          return (
+            <Image
+              key={image.src}
+              src={image.src}
+              alt={image.alt}
+              fill
+              sizes="(max-width: 1024px) 100vw, 720px"
+              quality={75}
+              priority={imageIndex === 0}
+              loading={imageIndex === 0 ? "eager" : "lazy"}
+              className={cn(
+                "object-cover transition-opacity duration-300",
+                isActive ? "opacity-100" : "pointer-events-none opacity-0",
+              )}
+            />
+          );
+        })}
 
         {total > 1 && (
           <>
@@ -61,7 +90,7 @@ export function ImageCarousel({ images, className }: ImageCarouselProps) {
               type="button"
               onClick={previous}
               aria-label="Vorheriges Bild"
-              className="absolute left-3 top-1/2 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-md bg-primary/85 text-white transition-colors hover:bg-orange"
+              className="absolute left-3 top-1/2 z-10 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-md bg-primary/85 text-white transition-colors hover:bg-orange"
             >
               <ChevronLeft className="h-6 w-6" aria-hidden />
             </button>
@@ -69,11 +98,11 @@ export function ImageCarousel({ images, className }: ImageCarouselProps) {
               type="button"
               onClick={next}
               aria-label="Nächstes Bild"
-              className="absolute right-3 top-1/2 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-md bg-primary/85 text-white transition-colors hover:bg-orange"
+              className="absolute right-3 top-1/2 z-10 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-md bg-primary/85 text-white transition-colors hover:bg-orange"
             >
               <ChevronRight className="h-6 w-6" aria-hidden />
             </button>
-            <div className="absolute bottom-3 right-3 rounded-md bg-primary/85 px-3 py-1 text-xs font-semibold tracking-wide text-white">
+            <div className="absolute bottom-3 right-3 z-10 rounded-md bg-primary/85 px-3 py-1 text-xs font-semibold tracking-wide text-white">
               {index + 1} / {total}
             </div>
           </>
@@ -101,6 +130,7 @@ export function ImageCarousel({ images, className }: ImageCarouselProps) {
                 alt=""
                 fill
                 sizes="96px"
+                quality={50}
                 className="object-cover"
               />
             </button>
