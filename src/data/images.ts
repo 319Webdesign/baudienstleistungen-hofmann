@@ -31,8 +31,8 @@ export const images = {
   },
   projects: {
     fundament: {
-      src: "/projekte/mobilfunkfundamente.png",
-      alt: "Mobilfunkfundament mit Betonplatte und Leerrohr",
+      src: "/projekte/Projekt_Abel_Lippstadt/IMG_0284web.webp",
+      alt: "Projekt Abel Lippstadt – Betonfundament mit Betonplatte und Leerrohr",
     },
     stahltraeger: {
       src: "/projekte/Projekt_Keisner/IMG_0065_ergebnis.webp",
