@@ -11,12 +11,32 @@ type ImageCarouselProps = {
   className?: string;
 };
 
-function videoMimeType(src: string): string | undefined {
-  const lower = src.toLowerCase();
-  if (lower.endsWith(".mp4") || lower.endsWith(".m4v")) return "video/mp4";
-  if (lower.endsWith(".webm")) return "video/webm";
-  if (lower.endsWith(".mov")) return "video/quicktime";
-  return undefined;
+function playVideo(video: HTMLVideoElement) {
+  video.muted = true;
+  video.defaultMuted = true;
+  video.setAttribute("muted", "");
+  video.playsInline = true;
+
+  const start = () => {
+    void video.play().catch(() => {
+      // Autoplay kann vom Browser blockiert werden – Controls bleiben nutzbar.
+    });
+  };
+
+  if (video.readyState >= 2) {
+    video.currentTime = 0;
+    start();
+    return;
+  }
+
+  const onCanPlay = () => {
+    video.removeEventListener("canplay", onCanPlay);
+    video.currentTime = 0;
+    start();
+  };
+
+  video.addEventListener("canplay", onCanPlay);
+  video.load();
 }
 
 export function ImageCarousel({ items, className }: ImageCarouselProps) {
@@ -55,13 +75,7 @@ export function ImageCarousel({ items, className }: ImageCarouselProps) {
         video.pause();
         return;
       }
-
-      // Autoplay erfordert in den meisten Browsern muted.
-      video.muted = true;
-      video.currentTime = 0;
-      void video.play().catch(() => {
-        // Autoplay kann vom Browser blockiert werden – Controls bleiben nutzbar.
-      });
+      playVideo(video);
     });
   }, [index]);
 
@@ -88,8 +102,6 @@ export function ImageCarousel({ items, className }: ImageCarouselProps) {
           const isActive = itemIndex === index;
 
           if (item.type === "video") {
-            const mime = videoMimeType(item.src);
-
             return (
               <video
                 key={item.src}
@@ -100,24 +112,19 @@ export function ImageCarousel({ items, className }: ImageCarouselProps) {
                   }
 
                   videoRefs.current.set(itemIndex, node);
-                  if (itemIndex === index) {
-                    node.muted = true;
-                    void node.play().catch(() => {});
-                  }
+                  if (itemIndex === index) playVideo(node);
                 }}
+                src={item.src}
                 controls={isActive}
                 muted
                 playsInline
-                autoPlay={isActive}
-                preload={isActive ? "auto" : "none"}
+                preload={isActive ? "auto" : "metadata"}
                 className={cn(
                   "absolute inset-0 h-full w-full bg-anthracite object-contain transition-opacity duration-300",
-                  isActive ? "opacity-100" : "pointer-events-none opacity-0",
+                  isActive ? "z-[1] opacity-100" : "pointer-events-none z-0 opacity-0",
                 )}
                 aria-label={item.alt}
-              >
-                <source src={item.src} type={mime} />
-              </video>
+              />
             );
           }
 
@@ -133,7 +140,7 @@ export function ImageCarousel({ items, className }: ImageCarouselProps) {
               loading={itemIndex === 0 ? "eager" : "lazy"}
               className={cn(
                 "object-cover transition-opacity duration-300",
-                isActive ? "opacity-100" : "pointer-events-none opacity-0",
+                isActive ? "z-[1] opacity-100" : "pointer-events-none z-0 opacity-0",
               )}
             />
           );
