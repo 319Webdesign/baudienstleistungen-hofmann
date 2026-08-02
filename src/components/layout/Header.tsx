@@ -26,9 +26,9 @@ export function Header() {
   }, [pathname]);
 
   useEffect(() => {
-    document.body.style.overflow = open ? "hidden" : "";
+    document.body.style.overflowY = open ? "hidden" : "";
     return () => {
-      document.body.style.overflow = "";
+      document.body.style.overflowY = "";
     };
   }, [open]);
 

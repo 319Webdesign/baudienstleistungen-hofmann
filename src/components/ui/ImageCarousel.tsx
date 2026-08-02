@@ -1,20 +1,29 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Image from "next/image";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronLeft, ChevronRight, Play } from "lucide-react";
 import { cn } from "@/lib/utils";
-import type { ImageAsset } from "@/data/images";
+import type { GalleryMedia } from "@/data/images";
 
 type ImageCarouselProps = {
-  images: ImageAsset[];
+  items: GalleryMedia[];
   className?: string;
 };
 
-export function ImageCarousel({ images, className }: ImageCarouselProps) {
+function videoMimeType(src: string): string | undefined {
+  const lower = src.toLowerCase();
+  if (lower.endsWith(".mp4") || lower.endsWith(".m4v")) return "video/mp4";
+  if (lower.endsWith(".webm")) return "video/webm";
+  if (lower.endsWith(".mov")) return "video/quicktime";
+  return undefined;
+}
+
+export function ImageCarousel({ items, className }: ImageCarouselProps) {
   const [index, setIndex] = useState(0);
   const [mounted, setMounted] = useState(() => new Set([0]));
-  const total = images.length;
+  const videoRefs = useRef<Map<number, HTMLVideoElement>>(new Map());
+  const total = items.length;
 
   const goTo = useCallback(
     (next: number) => {
@@ -29,11 +38,7 @@ export function ImageCarousel({ images, className }: ImageCarouselProps) {
 
   const preloadIndexes = useMemo(() => {
     if (total <= 1) return [0];
-    return [
-      index,
-      (index - 1 + total) % total,
-      (index + 1) % total,
-    ];
+    return [index, (index - 1 + total) % total, (index + 1) % total];
   }, [index, total]);
 
   useEffect(() => {
@@ -43,6 +48,22 @@ export function ImageCarousel({ images, className }: ImageCarouselProps) {
       return nextSet;
     });
   }, [preloadIndexes]);
+
+  useEffect(() => {
+    videoRefs.current.forEach((video, videoIndex) => {
+      if (videoIndex !== index) {
+        video.pause();
+        return;
+      }
+
+      // Autoplay erfordert in den meisten Browsern muted.
+      video.muted = true;
+      video.currentTime = 0;
+      void video.play().catch(() => {
+        // Autoplay kann vom Browser blockiert werden – Controls bleiben nutzbar.
+      });
+    });
+  }, [index]);
 
   useEffect(() => {
     if (total <= 1) return;
@@ -59,23 +80,57 @@ export function ImageCarousel({ images, className }: ImageCarouselProps) {
   if (total === 0) return null;
 
   return (
-    <div className={cn("space-y-4", className)}>
-      <div className="relative aspect-[16/10] overflow-hidden rounded-xl bg-surface shadow-lg">
-        {images.map((image, imageIndex) => {
-          if (!mounted.has(imageIndex)) return null;
+    <div className={cn("w-full min-w-0 max-w-full space-y-4", className)}>
+      <div className="relative aspect-[16/10] w-full max-w-full overflow-hidden rounded-xl bg-surface shadow-lg">
+        {items.map((item, itemIndex) => {
+          if (!mounted.has(itemIndex)) return null;
 
-          const isActive = imageIndex === index;
+          const isActive = itemIndex === index;
+
+          if (item.type === "video") {
+            const mime = videoMimeType(item.src);
+
+            return (
+              <video
+                key={item.src}
+                ref={(node) => {
+                  if (!node) {
+                    videoRefs.current.delete(itemIndex);
+                    return;
+                  }
+
+                  videoRefs.current.set(itemIndex, node);
+                  if (itemIndex === index) {
+                    node.muted = true;
+                    void node.play().catch(() => {});
+                  }
+                }}
+                controls={isActive}
+                muted
+                playsInline
+                autoPlay={isActive}
+                preload={isActive ? "auto" : "none"}
+                className={cn(
+                  "absolute inset-0 h-full w-full bg-anthracite object-contain transition-opacity duration-300",
+                  isActive ? "opacity-100" : "pointer-events-none opacity-0",
+                )}
+                aria-label={item.alt}
+              >
+                <source src={item.src} type={mime} />
+              </video>
+            );
+          }
 
           return (
             <Image
-              key={image.src}
-              src={image.src}
-              alt={image.alt}
+              key={item.src}
+              src={item.src}
+              alt={item.alt}
               fill
               sizes="(max-width: 1024px) 100vw, 720px"
               quality={75}
-              priority={imageIndex === 0}
-              loading={imageIndex === 0 ? "eager" : "lazy"}
+              priority={itemIndex === 0}
+              loading={itemIndex === 0 ? "eager" : "lazy"}
               className={cn(
                 "object-cover transition-opacity duration-300",
                 isActive ? "opacity-100" : "pointer-events-none opacity-0",
@@ -89,7 +144,7 @@ export function ImageCarousel({ images, className }: ImageCarouselProps) {
             <button
               type="button"
               onClick={previous}
-              aria-label="Vorheriges Bild"
+              aria-label="Vorheriges Medium"
               className="absolute left-3 top-1/2 z-10 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-md bg-primary/85 text-white transition-colors hover:bg-orange"
             >
               <ChevronLeft className="h-6 w-6" aria-hidden />
@@ -97,7 +152,7 @@ export function ImageCarousel({ images, className }: ImageCarouselProps) {
             <button
               type="button"
               onClick={next}
-              aria-label="Nächstes Bild"
+              aria-label="Nächstes Medium"
               className="absolute right-3 top-1/2 z-10 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-md bg-primary/85 text-white transition-colors hover:bg-orange"
             >
               <ChevronRight className="h-6 w-6" aria-hidden />
@@ -110,29 +165,52 @@ export function ImageCarousel({ images, className }: ImageCarouselProps) {
       </div>
 
       {total > 1 && (
-        <div className="flex gap-2 overflow-x-auto pb-1">
-          {images.map((image, imageIndex) => (
+        <div className="flex max-w-full gap-2 overflow-x-auto overscroll-x-contain pb-1">
+          {items.map((item, itemIndex) => (
             <button
-              key={image.src}
+              key={item.src}
               type="button"
-              onClick={() => goTo(imageIndex)}
-              aria-label={`Bild ${imageIndex + 1} anzeigen`}
-              aria-current={imageIndex === index}
+              onClick={() => goTo(itemIndex)}
+              aria-label={
+                item.type === "video"
+                  ? `Video ${itemIndex + 1} anzeigen`
+                  : `Bild ${itemIndex + 1} anzeigen`
+              }
+              aria-current={itemIndex === index}
               className={cn(
                 "relative h-16 w-24 shrink-0 overflow-hidden rounded-md border-2 transition-all",
-                imageIndex === index
+                itemIndex === index
                   ? "border-orange"
                   : "border-transparent opacity-70 hover:opacity-100",
               )}
             >
-              <Image
-                src={image.src}
-                alt=""
-                fill
-                sizes="96px"
-                quality={50}
-                className="object-cover"
-              />
+              {item.type === "video" ? (
+                <>
+                  <video
+                    src={item.src}
+                    muted
+                    playsInline
+                    preload="metadata"
+                    className="absolute inset-0 h-full w-full object-cover"
+                    aria-hidden
+                  />
+                  <span className="absolute inset-0 flex items-center justify-center bg-anthracite/35">
+                    <Play
+                      className="h-5 w-5 fill-white text-white"
+                      aria-hidden
+                    />
+                  </span>
+                </>
+              ) : (
+                <Image
+                  src={item.src}
+                  alt=""
+                  fill
+                  sizes="96px"
+                  quality={50}
+                  className="object-cover"
+                />
+              )}
             </button>
           ))}
         </div>

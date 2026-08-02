@@ -65,8 +65,8 @@ export default async function ProjectDetailPage({ params }: PageProps) {
 
       <section className="bg-white py-16 sm:py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid gap-12 lg:grid-cols-[1fr_1.15fr] lg:items-start">
-            <FadeIn>
+          <div className="grid min-w-0 gap-12 lg:grid-cols-[1fr_1.15fr] lg:items-start">
+            <FadeIn className="min-w-0">
               <p className="text-sm font-semibold uppercase tracking-[0.16em] text-orange">
                 Projektdetails
               </p>
@@ -87,7 +87,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
                 </div>
                 <div className="rounded-lg border border-anthracite/8 bg-surface px-4 py-3">
                   <dt className="text-xs font-semibold uppercase tracking-wide text-muted">
-                    Fotos
+                    Medien
                   </dt>
                   <dd className="mt-1 text-sm font-medium text-anthracite">
                     {gallery.length} Aufnahme
@@ -105,8 +105,8 @@ export default async function ProjectDetailPage({ params }: PageProps) {
               </div>
             </FadeIn>
 
-            <FadeIn delay={100}>
-              <ImageCarousel images={gallery} />
+            <FadeIn delay={100} className="min-w-0">
+              <ImageCarousel items={gallery} />
             </FadeIn>
           </div>
         </div>

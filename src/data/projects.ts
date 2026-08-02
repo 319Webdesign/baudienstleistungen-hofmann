@@ -128,6 +128,7 @@ export const projects: Project[] = [
     slug: "schraeder-gessner",
     title: "Projekt Schräder - Geßner",
     folder: "Projekt_Schräder_Geßner",
+    coverFile: "IMG_8713web.webp",
     category: "Spezialprojekt",
     filterCategories: ["Spezialprojekte", "Betonarbeiten"],
     description:
@@ -135,7 +136,7 @@ export const projects: Project[] = [
     longDescription:
       "Beim Projekt Schräder - Geßner wurde eine individuelle Fundamentlösung für einen Lichtmast umgesetzt. Vorbereitung, Bewehrung und Betonage erfolgten fachgerecht und abgestimmt auf die technischen Vorgaben.",
     image: {
-      src: images.projects.lichtmast.src,
+      src: "/projekte/Projekt_Schräder_Geßner/IMG_8713web.webp",
       alt: "Projekt Schräder - Geßner – Fundament für einen Lichtmast",
     },
     href: "/projekte/schraeder-gessner",

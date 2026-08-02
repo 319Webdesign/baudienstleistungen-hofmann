@@ -29,6 +29,8 @@
 
 html {
   scroll-behavior: smooth;
+  max-width: 100%;
+  overflow-x: clip;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -49,6 +51,8 @@ body {
   background: var(--color-bg);
   color: var(--color-text);
   font-family: var(--font-source-sans), system-ui, sans-serif;
+  max-width: 100%;
+  overflow-x: clip;
 }
 
 h1,

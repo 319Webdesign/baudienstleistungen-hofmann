@@ -47,8 +47,8 @@ export const images = {
       alt: "Pflasterarbeiten und Außenanlage",
     },
     lichtmast: {
-      src: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=1000&q=80",
-      alt: "Technisches Fundament für Außenanlage",
+      src: "/projekte/Projekt_Schräder_Geßner/IMG_8713web.webp",
+      alt: "Projekt Schräder - Geßner – Fundament für einen Lichtmast",
     },
     hebebuehne: {
       src: "https://images.unsplash.com/photo-1621905252507-b35492cc74b4?auto=format&fit=crop&w=1000&q=80",
@@ -68,3 +68,7 @@ export const images = {
 } as const;
 
 export type ImageAsset = { src: string; alt: string };
+
+export type GalleryMedia = ImageAsset & {
+  type: "image" | "video";
+};

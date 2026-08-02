@@ -53,10 +53,12 @@ export default function RootLayout({
       lang="de"
       className={`${archivo.variable} ${sourceSans.variable} h-full antialiased`}
     >
-      <body className="has-mobile-bar flex min-h-full flex-col font-sans">
+      <body className="has-mobile-bar flex min-h-full w-full max-w-full flex-col overflow-x-clip font-sans">
         <JsonLd data={buildLocalBusinessJsonLd()} />
         <Header />
-        <main className="flex-1">{children}</main>
+        <main className="w-full max-w-full min-w-0 flex-1 overflow-x-clip">
+          {children}
+        </main>
         <Footer />
         <MobileContactBar />
       </body>
