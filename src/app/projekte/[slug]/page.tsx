@@ -1,14 +1,12 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { getProjectBySlug, projects } from "@/data/projects";
+import {
+  getProjectBySlug,
+  getRelatedProjects,
+  projects,
+} from "@/data/projects";
 import { loadProjectGallery } from "@/lib/loadProjectGallery";
-import { PageHero } from "@/components/ui/PageHero";
-import { Button } from "@/components/ui/Button";
-import { FadeIn } from "@/components/ui/FadeIn";
-import { ImageCarousel } from "@/components/ui/ImageCarousel";
-import { CTASection } from "@/components/sections/CTASection";
-import { JsonLd } from "@/components/seo/JsonLd";
-import { buildBreadcrumbJsonLd } from "@/lib/seo";
+import { ProjectCaseStudy } from "@/components/projects/ProjectCaseStudy";
 
 type PageProps = {
   params: Promise<{ slug: string }>;
@@ -41,78 +39,13 @@ export default async function ProjectDetailPage({ params }: PageProps) {
     project.coverFile,
     project.image,
   );
+  const related = getRelatedProjects(project.slug, 3);
 
   return (
-    <>
-      <JsonLd
-        data={buildBreadcrumbJsonLd([
-          { name: "Startseite", href: "/" },
-          { name: "Projekte", href: "/projekte" },
-          { name: project.title, href: project.href },
-        ])}
-      />
-      <PageHero
-        eyebrow={project.category}
-        title={project.title}
-        description={project.description}
-        image={project.image}
-        breadcrumbs={[
-          { label: "Startseite", href: "/" },
-          { label: "Projekte", href: "/projekte" },
-          { label: project.title },
-        ]}
-      />
-
-      <section className="bg-white py-16 sm:py-20">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid min-w-0 gap-12 lg:grid-cols-[1fr_1.15fr] lg:items-start">
-            <FadeIn className="min-w-0">
-              <p className="text-sm font-semibold uppercase tracking-[0.16em] text-orange">
-                Projektdetails
-              </p>
-              <h2 className="mt-4 text-3xl font-bold text-anthracite">
-                Über dieses Vorhaben
-              </h2>
-              <p className="mt-4 text-muted leading-relaxed">
-                {project.longDescription}
-              </p>
-              <dl className="mt-8 grid gap-4 sm:grid-cols-2">
-                <div className="rounded-lg border border-anthracite/8 bg-surface px-4 py-3">
-                  <dt className="text-xs font-semibold uppercase tracking-wide text-muted">
-                    Kategorie
-                  </dt>
-                  <dd className="mt-1 text-sm font-medium text-anthracite">
-                    {project.category}
-                  </dd>
-                </div>
-                <div className="rounded-lg border border-anthracite/8 bg-surface px-4 py-3">
-                  <dt className="text-xs font-semibold uppercase tracking-wide text-muted">
-                    Medien
-                  </dt>
-                  <dd className="mt-1 text-sm font-medium text-anthracite">
-                    {gallery.length} Aufnahme
-                    {gallery.length === 1 ? "" : "n"}
-                  </dd>
-                </div>
-              </dl>
-              <div className="mt-8 flex flex-wrap gap-3">
-                <Button href="/kontakt" size="lg">
-                  Projekt anfragen
-                </Button>
-                <Button href="/projekte" variant="secondary" size="lg">
-                  Alle Projekte
-                </Button>
-              </div>
-            </FadeIn>
-
-            <FadeIn delay={100} className="min-w-0">
-              <ImageCarousel items={gallery} />
-            </FadeIn>
-          </div>
-        </div>
-      </section>
-
-      <CTASection />
-    </>
+    <ProjectCaseStudy
+      project={project}
+      gallery={gallery}
+      related={related}
+    />
   );
 }

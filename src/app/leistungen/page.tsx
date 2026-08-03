@@ -40,14 +40,22 @@ export default function LeistungenPage() {
           {services.map((service, index) => {
             const Icon = service.icon;
             const reverse = index % 2 === 1;
+            const imageDirection = reverse
+              ? "from-center-right"
+              : "from-center-left";
+            const textDirection = reverse
+              ? "from-center-left"
+              : "from-center-right";
+
             return (
-              <FadeIn key={service.id}>
-                <article
-                  id={service.slug}
-                  className={`grid items-center gap-10 lg:grid-cols-2 ${
-                    reverse ? "lg:[&>*:first-child]:order-2" : ""
-                  }`}
-                >
+              <article
+                key={service.id}
+                id={service.slug}
+                className={`grid items-center gap-10 lg:grid-cols-2 ${
+                  reverse ? "lg:[&>*:first-child]:order-2" : ""
+                }`}
+              >
+                <FadeIn direction={imageDirection}>
                   <div className="relative aspect-[4/3] overflow-hidden rounded-xl shadow-lg">
                     <Image
                       src={service.image.src}
@@ -57,7 +65,9 @@ export default function LeistungenPage() {
                       className="object-cover"
                     />
                   </div>
+                </FadeIn>
 
+                <FadeIn direction={textDirection} delay={80}>
                   <div>
                     <span className="inline-flex h-12 w-12 items-center justify-center rounded-lg bg-primary text-white">
                       <Icon className="h-6 w-6" aria-hidden />
@@ -89,8 +99,8 @@ export default function LeistungenPage() {
                       </Button>
                     </div>
                   </div>
-                </article>
-              </FadeIn>
+                </FadeIn>
+              </article>
             );
           })}
         </div>

@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Image from "next/image";
-import { ChevronLeft, ChevronRight, Play } from "lucide-react";
+import { ChevronLeft, ChevronRight, Play, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import type { GalleryMedia } from "@/data/images";
 
@@ -18,9 +18,7 @@ function playVideo(video: HTMLVideoElement) {
   video.playsInline = true;
 
   const start = () => {
-    void video.play().catch(() => {
-      // Autoplay kann vom Browser blockiert werden – Controls bleiben nutzbar.
-    });
+    void video.play().catch(() => {});
   };
 
   if (video.readyState >= 2) {
@@ -41,6 +39,7 @@ function playVideo(video: HTMLVideoElement) {
 
 export function ImageCarousel({ items, className }: ImageCarouselProps) {
   const [index, setIndex] = useState(0);
+  const [lightboxOpen, setLightboxOpen] = useState(false);
   const [mounted, setMounted] = useState(() => new Set([0]));
   const videoRefs = useRef<Map<number, HTMLVideoElement>>(new Map());
   const total = items.length;
@@ -80,148 +79,230 @@ export function ImageCarousel({ items, className }: ImageCarouselProps) {
   }, [index]);
 
   useEffect(() => {
-    if (total <= 1) return;
+    if (total <= 1 && !lightboxOpen) return;
 
     const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setLightboxOpen(false);
       if (event.key === "ArrowLeft") previous();
       if (event.key === "ArrowRight") next();
     };
 
     window.addEventListener("keydown", onKeyDown);
     return () => window.removeEventListener("keydown", onKeyDown);
-  }, [next, previous, total]);
+  }, [lightboxOpen, next, previous, total]);
+
+  useEffect(() => {
+    document.body.style.overflow = lightboxOpen ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [lightboxOpen]);
 
   if (total === 0) return null;
 
+  const active = items[index];
+
   return (
-    <div className={cn("w-full min-w-0 max-w-full space-y-4", className)}>
-      <div className="relative aspect-[16/10] w-full max-w-full overflow-hidden rounded-xl bg-surface shadow-lg">
-        {items.map((item, itemIndex) => {
-          if (!mounted.has(itemIndex)) return null;
+    <>
+      <div className={cn("w-full min-w-0 max-w-full space-y-4", className)}>
+        <div className="relative aspect-[16/10] w-full max-w-full overflow-hidden rounded-xl bg-surface shadow-lg">
+          {items.map((item, itemIndex) => {
+            if (!mounted.has(itemIndex)) return null;
+            const isActive = itemIndex === index;
 
-          const isActive = itemIndex === index;
+            if (item.type === "video") {
+              return (
+                <video
+                  key={item.src}
+                  ref={(node) => {
+                    if (!node) {
+                      videoRefs.current.delete(itemIndex);
+                      return;
+                    }
+                    videoRefs.current.set(itemIndex, node);
+                    if (itemIndex === index) playVideo(node);
+                  }}
+                  src={item.src}
+                  controls={isActive}
+                  muted
+                  playsInline
+                  preload={isActive ? "auto" : "metadata"}
+                  className={cn(
+                    "absolute inset-0 h-full w-full bg-anthracite object-contain transition-opacity duration-300",
+                    isActive
+                      ? "z-[1] opacity-100"
+                      : "pointer-events-none z-0 opacity-0",
+                  )}
+                  aria-label={item.alt}
+                />
+              );
+            }
 
-          if (item.type === "video") {
             return (
-              <video
+              <button
                 key={item.src}
-                ref={(node) => {
-                  if (!node) {
-                    videoRefs.current.delete(itemIndex);
-                    return;
-                  }
-
-                  videoRefs.current.set(itemIndex, node);
-                  if (itemIndex === index) playVideo(node);
-                }}
-                src={item.src}
-                controls={isActive}
-                muted
-                playsInline
-                preload={isActive ? "auto" : "metadata"}
+                type="button"
+                onClick={() => setLightboxOpen(true)}
                 className={cn(
-                  "absolute inset-0 h-full w-full bg-anthracite object-contain transition-opacity duration-300",
-                  isActive ? "z-[1] opacity-100" : "pointer-events-none z-0 opacity-0",
+                  "absolute inset-0 transition-opacity duration-300",
+                  isActive
+                    ? "z-[1] opacity-100"
+                    : "pointer-events-none z-0 opacity-0",
                 )}
-                aria-label={item.alt}
-              />
+                aria-label="Bild in Großansicht öffnen"
+              >
+                <Image
+                  src={item.src}
+                  alt={item.alt}
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 720px"
+                  quality={75}
+                  priority={itemIndex === 0}
+                  loading={itemIndex === 0 ? "eager" : "lazy"}
+                  className="object-cover transition-transform duration-700 hover:scale-[1.02]"
+                />
+              </button>
             );
-          }
+          })}
 
-          return (
-            <Image
-              key={item.src}
-              src={item.src}
-              alt={item.alt}
-              fill
-              sizes="(max-width: 1024px) 100vw, 720px"
-              quality={75}
-              priority={itemIndex === 0}
-              loading={itemIndex === 0 ? "eager" : "lazy"}
-              className={cn(
-                "object-cover transition-opacity duration-300",
-                isActive ? "z-[1] opacity-100" : "pointer-events-none z-0 opacity-0",
-              )}
-            />
-          );
-        })}
+          {total > 1 && (
+            <>
+              <button
+                type="button"
+                onClick={previous}
+                aria-label="Vorheriges Medium"
+                className="absolute left-3 top-1/2 z-10 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-md bg-primary/85 text-white transition-colors hover:bg-orange"
+              >
+                <ChevronLeft className="h-6 w-6" aria-hidden />
+              </button>
+              <button
+                type="button"
+                onClick={next}
+                aria-label="Nächstes Medium"
+                className="absolute right-3 top-1/2 z-10 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-md bg-primary/85 text-white transition-colors hover:bg-orange"
+              >
+                <ChevronRight className="h-6 w-6" aria-hidden />
+              </button>
+              <div className="absolute bottom-3 right-3 z-10 rounded-md bg-primary/85 px-3 py-1 text-xs font-semibold tracking-wide text-white">
+                {index + 1} / {total}
+              </div>
+            </>
+          )}
+        </div>
 
         {total > 1 && (
-          <>
-            <button
-              type="button"
-              onClick={previous}
-              aria-label="Vorheriges Medium"
-              className="absolute left-3 top-1/2 z-10 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-md bg-primary/85 text-white transition-colors hover:bg-orange"
-            >
-              <ChevronLeft className="h-6 w-6" aria-hidden />
-            </button>
-            <button
-              type="button"
-              onClick={next}
-              aria-label="Nächstes Medium"
-              className="absolute right-3 top-1/2 z-10 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-md bg-primary/85 text-white transition-colors hover:bg-orange"
-            >
-              <ChevronRight className="h-6 w-6" aria-hidden />
-            </button>
-            <div className="absolute bottom-3 right-3 z-10 rounded-md bg-primary/85 px-3 py-1 text-xs font-semibold tracking-wide text-white">
-              {index + 1} / {total}
-            </div>
-          </>
+          <div className="flex max-w-full gap-2 overflow-x-auto overscroll-x-contain pb-1">
+            {items.map((item, itemIndex) => (
+              <button
+                key={item.src}
+                type="button"
+                onClick={() => goTo(itemIndex)}
+                aria-label={
+                  item.type === "video"
+                    ? `Video ${itemIndex + 1} anzeigen`
+                    : `Bild ${itemIndex + 1} anzeigen`
+                }
+                aria-current={itemIndex === index}
+                className={cn(
+                  "relative h-16 w-24 shrink-0 overflow-hidden rounded-md border-2 transition-all",
+                  itemIndex === index
+                    ? "border-orange"
+                    : "border-transparent opacity-70 hover:opacity-100",
+                )}
+              >
+                {item.type === "video" ? (
+                  <>
+                    <video
+                      src={item.src}
+                      muted
+                      playsInline
+                      preload="metadata"
+                      className="absolute inset-0 h-full w-full object-cover"
+                      aria-hidden
+                    />
+                    <span className="absolute inset-0 flex items-center justify-center bg-anthracite/35">
+                      <Play
+                        className="h-5 w-5 fill-white text-white"
+                        aria-hidden
+                      />
+                    </span>
+                  </>
+                ) : (
+                  <Image
+                    src={item.src}
+                    alt=""
+                    fill
+                    sizes="96px"
+                    quality={50}
+                    className="object-cover"
+                  />
+                )}
+              </button>
+            ))}
+          </div>
         )}
       </div>
 
-      {total > 1 && (
-        <div className="flex max-w-full gap-2 overflow-x-auto overscroll-x-contain pb-1">
-          {items.map((item, itemIndex) => (
-            <button
-              key={item.src}
-              type="button"
-              onClick={() => goTo(itemIndex)}
-              aria-label={
-                item.type === "video"
-                  ? `Video ${itemIndex + 1} anzeigen`
-                  : `Bild ${itemIndex + 1} anzeigen`
-              }
-              aria-current={itemIndex === index}
-              className={cn(
-                "relative h-16 w-24 shrink-0 overflow-hidden rounded-md border-2 transition-all",
-                itemIndex === index
-                  ? "border-orange"
-                  : "border-transparent opacity-70 hover:opacity-100",
-              )}
-            >
-              {item.type === "video" ? (
-                <>
-                  <video
-                    src={item.src}
-                    muted
-                    playsInline
-                    preload="metadata"
-                    className="absolute inset-0 h-full w-full object-cover"
-                    aria-hidden
-                  />
-                  <span className="absolute inset-0 flex items-center justify-center bg-anthracite/35">
-                    <Play
-                      className="h-5 w-5 fill-white text-white"
-                      aria-hidden
-                    />
-                  </span>
-                </>
-              ) : (
-                <Image
-                  src={item.src}
-                  alt=""
-                  fill
-                  sizes="96px"
-                  quality={50}
-                  className="object-cover"
-                />
-              )}
-            </button>
-          ))}
+      {lightboxOpen && active?.type === "image" ? (
+        <div
+          className="fixed inset-0 z-[80] flex items-center justify-center bg-primary/95 p-4 backdrop-blur-sm"
+          role="dialog"
+          aria-modal="true"
+          aria-label="Bildgroßansicht"
+          onClick={() => setLightboxOpen(false)}
+        >
+          <button
+            type="button"
+            onClick={() => setLightboxOpen(false)}
+            className="absolute right-4 top-4 flex h-11 w-11 items-center justify-center rounded-md bg-white/10 text-white transition-colors hover:bg-orange"
+            aria-label="Großansicht schließen"
+          >
+            <X className="h-6 w-6" aria-hidden />
+          </button>
+
+          {total > 1 ? (
+            <>
+              <button
+                type="button"
+                onClick={(event) => {
+                  event.stopPropagation();
+                  previous();
+                }}
+                className="absolute left-4 top-1/2 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-md bg-white/10 text-white transition-colors hover:bg-orange"
+                aria-label="Vorheriges Bild"
+              >
+                <ChevronLeft className="h-7 w-7" aria-hidden />
+              </button>
+              <button
+                type="button"
+                onClick={(event) => {
+                  event.stopPropagation();
+                  next();
+                }}
+                className="absolute right-4 top-1/2 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-md bg-white/10 text-white transition-colors hover:bg-orange"
+                aria-label="Nächstes Bild"
+              >
+                <ChevronRight className="h-7 w-7" aria-hidden />
+              </button>
+            </>
+          ) : null}
+
+          <div
+            className="relative h-[80vh] w-full max-w-6xl"
+            onClick={(event) => event.stopPropagation()}
+          >
+            <Image
+              src={active.src}
+              alt={active.alt}
+              fill
+              sizes="100vw"
+              quality={85}
+              className="object-contain"
+              priority
+            />
+          </div>
         </div>
-      )}
-    </div>
+      ) : null}
+    </>
   );
 }
