@@ -17,16 +17,16 @@ export const images = {
       alt: "Mobilfunkfundament mit Betonplatte und Leerrohr",
     },
     rohbau: {
-      src: "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=1200&q=80",
-      alt: "Rohbau und Betonarbeiten",
+      src: "/betonarbeiten.png",
+      alt: "Betonarbeiten – frisch betonierte Bodenplatte mit Abdichtung und Bewehrung",
     },
     umbau: {
-      src: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1200&q=80",
-      alt: "Umbau und Sanierungsarbeiten",
+      src: "/umbau.png",
+      alt: "Umbau und Sanierung – Stahlträger und Öffnung im Bestand",
     },
     erdarbeiten: {
-      src: "https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&w=1200&q=80",
-      alt: "Erdarbeiten mit Bagger auf dem Grundstück",
+      src: "/aussenanlagen.png",
+      alt: "Außenanlagen – Steinsitzplatz und Pflasterarbeiten im Garten",
     },
     spezial: {
       src: "https://images.unsplash.com/photo-1589939705384-5185137a7f0f?auto=format&fit=crop&w=1200&q=80",
