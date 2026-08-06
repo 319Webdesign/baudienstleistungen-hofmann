@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useRef, useState, type PointerEvent } from "react";
+import { createPortal } from "react-dom";
 import Image from "next/image";
 import { ChevronLeft, ChevronRight, Play, X } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -43,8 +44,10 @@ export function ImageCarousel({ items, className }: ImageCarouselProps) {
   const [index, setIndex] = useState(0);
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [mounted, setMounted] = useState(() => new Set([0]));
+  const [portalReady, setPortalReady] = useState(false);
   const videoRefs = useRef<Map<number, HTMLVideoElement>>(new Map());
   const swipeStartX = useRef<number | null>(null);
+  const didSwipe = useRef(false);
   const total = items.length;
 
   const imageIndexes = useMemo(
@@ -89,6 +92,10 @@ export function ImageCarousel({ items, className }: ImageCarouselProps) {
     if (total <= 1) return [0];
     return [index, (index - 1 + total) % total, (index + 1) % total];
   }, [index, total]);
+
+  useEffect(() => {
+    setPortalReady(true);
+  }, []);
 
   useEffect(() => {
     setMounted((prev) => {
@@ -165,6 +172,7 @@ export function ImageCarousel({ items, className }: ImageCarouselProps) {
   const onLightboxPointerDown = (event: PointerEvent<HTMLDivElement>) => {
     if (event.pointerType === "mouse" && event.button !== 0) return;
     swipeStartX.current = event.clientX;
+    didSwipe.current = false;
   };
 
   const onLightboxPointerUp = (event: PointerEvent<HTMLDivElement>) => {
@@ -173,12 +181,21 @@ export function ImageCarousel({ items, className }: ImageCarouselProps) {
     swipeStartX.current = null;
 
     if (Math.abs(deltaX) < SWIPE_THRESHOLD) return;
+    didSwipe.current = true;
     if (deltaX < 0) goToAdjacentImage(1);
     else goToAdjacentImage(-1);
   };
 
   const onLightboxPointerCancel = () => {
     swipeStartX.current = null;
+  };
+
+  const onLightboxClick = () => {
+    if (didSwipe.current) {
+      didSwipe.current = false;
+      return;
+    }
+    closeLightbox();
   };
 
   if (total === 0) return null;
@@ -333,75 +350,75 @@ export function ImageCarousel({ items, className }: ImageCarouselProps) {
         )}
       </div>
 
-      {showLightbox ? (
-        <div
-          className="fixed inset-0 z-[100] flex touch-none items-center justify-center bg-primary/95 p-4 backdrop-blur-sm"
-          role="dialog"
-          aria-modal="true"
-          aria-label="Bildgroßansicht"
-          onClick={closeLightbox}
-          onPointerDown={onLightboxPointerDown}
-          onPointerUp={onLightboxPointerUp}
-          onPointerCancel={onLightboxPointerCancel}
-        >
-          <button
-            type="button"
-            onClick={(event) => {
-              event.stopPropagation();
-              closeLightbox();
-            }}
-            className="absolute right-4 top-4 z-[2] flex h-11 w-11 items-center justify-center rounded-md bg-white/10 text-white transition-colors hover:bg-orange"
-            aria-label="Großansicht schließen"
-          >
-            <X className="h-6 w-6" aria-hidden />
-          </button>
+      {showLightbox && portalReady
+        ? createPortal(
+            <div
+              className="fixed inset-0 z-[200] flex h-[100dvh] w-screen touch-none items-center justify-center bg-primary/97"
+              role="dialog"
+              aria-modal="true"
+              aria-label="Bildgroßansicht"
+              onClick={onLightboxClick}
+              onPointerDown={onLightboxPointerDown}
+              onPointerUp={onLightboxPointerUp}
+              onPointerCancel={onLightboxPointerCancel}
+            >
+              <button
+                type="button"
+                onClick={(event) => {
+                  event.stopPropagation();
+                  closeLightbox();
+                }}
+                className="absolute right-4 top-4 z-[2] flex h-12 w-12 items-center justify-center rounded-md bg-white/10 text-white transition-colors hover:bg-orange sm:right-6 sm:top-6"
+                aria-label="Großansicht schließen"
+              >
+                <X className="h-6 w-6" aria-hidden />
+              </button>
 
-          {imageIndexes.length > 1 ? (
-            <>
-              <button
-                type="button"
-                onClick={(event) => {
-                  event.stopPropagation();
-                  goToAdjacentImage(-1);
-                }}
-                className="absolute left-4 top-1/2 z-[2] flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-md bg-white/10 text-white transition-colors hover:bg-orange"
-                aria-label="Vorheriges Bild"
-              >
-                <ChevronLeft className="h-7 w-7" aria-hidden />
-              </button>
-              <button
-                type="button"
-                onClick={(event) => {
-                  event.stopPropagation();
-                  goToAdjacentImage(1);
-                }}
-                className="absolute right-4 top-1/2 z-[2] flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-md bg-white/10 text-white transition-colors hover:bg-orange"
-                aria-label="Nächstes Bild"
-              >
-                <ChevronRight className="h-7 w-7" aria-hidden />
-              </button>
-              <div className="absolute bottom-4 left-1/2 z-[2] -translate-x-1/2 rounded-md bg-white/10 px-3 py-1 text-xs font-semibold tracking-wide text-white">
-                {imageIndexes.indexOf(index) + 1} / {imageIndexes.length}
+              {imageIndexes.length > 1 ? (
+                <>
+                  <button
+                    type="button"
+                    onClick={(event) => {
+                      event.stopPropagation();
+                      goToAdjacentImage(-1);
+                    }}
+                    className="absolute left-3 top-1/2 z-[2] flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-md bg-white/10 text-white transition-colors hover:bg-orange sm:left-6 sm:h-14 sm:w-14"
+                    aria-label="Vorheriges Bild"
+                  >
+                    <ChevronLeft className="h-7 w-7" aria-hidden />
+                  </button>
+                  <button
+                    type="button"
+                    onClick={(event) => {
+                      event.stopPropagation();
+                      goToAdjacentImage(1);
+                    }}
+                    className="absolute right-3 top-1/2 z-[2] flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-md bg-white/10 text-white transition-colors hover:bg-orange sm:right-6 sm:h-14 sm:w-14"
+                    aria-label="Nächstes Bild"
+                  >
+                    <ChevronRight className="h-7 w-7" aria-hidden />
+                  </button>
+                  <div className="pointer-events-none absolute bottom-5 left-1/2 z-[2] -translate-x-1/2 rounded-md bg-white/10 px-3 py-1.5 text-xs font-semibold tracking-wide text-white sm:bottom-8 sm:text-sm">
+                    {imageIndexes.indexOf(index) + 1} / {imageIndexes.length}
+                  </div>
+                </>
+              ) : null}
+
+              <div className="pointer-events-none relative h-full w-full px-14 py-16 sm:px-20 sm:py-20">
+                <Image
+                  src={lightboxImage.src}
+                  alt={lightboxImage.alt}
+                  fill
+                  sizes="100vw"
+                  quality={90}
+                  className="object-contain"
+                  priority
+                />
               </div>
-            </>
-          ) : null}
-
-          <div
-            className="relative h-[80vh] w-full max-w-6xl"
-            onClick={(event) => event.stopPropagation()}
-          >
-            <Image
-              src={lightboxImage.src}
-              alt={lightboxImage.alt}
-              fill
-              sizes="100vw"
-              quality={85}
-              className="pointer-events-none object-contain"
-              priority
-            />
-          </div>
-        </div>
-      ) : null}
+            </div>,
+            document.body,
+          )
+        : null}
     </>
   );
 }
