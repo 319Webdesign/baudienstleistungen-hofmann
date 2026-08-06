@@ -39,7 +39,7 @@ export const images = {
       alt: "Mobilfunkstandort Lippstadt – Betonfundament mit Betonplatte und Leerrohr",
     },
     stahltraeger: {
-      src: "/projekte/Projekt_Keisner/IMG_0065_ergebnis.webp",
+      src: "/projekte/Projekt_Keisner/IMG_0065web.webp",
       alt: "Projekt Keisner – Umbau, Stahlträgereinbau und Abrissarbeiten",
     },
     anbau: {

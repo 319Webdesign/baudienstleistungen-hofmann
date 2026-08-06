@@ -238,7 +238,7 @@ export const projects: Project[] = [
     slug: "keisner",
     title: "Projekt Keisner",
     folder: "Projekt_Keisner",
-    coverFile: "IMG_0065_ergebnis.webp",
+    coverFile: "IMG_0065web.webp",
     midFiles: ["IMG_0064web.webp", "IMG_3300web.webp"],
     category: "Umbau & Abrissarbeiten",
     filterCategories: ["Umbau & Sanierung", "Außenanlagen"],
@@ -247,13 +247,14 @@ export const projects: Project[] = [
     longDescription:
       "Im Projekt Keisner wurden Umbau- und Abrissarbeiten im Bestand umgesetzt. Im Fokus standen der fachgerechte Einbau von Stahlträgern nach den vorliegenden statischen Vorgaben sowie der kontrollierte Abriss der bestehenden Terrasse. Arbeiten im Bestand erfordern besondere Sorgfalt: klare Abstützung, sichere Arbeitsabläufe und eine saubere Übergabe an die nachfolgenden Gewerke.",
     image: {
-      src: "/projekte/Projekt_Keisner/IMG_0065_ergebnis.webp",
+      src: "/projekte/Projekt_Keisner/IMG_0065web.webp",
       alt: "Projekt Keisner – Umbau, Stahlträgereinbau und Abrissarbeiten",
     },
     href: "/projekte/keisner",
     meta: {
       location: "Reinheim",
       completion: "Abgeschlossen",
+      duration: "nach Statik und Umfang",
       service: "Umbau und Abriss",
     },
     challenge:
