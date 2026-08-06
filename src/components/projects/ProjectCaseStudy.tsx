@@ -72,7 +72,12 @@ export function ProjectCaseStudy({
     imagesOnly[1] ??
     midImageA;
   const resultImage =
-    imagesOnly[imagesOnly.length - 1] ?? imagesOnly[0] ?? fallbackImage;
+    (project.resultFile
+      ? findGalleryImageByFile(imagesOnly, project.resultFile)
+      : undefined) ??
+    imagesOnly[imagesOnly.length - 1] ??
+    imagesOnly[0] ??
+    fallbackImage;
 
   const metaItems = [
     { key: "location" as const, label: "Ort", value: project.meta.location },

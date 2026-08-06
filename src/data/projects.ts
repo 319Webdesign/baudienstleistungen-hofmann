@@ -23,6 +23,7 @@ export type ProjectFilter =
 export type ProjectSlug =
   | "abel-lippstadt"
   | "keisner"
+  | "urban-gross-biberau"
   | "abel-ruesselsheim"
   | "breuninger"
   | "schraeder-gessner"
@@ -67,6 +68,8 @@ export type Project = {
   coverFile?: string;
   /** Zwei Bilder für die Mittel-Sektion nach den Leistungen */
   midFiles?: [string, string];
+  /** Bild für die Ergebnis-Sektion */
+  resultFile?: string;
   category: ProjectCategory;
   filterCategories: ProjectFilter[];
   description: string;
@@ -322,6 +325,97 @@ export const projects: Project[] = [
     quote:
       "Im Bestand zählt nicht Tempo um jeden Preis – sondern Kontrolle, Erfahrung und eine klare Reihenfolge.",
     faqs: defaultTrustFaqs("Reinheim und Umgebung", "Umbau- und Abriss"),
+  },
+  {
+    id: "urban-gross-biberau",
+    slug: "urban-gross-biberau",
+    title: "Projekt Urban Groß-Biberau",
+    folder: "Urban",
+    coverFile: "2efb34d2-9f03-4356-a643-1f737fd931caweb.webp",
+    midFiles: ["IMG_1333web.webp", "IMG_8670web.webp"],
+    resultFile: "IMG_1487web.webp",
+    category: "Außenanlagen",
+    filterCategories: ["Außenanlagen"],
+    description:
+      "Hochwertige Gartengestaltung mit Muschelkalkmauern, Geoceramica-Terrasse, Pflasterflächen und Edelstahlseilzaun.",
+    longDescription:
+      "In Groß-Biberau entstand für das Projekt Urban eine durchgängig geplante Außenanlage aus Naturstein, hochwertigen Belägen und präziser Detailarbeit. Muschelkalkmauern setzen klare Linien, die Terrasse wurde mit Geoceramica-Verbundplatten auf Drainbeton ausgeführt, und ergänzende Pflasterflächen, Wegeinfassungen, Eingangstreppen sowie ein Edelstahlseilzaun runden das Gesamtbild ab. Vom Aushub mit 9-Tonnen-Bagger bis zum verlegten Rollrasen: alles aus einer Hand – belastbar, sauber und mit Anspruch an Material und Handwerk.",
+    image: {
+      src: "/projekte/Urban/2efb34d2-9f03-4356-a643-1f737fd931caweb.webp",
+      alt: "Projekt Urban Groß-Biberau – Gartenanlage mit Naturstein und Terrasse",
+    },
+    href: "/projekte/urban-gross-biberau",
+    meta: {
+      location: "Groß-Biberau",
+      completion: "Abgeschlossen",
+      duration: "nach Flächenumfang",
+      service: "Außenanlagen & Steinarbeiten",
+    },
+    challenge:
+      "Eine Außenanlage dieser Art lebt von der Verbindung aus Optik und Technik. Muschelkalk und Naturstein verlangen präzise Steinarbeit, die Geoceramica-Terrasse braucht einen fachgerechten Aufbau mit Drainbeton, und Pflaster, Wegeinfassungen sowie Treppen müssen maßgenau in die Grundstücksgeometrie passen. Gleichzeitig war der Aushub mit einem 9-Tonnen-Bagger so zu führen, dass die späteren Schichten und Anschlüsse sauber aufeinander aufbauen.",
+    challengePoints: [
+      "Präzise Steinarbeiten in Muschelkalk und Naturstein",
+      "Hochwertiger Terrassenaufbau mit Geoceramica und Drainbeton",
+      "Saubere Koordination von Aushub, Pflaster, Treppen und Zaun",
+    ],
+    works: [
+      {
+        title: "Erdarbeiten & Aushub",
+        description:
+          "Fachgerechter Aushub und Modellierung der Flächen – mit 9-Tonnen-Bagger für effiziente und kontrollierte Bodenbewegung.",
+        icon: "shovel",
+      },
+      {
+        title: "Steinarbeiten & Muschelkalk",
+        description:
+          "Herstellung der Muschelkalkmauern und Natursteinarbeiten mit klaren Fugenbildern und dauerhafter Standfestigkeit.",
+        icon: "layers",
+      },
+      {
+        title: "Geoceramica-Terrasse",
+        description:
+          "Verlegung der Geoceramica-Verbundplatten (Keramik) auf Drainbeton – extrem hochwertig, drainfähig und belastbar.",
+        icon: "grid",
+      },
+      {
+        title: "Pflaster, Treppen & Zaun",
+        description:
+          "Pflasterarbeiten, Wegeinfassungen, Eingangstreppen, Edelstahlseilzaun und abschließende Verlegung des Rollrasens.",
+        icon: "brick",
+      },
+    ],
+    process: [
+      {
+        title: "Aushub & Vorbereitung",
+        description:
+          "Zuerst wurden die Flächen mit dem 9-Tonnen-Bagger ausgehoben und für Mauern, Terrasse, Wege und Treppen vorbereitet.",
+      },
+      {
+        title: "Steinarbeiten",
+        description:
+          "Anschließend entstanden die Muschelkalkmauern und weiteren Natursteinarbeiten – präzise gesetzt und auf die Grundstücksstruktur abgestimmt.",
+      },
+      {
+        title: "Terrasse & Pflaster",
+        description:
+          "Die Geoceramica-Terrasse wurde auf Drainbeton verlegt, ergänzt durch Pflasterflächen, Wegeinfassungen und die Treppen am Eingang.",
+      },
+      {
+        title: "Zaun & Fertigstellung",
+        description:
+          "Zum Abschluss folgten der Edelstahlseilzaun, der Rollrasen und der Feinschliff der gesamten Außenanlage.",
+      },
+    ],
+    result:
+      "Entstanden ist eine hochwertige Garten- und Außenanlage, die Naturstein, moderne Belagstechnik und saubere Details zu einem stimmigen Ganzen verbindet. Die Geoceramica-Terrasse, die Muschelkalkmauern und die gepflasterten Wege wirken klar, dauerhaft und bereit für die tägliche Nutzung.",
+    resultHighlights: [
+      "Muschelkalkmauern und präzise Steinarbeiten",
+      "Geoceramica-Terrasse auf Drainbeton",
+      "Pflaster, Treppen, Edelstahlseilzaun und Rollrasen",
+    ],
+    quote:
+      "Gute Außenanlagen erkennt man nicht nur am Material – sondern an der Präzision, mit der Stein, Belag und Grün ineinandergreifen.",
+    faqs: defaultTrustFaqs("Groß-Biberau und Umgebung", "Außenanlagen"),
   },
   {
     id: "abel-ruesselsheim",
