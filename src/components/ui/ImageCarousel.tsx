@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState, type PointerEvent } from "react";
 import Image from "next/image";
 import { ChevronLeft, ChevronRight, Play, X } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -10,6 +10,8 @@ type ImageCarouselProps = {
   items: GalleryMedia[];
   className?: string;
 };
+
+const SWIPE_THRESHOLD = 50;
 
 function playVideo(video: HTMLVideoElement) {
   video.muted = true;
@@ -42,7 +44,16 @@ export function ImageCarousel({ items, className }: ImageCarouselProps) {
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [mounted, setMounted] = useState(() => new Set([0]));
   const videoRefs = useRef<Map<number, HTMLVideoElement>>(new Map());
+  const swipeStartX = useRef<number | null>(null);
   const total = items.length;
+
+  const imageIndexes = useMemo(
+    () =>
+      items
+        .map((item, itemIndex) => (item.type === "image" ? itemIndex : -1))
+        .filter((itemIndex) => itemIndex >= 0),
+    [items],
+  );
 
   const goTo = useCallback(
     (next: number) => {
@@ -54,6 +65,25 @@ export function ImageCarousel({ items, className }: ImageCarouselProps) {
 
   const previous = useCallback(() => goTo(index - 1), [goTo, index]);
   const next = useCallback(() => goTo(index + 1), [goTo, index]);
+
+  const goToAdjacentImage = useCallback(
+    (direction: -1 | 1) => {
+      if (imageIndexes.length === 0) return;
+      const currentPos = imageIndexes.indexOf(index);
+      const from =
+        currentPos >= 0
+          ? currentPos
+          : direction === 1
+            ? -1
+            : imageIndexes.length;
+      const nextPos =
+        (from + direction + imageIndexes.length) % imageIndexes.length;
+      goTo(imageIndexes[nextPos]);
+    },
+    [goTo, imageIndexes, index],
+  );
+
+  const closeLightbox = useCallback(() => setLightboxOpen(false), []);
 
   const preloadIndexes = useMemo(() => {
     if (total <= 1) return [0];
@@ -79,17 +109,51 @@ export function ImageCarousel({ items, className }: ImageCarouselProps) {
   }, [index]);
 
   useEffect(() => {
+    if (!lightboxOpen) return;
+    if (items[index]?.type === "image") return;
+    if (imageIndexes.length === 0) {
+      setLightboxOpen(false);
+      return;
+    }
+    goTo(imageIndexes[0]);
+  }, [goTo, imageIndexes, index, items, lightboxOpen]);
+
+  useEffect(() => {
     if (total <= 1 && !lightboxOpen) return;
 
     const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") setLightboxOpen(false);
-      if (event.key === "ArrowLeft") previous();
-      if (event.key === "ArrowRight") next();
+      if (event.key === "Escape") {
+        if (lightboxOpen) {
+          event.preventDefault();
+          closeLightbox();
+        }
+        return;
+      }
+
+      if (event.key === "ArrowLeft") {
+        event.preventDefault();
+        if (lightboxOpen) goToAdjacentImage(-1);
+        else previous();
+        return;
+      }
+
+      if (event.key === "ArrowRight") {
+        event.preventDefault();
+        if (lightboxOpen) goToAdjacentImage(1);
+        else next();
+      }
     };
 
     window.addEventListener("keydown", onKeyDown);
     return () => window.removeEventListener("keydown", onKeyDown);
-  }, [lightboxOpen, next, previous, total]);
+  }, [
+    closeLightbox,
+    goToAdjacentImage,
+    lightboxOpen,
+    next,
+    previous,
+    total,
+  ]);
 
   useEffect(() => {
     document.body.style.overflow = lightboxOpen ? "hidden" : "";
@@ -98,9 +162,35 @@ export function ImageCarousel({ items, className }: ImageCarouselProps) {
     };
   }, [lightboxOpen]);
 
+  const onLightboxPointerDown = (event: PointerEvent<HTMLDivElement>) => {
+    if (event.pointerType === "mouse" && event.button !== 0) return;
+    swipeStartX.current = event.clientX;
+  };
+
+  const onLightboxPointerUp = (event: PointerEvent<HTMLDivElement>) => {
+    if (swipeStartX.current === null) return;
+    const deltaX = event.clientX - swipeStartX.current;
+    swipeStartX.current = null;
+
+    if (Math.abs(deltaX) < SWIPE_THRESHOLD) return;
+    if (deltaX < 0) goToAdjacentImage(1);
+    else goToAdjacentImage(-1);
+  };
+
+  const onLightboxPointerCancel = () => {
+    swipeStartX.current = null;
+  };
+
   if (total === 0) return null;
 
   const active = items[index];
+  const lightboxImage =
+    active?.type === "image"
+      ? active
+      : imageIndexes.length > 0
+        ? items[imageIndexes[0]]
+        : null;
+  const showLightbox = lightboxOpen && lightboxImage?.type === "image";
 
   return (
     <>
@@ -243,32 +333,38 @@ export function ImageCarousel({ items, className }: ImageCarouselProps) {
         )}
       </div>
 
-      {lightboxOpen && active?.type === "image" ? (
+      {showLightbox ? (
         <div
-          className="fixed inset-0 z-[80] flex items-center justify-center bg-primary/95 p-4 backdrop-blur-sm"
+          className="fixed inset-0 z-[100] flex touch-none items-center justify-center bg-primary/95 p-4 backdrop-blur-sm"
           role="dialog"
           aria-modal="true"
           aria-label="Bildgroßansicht"
-          onClick={() => setLightboxOpen(false)}
+          onClick={closeLightbox}
+          onPointerDown={onLightboxPointerDown}
+          onPointerUp={onLightboxPointerUp}
+          onPointerCancel={onLightboxPointerCancel}
         >
           <button
             type="button"
-            onClick={() => setLightboxOpen(false)}
-            className="absolute right-4 top-4 flex h-11 w-11 items-center justify-center rounded-md bg-white/10 text-white transition-colors hover:bg-orange"
+            onClick={(event) => {
+              event.stopPropagation();
+              closeLightbox();
+            }}
+            className="absolute right-4 top-4 z-[2] flex h-11 w-11 items-center justify-center rounded-md bg-white/10 text-white transition-colors hover:bg-orange"
             aria-label="Großansicht schließen"
           >
             <X className="h-6 w-6" aria-hidden />
           </button>
 
-          {total > 1 ? (
+          {imageIndexes.length > 1 ? (
             <>
               <button
                 type="button"
                 onClick={(event) => {
                   event.stopPropagation();
-                  previous();
+                  goToAdjacentImage(-1);
                 }}
-                className="absolute left-4 top-1/2 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-md bg-white/10 text-white transition-colors hover:bg-orange"
+                className="absolute left-4 top-1/2 z-[2] flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-md bg-white/10 text-white transition-colors hover:bg-orange"
                 aria-label="Vorheriges Bild"
               >
                 <ChevronLeft className="h-7 w-7" aria-hidden />
@@ -277,13 +373,16 @@ export function ImageCarousel({ items, className }: ImageCarouselProps) {
                 type="button"
                 onClick={(event) => {
                   event.stopPropagation();
-                  next();
+                  goToAdjacentImage(1);
                 }}
-                className="absolute right-4 top-1/2 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-md bg-white/10 text-white transition-colors hover:bg-orange"
+                className="absolute right-4 top-1/2 z-[2] flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-md bg-white/10 text-white transition-colors hover:bg-orange"
                 aria-label="Nächstes Bild"
               >
                 <ChevronRight className="h-7 w-7" aria-hidden />
               </button>
+              <div className="absolute bottom-4 left-1/2 z-[2] -translate-x-1/2 rounded-md bg-white/10 px-3 py-1 text-xs font-semibold tracking-wide text-white">
+                {imageIndexes.indexOf(index) + 1} / {imageIndexes.length}
+              </div>
             </>
           ) : null}
 
@@ -292,12 +391,12 @@ export function ImageCarousel({ items, className }: ImageCarouselProps) {
             onClick={(event) => event.stopPropagation()}
           >
             <Image
-              src={active.src}
-              alt={active.alt}
+              src={lightboxImage.src}
+              alt={lightboxImage.alt}
               fill
               sizes="100vw"
               quality={85}
-              className="object-contain"
+              className="pointer-events-none object-contain"
               priority
             />
           </div>

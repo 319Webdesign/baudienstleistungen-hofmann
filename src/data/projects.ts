@@ -257,7 +257,7 @@ export const projects: Project[] = [
     meta: {
       location: "Reinheim",
       completion: "Abgeschlossen",
-      duration: "nach Statik und Umfang",
+      duration: "8 Tage",
       service: "Umbau und Abriss",
     },
     challenge:
