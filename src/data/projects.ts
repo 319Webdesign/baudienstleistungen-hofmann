@@ -6,6 +6,7 @@ export type ProjectCategory =
   | "Betonarbeiten"
   | "Umbau & Sanierung"
   | "Umbau & Abrissarbeiten"
+  | "Abbruch"
   | "Außenanlagen"
   | "Spezialprojekt"
   | "Spezialprojekte"
@@ -18,11 +19,14 @@ export type ProjectFilter =
   | "Betonarbeiten"
   | "Umbau & Sanierung"
   | "Außenanlagen"
+  | "Abbruch"
   | "Spezialprojekte";
 
 export type ProjectSlug =
   | "abel-lippstadt"
   | "keisner"
+  | "abriss-keisner"
+  | "abriss-zoga-bau"
   | "urban-gross-biberau"
   | "abel-ruesselsheim"
   | "breuninger"
@@ -84,6 +88,12 @@ export type Project = {
   result: string;
   resultHighlights: string[];
   quote?: string;
+  /** Optionaler Weiter-Link zur nächsten Projektphase */
+  nextProject?: {
+    href: string;
+    label: string;
+    description?: string;
+  };
   faqs: FAQItem[];
 };
 
@@ -93,6 +103,7 @@ export const projectFilters: ProjectFilter[] = [
   "Betonarbeiten",
   "Umbau & Sanierung",
   "Außenanlagen",
+  "Abbruch",
   "Spezialprojekte",
 ];
 
@@ -325,6 +336,203 @@ export const projects: Project[] = [
     quote:
       "Im Bestand zählt nicht Tempo um jeden Preis – sondern Kontrolle, Erfahrung und eine klare Reihenfolge.",
     faqs: defaultTrustFaqs("Reinheim und Umgebung", "Umbau- und Abriss"),
+  },
+  {
+    id: "abriss-keisner",
+    slug: "abriss-keisner",
+    title: "Abriss Keisner",
+    folder: "abriss-kaisler",
+    coverFile: "IMG_3300web.webp",
+    midFiles: ["IMG_3293web.webp", "IMG_3298web.webp"],
+    resultFile: "IMG_3295web.webp",
+    category: "Abbruch",
+    filterCategories: ["Abbruch"],
+    description:
+      "Kontrollierter Abriss und Rückbau im Bestand – fachgerecht, sicher und mit sauberer Übergabe der Baustelle.",
+    longDescription:
+      "Beim Abrissprojekt Keisner lag der Fokus auf dem kontrollierten Rückbau im Bestand. Die Arbeiten umfassten den fachgerechten Abriss bestehender Bauteile, die sichere Trennung von Materialien und den Schutz der umliegenden Konstruktion. Mit klarer Arbeitsreihenfolge, geordneter Entsorgung und einer sauberen Baustellenübergabe wurde die Fläche für die weiteren Bau- und Ausbauschritte freigemacht.",
+    image: {
+      src: "/projekte/abriss-kaisler/IMG_3300web.webp",
+      alt: "Abriss Keisner – kontrollierter Rückbau im Bestand",
+    },
+    href: "/projekte/abriss-keisner",
+    meta: {
+      location: "Reinheim",
+      completion: "Abgeschlossen",
+      duration: "nach Umfang",
+      service: "Abbruch & Rückbau",
+    },
+    challenge:
+      "Abrissarbeiten im Bestand verlangen mehr als nur Kraft: Die umliegende Bausubstanz muss geschützt bleiben, tragende und nichttragende Teile müssen klar getrennt werden, und der Bauschutt ist geordnet abzutransportieren. Entscheidend waren eine sichere Arbeitsweise, eine durchdachte Reihenfolge und eine Baustelle, die nach dem Rückbau wieder klar und nutzbar ist.",
+    challengePoints: [
+      "Kontrollierter Rückbau ohne Schäden am Bestand",
+      "Sichere Trennung und Entsorgung der Bauteile",
+      "Saubere, übergabefähige Baustelle nach dem Abriss",
+    ],
+    works: [
+      {
+        title: "Sicherung & Vorbereitung",
+        description:
+          "Absicherung der Arbeitsbereiche und Vorbereitung des Rückbaus, damit der Abriss kontrolliert starten kann.",
+        icon: "check",
+      },
+      {
+        title: "Kontrollierter Abriss",
+        description:
+          "Fachgerechter Rückbau der bestehenden Bauteile mit klarer Reihenfolge und Schutz der angrenzenden Konstruktion.",
+        icon: "hammer",
+      },
+      {
+        title: "Trennung & Entsorgung",
+        description:
+          "Sortierung der Materialien und geordneter Abtransport des Bauschutts.",
+        icon: "layers",
+      },
+      {
+        title: "Baustellenübergabe",
+        description:
+          "Aufräumen der Fläche und saubere Übergabe für die nachfolgenden Bauarbeiten.",
+        icon: "settings",
+      },
+    ],
+    process: [
+      {
+        title: "Vorbereitung",
+        description:
+          "Zuerst wurden die Arbeitsbereiche gesichert und der Abrissumfang vor Ort klar definiert.",
+      },
+      {
+        title: "Rückbau",
+        description:
+          "Anschließend erfolgte der kontrollierte Abriss der bestehenden Bauteile – Schritt für Schritt und mit Blick auf den Bestand.",
+      },
+      {
+        title: "Entsorgung",
+        description:
+          "Materialien wurden getrennt, der Bauschutt abtransportiert und die Fläche freigeräumt.",
+      },
+      {
+        title: "Abschluss",
+        description:
+          "Zum Schluss wurde die Baustelle sauber übergeben – bereit für die nächsten Arbeitsschritte.",
+      },
+    ],
+    result:
+      "Der Abriss wurde sicher und kontrolliert abgeschlossen. Die bestehende Bausubstanz blieb geschützt, die Fläche ist freigeräumt und bereit für die weiteren Bau- und Ausbauarbeiten.",
+    resultHighlights: [
+      "Kontrollierter Rückbau im Bestand",
+      "Geordnete Entsorgung",
+      "Saubere Übergabe der Baustelle",
+    ],
+    quote:
+      "Guter Abriss erkennt man nicht am Tempo – sondern daran, dass danach klar, sicher und weitergebaut werden kann.",
+    faqs: defaultTrustFaqs("Reinheim und Umgebung", "Abbruch"),
+  },
+  {
+    id: "abriss-zoga-bau",
+    slug: "abriss-zoga-bau",
+    title: "Abbruch Zoga Bau",
+    folder: "Projekt_Zoga_Bau",
+    coverFile: "IMG_0449web.webp",
+    midFiles: ["IMG_0352web.webp", "IMG_0450web.webp"],
+    resultFile: "IMG_0466web.webp",
+    category: "Abbruch",
+    filterCategories: ["Abbruch"],
+    description:
+      "Vollständiger Rückbau eines Wohnhauses in innerörtlicher Lage – präzise geplant und sicher ausgeführt für den anschließenden Neubau.",
+    longDescription:
+      "Im Rahmen dieses Projekts wurde ein bestehendes Wohnhaus in innerörtlicher Lage vollständig zurückgebaut. Ziel war es, das Grundstück für einen anschließenden Neubau vorzubereiten. Aufgrund der direkten Grenzbebauung zu zwei Nachbargebäuden und der äußerst beengten Platzverhältnisse erforderte der Abbruch eine präzise Planung sowie eine sorgfältige und sichere Ausführung. Der Rückbau erfolgte zunächst durch eine vollständige Entkernung des Gebäudes. Anschließend wurde das ehemalige Fachwerkhaus gemeinsam mit unserem spezialisierten Abbruchpartner maschinell bis auf die Bodenplatte zurückgebaut. Sämtliche Arbeiten wurden kontrolliert und unter Berücksichtigung der angrenzenden Bebauung durchgeführt.",
+    image: {
+      src: "/projekte/Projekt_Zoga_Bau/IMG_0449web.webp",
+      alt: "Abbruch Zoga Bau – kontrollierter Rückbau eines Wohnhauses",
+    },
+    href: "/projekte/abriss-zoga-bau",
+    meta: {
+      location: "Groß-Zimmern",
+      completion: "Abgeschlossen",
+      service: "Abbruch & Rückbau",
+    },
+    challenge:
+      "Der Rückbau stellte aufgrund der örtlichen Gegebenheiten besondere Anforderungen an Planung und Ausführung. Das Gebäude befand sich mitten im Ortskern und grenzte unmittelbar an bestehende Wohnhäuser. Erschütterungen, Staubentwicklung und die Sicherheit der Nachbargebäude mussten während sämtlicher Arbeiten jederzeit berücksichtigt werden. Zusätzlich bestand das Gebäude aus einer älteren Fachwerkkonstruktion, wodurch zunächst eine kontrollierte Entkernung erfolgen musste, bevor der maschinelle Rückbau beginnen konnte.",
+    challengePoints: [
+      "Innerörtliche Baustelle mit sehr engen Platzverhältnissen",
+      "Grenzbebauung auf zwei Gebäudeseiten",
+      "Fachgerechte Entkernung vor dem Abbruch",
+      "Schutz der Nachbarbebauung",
+      "Kontrollierter maschineller Rückbau",
+    ],
+    works: [
+      {
+        title: "Entkernung",
+        description:
+          "Rückbau sämtlicher nichttragender Bauteile sowie Vorbereitung des Gebäudes für den maschinellen Abbruch.",
+        icon: "settings",
+      },
+      {
+        title: "Abbrucharbeiten",
+        description:
+          "Kontrollierter Rückbau des Wohnhauses mit Longfront-Bagger und Abbruchzange.",
+        icon: "hammer",
+      },
+      {
+        title: "Baustellenlogistik",
+        description:
+          "Organisation der engen Baustelle inklusive Maschinenkoordination, Materialtrennung und Abtransport.",
+        icon: "layers",
+      },
+      {
+        title: "Entsorgung",
+        description:
+          "Sortenreine Trennung und fachgerechte Entsorgung der anfallenden Baustoffe.",
+        icon: "shovel",
+      },
+      {
+        title: "Vorbereitung Neubau",
+        description:
+          "Herstellung eines sauberen und tragfähigen Baufeldes für die anschließenden Rohbauarbeiten.",
+        icon: "building",
+      },
+    ],
+    process: [
+      {
+        title: "Planung",
+        description:
+          "Bestandsaufnahme, Abstimmung mit Bauherrschaft und Nachunternehmern sowie Erstellung des Rückbaukonzeptes unter Berücksichtigung der angrenzenden Gebäude.",
+      },
+      {
+        title: "Entkernung",
+        description:
+          "Das Gebäude wurde vollständig entkernt. Wertstoffe und verschiedene Baustoffe wurden getrennt und für die Entsorgung vorbereitet.",
+      },
+      {
+        title: "Kontrollierter Rückbau",
+        description:
+          "Nach der Entkernung erfolgte der maschinelle Abbruch des Fachwerkhauses mittels Longfront-Bagger. Aufgrund der engen Ortslage wurde abschnittsweise und besonders schonend gearbeitet.",
+      },
+      {
+        title: "Fertigstellung",
+        description:
+          "Nach Abschluss der Rückbauarbeiten wurden sämtliche Abbruchmaterialien entfernt und das Grundstück als sauberes Baufeld für den anschließenden Neubau übergeben.",
+      },
+    ],
+    result:
+      "Durch den kontrollierten Rückbau konnte das Bestandsgebäude sicher und vollständig entfernt werden, ohne die angrenzende Bebauung zu beeinträchtigen. Das Grundstück stand anschließend vollständig für den Neubau zur Verfügung, der im nächsten Bauabschnitt ebenfalls durch Baudienstleistungen Hofmann realisiert wurde.",
+    resultHighlights: [
+      "Sicherer Rückbau trotz Grenzbebauung",
+      "Fachgerechte Entkernung und Materialtrennung",
+      "Präziser maschineller Abbruch",
+      "Baufeld vollständig vorbereitet",
+      "Nahtloser Übergang zum anschließenden Rohbau",
+    ],
+    quote:
+      "Bei innerörtlichem Abbruch zählt nicht die Kraft der Maschine – sondern die Präzision der Planung.",
+    nextProject: {
+      href: "/projekte/zoga-bau",
+      label: "Weiter zum Projekt Rohbau Zoga Bau",
+      description:
+        "Auf dem freigemachten Grundstück entstand im nächsten Bauabschnitt der Neubau – ebenfalls durch Baudienstleistungen Hofmann.",
+    },
+    faqs: defaultTrustFaqs("Groß-Zimmern und Umgebung", "Abbruch"),
   },
   {
     id: "urban-gross-biberau",
@@ -605,65 +813,84 @@ export const projects: Project[] = [
   {
     id: "zoga-bau",
     slug: "zoga-bau",
-    title: "Projekt Zoga Bau",
-    folder: "Projekt_Zoga_Bau",
-    category: "Außenanlagen",
-    filterCategories: ["Außenanlagen"],
+    title: "Rohbau Zoga Bau",
+    folder: "Projekt_Zoga_Bau_Rohbau",
+    category: "Rohbau",
+    filterCategories: ["Rohbau"],
     description:
-      "Gestaltung und Befestigung von Außenflächen mit passendem Unterbau, Pflasterarbeiten und einer sauberen Ausführung.",
+      "Neubau und Rohbauarbeiten auf dem freigemachten Grundstück – der direkte Folgeabschnitt nach dem Abbruch.",
     longDescription:
-      "Im Projekt Zoga Bau wurden Außenflächen gestaltet und befestigt. Dazu gehörten passender Unterbau, Pflasterarbeiten und eine saubere Ausführung – funktional und abgestimmt auf das Grundstück. Eine gute Außenanlage braucht den richtigen Aufbau, damit sie dauerhaft belastbar und optisch überzeugend bleibt.",
+      "Nach dem vollständigen Rückbau des Bestandsgebäudes entstand auf dem Grundstück in Groß-Zimmern der Neubau. Baudienstleistungen Hofmann übernahm die Rohbauarbeiten und führte das Vorhaben nach dem Abbruch nahtlos weiter – solide geplant und sauber umgesetzt.",
     image: {
       src: images.projects.pflaster.src,
-      alt: "Projekt Zoga Bau – Garten- und Pflasterarbeiten",
+      alt: "Rohbau Zoga Bau – Neubau nach dem Abbruch",
     },
     href: "/projekte/zoga-bau",
     meta: {
-      location: "nach Absprache",
+      location: "Groß-Zimmern",
       completion: "Abgeschlossen",
-      duration: "nach Flächenumfang",
-      service: "Außenanlagen",
+      duration: "nach Projektumfang",
+      service: "Rohbau",
     },
     challenge:
-      "Außenflächen müssen nicht nur gut aussehen, sondern auch langfristig tragfähig sein. Unterbau, Entwässerung und Pflasterung mussten sauber aufeinander abgestimmt werden.",
+      "Nach dem Abbruch musste der Rohbau auf dem vorbereiteten Baufeld zügig und präzise starten. Entscheidend waren eine saubere Schnittstelle zum Rückbau, solide Fundament- und Rohbauqualität sowie eine klare Abstimmung der Bauabschnitte.",
     challengePoints: [
-      "Tragfähiger Unterbau",
-      "Saubere Pflasterarbeiten",
-      "Funktionale Flächengestaltung",
+      "Nahtloser Anschluss an den Abbruch",
+      "Solide Fundament- und Rohbauausführung",
+      "Klare Bauabschnitte auf demselben Grundstück",
     ],
     works: [
       {
-        title: "Unterbau",
-        description: "Tragfähiger Aufbau für dauerhaft stabile Flächen.",
+        title: "Baufeld & Fundament",
+        description: "Nutzung des vorbereiteten Baufeldes und solide Fundamentarbeiten.",
         icon: "layers",
       },
       {
-        title: "Erdarbeiten",
-        description: "Vorbereitung und Modellierung der Außenflächen.",
-        icon: "shovel",
-      },
-      {
-        title: "Pflasterarbeiten",
-        description: "Fachgerechte Verlegung und saubere Fugenbilder.",
+        title: "Rohbau",
+        description: "Fachgerechte Ausführung der Rohbauarbeiten für den Neubau.",
         icon: "brick",
       },
       {
+        title: "Betonarbeiten",
+        description: "Betonage und tragende Konstruktion nach den Anforderungen des Vorhabens.",
+        icon: "grid",
+      },
+      {
         title: "Abschluss",
-        description: "Feinschliff und Übergabe der fertigen Flächen.",
+        description: "Saubere Übergabe an die weiteren Ausbauschritte.",
         icon: "check",
       },
     ],
     process: defaultProcess,
     result:
-      "Die Außenflächen wurden funktional und sauber hergestellt. Unterbau und Pflasterung bilden eine belastbare, gepflegte Lösung für die Nutzung vor Ort.",
+      "Auf dem freigeräumten Grundstück entstand der Neubau als direkter Folgeabschnitt des Abbruchs – aus einer Hand geplant und umgesetzt.",
     resultHighlights: [
-      "Stabiler Unterbau",
-      "Saubere Pflasteroptik",
-      "Dauerhaft nutzbare Flächen",
+      "Direkter Anschluss an den Abbruch",
+      "Solide Rohbauqualität",
+      "Komplettleistung aus einer Hand",
     ],
-    faqs: defaultTrustFaqs("der Region", "Außenanlagen"),
+    faqs: defaultTrustFaqs("Groß-Zimmern und Umgebung", "Rohbau"),
   },
 ];
+
+/** Reihenfolge auf der Projektübersicht: Zoga, Keisner und Urban zuerst */
+const projectDisplayOrder: ProjectSlug[] = [
+  "abriss-zoga-bau",
+  "keisner",
+  "urban-gross-biberau",
+];
+
+export function getOrderedProjects(list: Project[] = projects): Project[] {
+  const preferred: Project[] = [];
+  for (const slug of projectDisplayOrder) {
+    const match = list.find((project) => project.slug === slug);
+    if (match) preferred.push(match);
+  }
+  const rest = list.filter(
+    (project) => !projectDisplayOrder.includes(project.slug),
+  );
+  return preferred.concat(rest);
+}
 
 export function getProjectBySlug(slug: string): Project | undefined {
   return projects.find((project) => project.slug === slug);

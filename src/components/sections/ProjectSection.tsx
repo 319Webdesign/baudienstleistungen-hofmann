@@ -1,10 +1,12 @@
-import { projects } from "@/data/projects";
+import { getOrderedProjects } from "@/data/projects";
 import { ProjectCard } from "@/components/ui/ProjectCard";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Button } from "@/components/ui/Button";
 import { FadeIn } from "@/components/ui/FadeIn";
 
 export function ProjectSection() {
+  const orderedProjects = getOrderedProjects();
+
   return (
     <section className="bg-white py-16 sm:py-20 lg:py-24" id="projekte">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -17,7 +19,7 @@ export function ProjectSection() {
         </FadeIn>
 
         <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {projects.map((project, index) => (
+          {orderedProjects.map((project, index) => (
             <ProjectCard key={project.id} project={project} index={index} />
           ))}
         </div>

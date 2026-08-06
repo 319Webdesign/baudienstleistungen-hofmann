@@ -4,6 +4,7 @@ import { useMemo, useState } from "react";
 import {
   projects,
   projectFilters,
+  getOrderedProjects,
   type ProjectFilter,
 } from "@/data/projects";
 import { ProjectCard } from "@/components/ui/ProjectCard";
@@ -13,8 +14,11 @@ export function ProjectFilter() {
   const [active, setActive] = useState<ProjectFilter>("Alle");
 
   const filtered = useMemo(() => {
-    if (active === "Alle") return projects;
-    return projects.filter((p) => p.filterCategories.includes(active));
+    const list =
+      active === "Alle"
+        ? projects
+        : projects.filter((p) => p.filterCategories.includes(active));
+    return getOrderedProjects(list);
   }, [active]);
 
   return (

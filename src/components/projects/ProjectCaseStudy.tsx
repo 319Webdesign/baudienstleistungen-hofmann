@@ -370,6 +370,30 @@ export function ProjectCaseStudy({
         </div>
       </section>
 
+      {project.nextProject ? (
+        <section className="bg-surface py-14 sm:py-16">
+          <FadeIn className="mx-auto max-w-4xl px-4 text-center sm:px-6">
+            <p className="text-sm font-semibold uppercase tracking-[0.16em] text-orange">
+              Nächste Projektphase
+            </p>
+            <h2 className="mt-3 text-2xl font-bold text-primary sm:text-3xl">
+              Die Geschichte geht weiter
+            </h2>
+            {project.nextProject.description ? (
+              <p className="mx-auto mt-4 max-w-2xl text-muted leading-relaxed">
+                {project.nextProject.description}
+              </p>
+            ) : null}
+            <div className="mt-8">
+              <Button href={project.nextProject.href} size="lg">
+                {project.nextProject.label}
+                <ArrowUpRight className="h-4 w-4" aria-hidden />
+              </Button>
+            </div>
+          </FadeIn>
+        </section>
+      ) : null}
+
       {/* Zitat */}
       {project.quote ? (
         <section className="bg-surface py-14 sm:py-16">
