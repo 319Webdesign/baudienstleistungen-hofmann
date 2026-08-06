@@ -35,27 +35,44 @@ function galleryImages(gallery: GalleryMedia[]): GalleryMedia[] {
   return gallery.filter((item) => item.type === "image");
 }
 
+function findGalleryImageByFile(
+  images: GalleryMedia[],
+  fileName: string,
+): GalleryMedia | undefined {
+  const encoded = encodeURIComponent(fileName);
+  return images.find(
+    (item) =>
+      item.src.endsWith(`/${fileName}`) || item.src.endsWith(`/${encoded}`),
+  );
+}
+
 export function ProjectCaseStudy({
   project,
   gallery,
   related,
 }: ProjectCaseStudyProps) {
   const imagesOnly = galleryImages(gallery);
-  const challengeImage = imagesOnly[1] ?? imagesOnly[0] ?? {
+  const fallbackImage = {
     ...project.image,
     type: "image" as const,
   };
-  const midImageA = imagesOnly[2] ?? imagesOnly[0] ?? {
-    ...project.image,
-    type: "image" as const,
-  };
-  const midImageB = imagesOnly[3] ?? imagesOnly[1] ?? midImageA;
+  const challengeImage = imagesOnly[1] ?? imagesOnly[0] ?? fallbackImage;
+  const midImageA =
+    (project.midFiles?.[0]
+      ? findGalleryImageByFile(imagesOnly, project.midFiles[0])
+      : undefined) ??
+    imagesOnly[2] ??
+    imagesOnly[0] ??
+    fallbackImage;
+  const midImageB =
+    (project.midFiles?.[1]
+      ? findGalleryImageByFile(imagesOnly, project.midFiles[1])
+      : undefined) ??
+    imagesOnly[3] ??
+    imagesOnly[1] ??
+    midImageA;
   const resultImage =
-    imagesOnly[imagesOnly.length - 1] ??
-    imagesOnly[0] ?? {
-      ...project.image,
-      type: "image" as const,
-    };
+    imagesOnly[imagesOnly.length - 1] ?? imagesOnly[0] ?? fallbackImage;
 
   const metaItems = [
     { key: "location" as const, label: "Ort", value: project.meta.location },

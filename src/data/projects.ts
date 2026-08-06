@@ -5,6 +5,7 @@ export type ProjectCategory =
   | "Rohbau"
   | "Betonarbeiten"
   | "Umbau & Sanierung"
+  | "Umbau & Abrissarbeiten"
   | "Außenanlagen"
   | "Spezialprojekt"
   | "Spezialprojekte"
@@ -64,6 +65,8 @@ export type Project = {
   title: string;
   folder: string;
   coverFile?: string;
+  /** Zwei Bilder für die Mittel-Sektion nach den Leistungen */
+  midFiles?: [string, string];
   category: ProjectCategory;
   filterCategories: ProjectFilter[];
   description: string;
@@ -146,67 +149,89 @@ export const projects: Project[] = [
   {
     id: "abel-lippstadt",
     slug: "abel-lippstadt",
-    title: "Projekt Abel Lippstadt",
+    title: "Mobilfunkstandort Lippstadt",
     folder: "Projekt_Abel_Lippstadt",
     coverFile: "IMG_0284web.webp",
     category: "Mobilfunkfundamente",
-    filterCategories: ["Spezialprojekte", "Betonarbeiten"],
-    description:
-      "Herstellung belastbarer Fundamente für technische Anlagen – inklusive Aushub, Schalung, Bewehrung und Betonage.",
+    filterCategories: ["Spezialprojekte", "Betonarbeiten", "Außenanlagen"],
+    description: "Belastbares Mobilfunkfundament mit Außenanlagen",
     longDescription:
-      "Beim Projekt Abel Lippstadt wurden belastbare Fundamente für technische Anlagen hergestellt. Die Arbeiten umfassten Aushub, Schalung, Bewehrung und Betonage – präzise ausgeführt und auf die statischen Anforderungen der Anlage abgestimmt. Besonders wichtig waren Maßgenauigkeit, Tragfähigkeit und eine saubere Übergabe an die nachfolgenden Gewerke.",
+      "Für den Neubau eines Mobilfunkstandortes in Lippstadt wurde durch Baudienstleistungen Hofmann das komplette Fundament einschließlich vorbereitender Erdarbeiten sowie der zugehörigen Infrastruktur hergestellt. Neben dem tragfähigen Stahlbetonfundament wurden die Leerrohre für die spätere Versorgung der Mobilfunkanlage verlegt, die Zuwegung hergestellt und ergänzende Außenanlagen fachgerecht ausgeführt.",
     image: {
       src: "/projekte/Projekt_Abel_Lippstadt/IMG_0284web.webp",
-      alt: "Projekt Abel Lippstadt – Betonfundament für technische Anlage",
+      alt: "Mobilfunkstandort Lippstadt – Stahlbetonfundament mit Außenanlagen",
     },
     href: "/projekte/abel-lippstadt",
     meta: {
       location: "Lippstadt",
       completion: "Abgeschlossen",
-      duration: "nach Projektumfang",
-      service: "Mobilfunkfundamente",
-      client: "Technische Anlage",
+      service: "Spezialfundament / Mobilfunkinfrastruktur",
     },
     challenge:
-      "Für die technische Anlage war ein belastbares Fundament erforderlich, das den Vorgaben der Planung entspricht und sich sauber in die vorhandene Situation vor Ort einfügt. Zugänglichkeit, Untergrund und technische Anschlüsse mussten dabei berücksichtigt werden.",
+      "Mobilfunkfundamente stellen hohe Anforderungen an Maßgenauigkeit und Ausführung. Bereits kleinste Abweichungen können sich auf die spätere Montage des Funkmastes auswirken. Zusätzlich mussten sämtliche Einbauteile, Leerrohre und Anschlusspunkte exakt nach den Vorgaben des Auftraggebers positioniert werden. Auch die spätere Erreichbarkeit der Zentralen Anschlusssäule (ZAS) sowie des Schlüsseltresors war bereits in der Bauphase zu berücksichtigen.",
     challengePoints: [
-      "Technische Vorgaben und Tragfähigkeit",
-      "Präzise Schalung und Bewehrung",
-      "Saubere Schnittstelle zu Folgearbeiten",
+      "Hohe Maßgenauigkeit für die spätere Mastmontage",
+      "Exakte Positionierung von Einbauteilen, Leerrohren und Anschlusspunkten",
+      "Erreichbarkeit von ZAS und Schlüsseltresor bereits in der Bauphase",
     ],
     works: [
       {
-        title: "Erdarbeiten",
-        description: "Aushub und Vorbereitung des Fundamentbereichs.",
-        icon: "shovel",
+        title: "Vermessung & Erdarbeiten",
+        description:
+          "Vermessung und Vorbereitung des Baufeldes, fachgerechter Erdaushub sowie Herstellung der Sauberkeitsschicht.",
+        icon: "ruler",
       },
       {
-        title: "Schalungsarbeiten",
-        description: "Passgenaue Schalung für die Fundamentgeometrie.",
+        title: "Schalung & Bewehrung",
+        description:
+          "Schalungsarbeiten und Verlegen der Bewehrung nach Ausführungsplan.",
         icon: "layers",
       },
       {
-        title: "Bewehrung",
-        description: "Fachgerechte Bewehrung nach den technischen Vorgaben.",
-        icon: "grid",
-      },
-      {
-        title: "Betonage",
-        description: "Saubere Betonage und Nachbehandlung des Fundaments.",
+        title: "Leerrohre & Betonage",
+        description:
+          "Verlegung der Leerrohre zur Zentralen Anschlusssäule (ZAS) und Betonage des Stahlbetonfundamentes.",
         icon: "brick",
       },
+      {
+        title: "Außenanlagen & Schlüsseltresor",
+        description:
+          "Pflaster- und Gehwegflächen mit Betonplatten 50 × 50 cm, Setzen und Einbetonieren des Schlüsseltresors sowie saubere Wiederherstellung der Außenanlage.",
+        icon: "check",
+      },
     ],
-    process: defaultProcess,
+    process: [
+      {
+        title: "Schalung & Bewehrung",
+        description:
+          "Nach dem Aushub wurde zunächst die Schalung erstellt und die Bewehrung exakt nach den technischen Vorgaben eingebaut.",
+      },
+      {
+        title: "Leerrohrverlegung",
+        description:
+          "Anschließend erfolgte die Verlegung der erforderlichen Leerrohre zur späteren Anbindung der Zentralen Anschlusssäule.",
+      },
+      {
+        title: "Betonage & Zuwegung",
+        description:
+          "Nach erfolgreicher Betonage und Erhärtung des Fundamentes wurden die Gehwegplatten im Format 50 × 50 cm verlegt und die Zugänge zur Anlage hergestellt.",
+      },
+      {
+        title: "Abschluss",
+        description:
+          "Abschließend wurde der Schlüsseltresor fachgerecht am Stabgitterzaun einbetoniert und die Außenanlage sauber fertiggestellt.",
+      },
+    ],
     result:
-      "Das Fundament wurde belastbar, maßgenau und einsatzbereit hergestellt. Die Anlage konnte auf einer tragfähigen Basis weitergeführt werden – mit klaren Linien und einer professionellen Ausführung.",
+      "Das Ergebnis ist ein präzise ausgeführtes Mobilfunkfundament, das sämtliche Anforderungen an Tragfähigkeit, Maßhaltigkeit und Dauerhaftigkeit erfüllt und die Grundlage für die spätere Montage der Mobilfunktechnik bildet.",
     resultHighlights: [
-      "Maßgenaue Fundamentgeometrie",
-      "Belastbare Ausführung",
-      "Saubere Baustellenübergabe",
+      "Präzisionsfundament mit kompletter Infrastruktur",
+      "Tragfähigkeit, Maßhaltigkeit und Dauerhaftigkeit",
+      "Grundlage für die Montage der Mobilfunktechnik",
     ],
     quote:
-      "Technische Fundamente brauchen Präzision – nicht nur Kraft. Genau darauf kommt es bei Sonderfundamenten an.",
-    faqs: defaultTrustFaqs("Lippstadt und Umgebung", "Fundament"),
+      "Bei Mobilfunkfundamenten zählt Maßgenauigkeit – bereits kleinste Abweichungen können sich auf die spätere Mastmontage auswirken.",
+    faqs: defaultTrustFaqs("Lippstadt und Umgebung", "Mobilfunkfundament"),
   },
   {
     id: "keisner",
@@ -214,63 +239,88 @@ export const projects: Project[] = [
     title: "Projekt Keisner",
     folder: "Projekt_Keisner",
     coverFile: "IMG_0065_ergebnis.webp",
-    category: "Umbau & Sanierung",
-    filterCategories: ["Umbau & Sanierung"],
+    midFiles: ["IMG_0064web.webp", "IMG_3300web.webp"],
+    category: "Umbau & Abrissarbeiten",
+    filterCategories: ["Umbau & Sanierung", "Außenanlagen"],
     description:
-      "Fachgerechter Einbau von Stahlträgern bei Wanddurchbrüchen und Umbauten im Bestand – nach statischen Vorgaben umgesetzt.",
+      "Umbau und Abrissarbeiten im Bestand – Stahlträgereinbau nach Statik sowie Abriss der bestehenden Terrasse.",
     longDescription:
-      "Im Projekt Keisner wurden Umbau- und Sanierungsarbeiten im Bestand umgesetzt. Dazu gehörte der fachgerechte Einbau von Stahlträgern bei Wanddurchbrüchen – sorgfältig vorbereitet und nach den vorliegenden statischen Vorgaben ausgeführt. Arbeiten im Bestand erfordern besondere Sorgfalt, klare Abstützung und eine ruhige, sichere Umsetzung.",
+      "Im Projekt Keisner wurden Umbau- und Abrissarbeiten im Bestand umgesetzt. Im Fokus standen der fachgerechte Einbau von Stahlträgern nach den vorliegenden statischen Vorgaben sowie der kontrollierte Abriss der bestehenden Terrasse. Arbeiten im Bestand erfordern besondere Sorgfalt: klare Abstützung, sichere Arbeitsabläufe und eine saubere Übergabe an die nachfolgenden Gewerke.",
     image: {
       src: "/projekte/Projekt_Keisner/IMG_0065_ergebnis.webp",
-      alt: "Projekt Keisner – Umbau und Sanierung",
+      alt: "Projekt Keisner – Umbau, Stahlträgereinbau und Abrissarbeiten",
     },
     href: "/projekte/keisner",
     meta: {
-      location: "Region",
+      location: "Reinheim",
       completion: "Abgeschlossen",
-      duration: "nach Statik und Umfang",
-      service: "Umbau & Sanierung",
+      service: "Umbau und Abriss",
     },
     challenge:
-      "Im Bestand mussten Wanddurchbrüche und tragende Eingriffe so vorbereitet werden, dass die Konstruktion während der Arbeiten sicher bleibt. Statische Vorgaben, Abstützung und präziser Stahlträgereinbau waren zentrale Anforderungen.",
+      "Im Bestand mussten tragende Eingriffe und Abrissarbeiten so vorbereitet und ausgeführt werden, dass die Konstruktion während der gesamten Bauphase sicher bleibt. Der Stahlträgereinbau erforderte präzise Abstützung und Maßgenauigkeit nach Statik. Gleichzeitig war der Abriss der Terrasse so zu steuern, dass umliegende Bauteile geschützt bleiben und der Bauschutt geordnet entsorgt werden kann.",
     challengePoints: [
-      "Arbeiten im bestehenden Gebäude",
-      "Sicherer Wanddurchbruch mit Abstützung",
-      "Stahlträgereinbau nach Statik",
+      "Sichere Arbeiten im bestehenden Gebäude",
+      "Stahlträgereinbau nach statischen Vorgaben",
+      "Kontrollierter Abriss der Terrasse ohne Schäden am Bestand",
     ],
     works: [
       {
-        title: "Abstützung",
-        description: "Vorbereitende Sicherung der Konstruktion im Bestand.",
-        icon: "check",
-      },
-      {
-        title: "Wanddurchbruch",
-        description: "Kontrollierter Eingriff in bestehende Wände.",
-        icon: "hammer",
-      },
-      {
         title: "Stahlträgereinbau",
-        description: "Fachgerechter Einbau der tragenden Stahlkonstruktion.",
+        description:
+          "Fachgerechter Einbau der tragenden Stahlträger nach Statik – inklusive Abstützung und präziser Positionierung im Bestand.",
         icon: "building",
       },
       {
-        title: "Sanierung",
-        description: "Saubere Nacharbeiten und Übergabe im Bestand.",
+        title: "Abriss der Terrasse",
+        description:
+          "Kontrollierter Rückbau der bestehenden Terrasse inklusive Trennung der Bauteile und geordneter Entsorgung.",
+        icon: "hammer",
+      },
+      {
+        title: "Sicherung & Abstützung",
+        description:
+          "Vorbereitende Sicherung der Konstruktion, damit Umbau und Abriss sicher und kontrolliert ablaufen.",
+        icon: "check",
+      },
+      {
+        title: "Saubere Übergabe",
+        description:
+          "Aufräumen der Arbeitsbereiche und Übergabe an die nachfolgenden Ausbau- und Außenarbeiten.",
         icon: "settings",
       },
     ],
-    process: defaultProcess,
+    process: [
+      {
+        title: "Sicherung",
+        description:
+          "Zuerst wurde die bestehende Konstruktion abgestützt und die Arbeitsbereiche so vorbereitet, dass Umbau und Abriss sicher starten konnten.",
+      },
+      {
+        title: "Stahlträgereinbau",
+        description:
+          "Die Stahlträger wurden nach den statischen Vorgaben präzise eingebaut und fachgerecht im Bestand verankert.",
+      },
+      {
+        title: "Terrassenabriss",
+        description:
+          "Anschließend erfolgte der kontrollierte Abriss der Terrasse – inklusive Trennung der Bauteile und Schutz des umliegenden Bestands.",
+      },
+      {
+        title: "Abschluss",
+        description:
+          "Zum Abschluss wurden die Arbeitsbereiche geräumt und das Projekt sauber für die weiteren Ausbauschritte übergeben.",
+      },
+    ],
     result:
-      "Der Umbau konnte sicher und fachgerecht umgesetzt werden. Die Stahlträger sitzen nach Vorgabe, der Durchbruch ist sauber ausgeführt und das Projekt bereit für die weiteren Ausbauschritte.",
+      "Umbau und Abrissarbeiten wurden sicher und fachgerecht abgeschlossen. Die Stahlträger sitzen nach Vorgabe, die Terrasse ist zurückgebaut, und die Baustelle ist bereit für die weiteren Ausbau- und Außenarbeiten.",
     resultHighlights: [
-      "Sichere Umsetzung im Bestand",
-      "Tragende Konstruktion nach Statik",
-      "Saubere handwerkliche Ausführung",
+      "Stahlträgereinbau nach Statik",
+      "Kontrollierter Abriss der Terrasse",
+      "Sichere, saubere Umsetzung im Bestand",
     ],
     quote:
       "Im Bestand zählt nicht Tempo um jeden Preis – sondern Kontrolle, Erfahrung und eine klare Reihenfolge.",
-    faqs: defaultTrustFaqs("der Region", "Umbau"),
+    faqs: defaultTrustFaqs("Reinheim und Umgebung", "Umbau- und Abriss"),
   },
   {
     id: "abel-ruesselsheim",
