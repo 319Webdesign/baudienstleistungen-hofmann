@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/Button";
 import { FadeIn } from "@/components/ui/FadeIn";
 
 export function ProjectSection() {
-  const orderedProjects = getOrderedProjects();
+  const orderedProjects = getOrderedProjects().slice(0, 3);
 
   return (
     <section className="bg-white py-16 sm:py-20 lg:py-24" id="projekte">
