@@ -3,13 +3,11 @@ import {
   Building2,
   DraftingCompass,
   Hammer,
-  RadioTower,
   Shovel,
 } from "lucide-react";
 import { images } from "./images";
 
 export type ServiceSlug =
-  | "mobilfunkfundamente"
   | "rohbau-betonarbeiten"
   | "umbau-sanierung"
   | "erdarbeiten-aussenanlagen"
@@ -29,29 +27,6 @@ export type Service = {
 };
 
 export const services: Service[] = [
-  {
-    id: "mobilfunkfundamente",
-    slug: "mobilfunkfundamente",
-    title: "Mobilfunkfundamente",
-    shortTitle: "Mobilfunk",
-    description:
-      "Maßgenaue Fundamente für Mobilfunkanlagen – belastbar, termingerecht und nach technischen Vorgaben ausgeführt.",
-    longDescription:
-      "Mobilfunkfundamente stellen besondere Anforderungen an Maßgenauigkeit, Tragfähigkeit und Ausführung. Baudienstleistungen Hofmann übernimmt die Herstellung belastbarer Fundamente für Mobilfunkanlagen – von Aushub und Schalung über Bewehrung bis zur Betonage. Die Arbeiten erfolgen präzise nach Planung und den technischen Vorgaben der Anlage.",
-    items: [
-      "Fundamente für Mobilfunkanlagen",
-      "Aushub und Baugrubenvorbereitung",
-      "Schalungsarbeiten",
-      "Bewehrungsarbeiten",
-      "Betonage nach Vorgabe",
-      "Leerrohre und Einbauteile",
-      "maßgenaue Ausführung",
-      "technische Abstimmung vor Ort",
-    ],
-    icon: RadioTower,
-    image: images.services.mobilfunk,
-    href: "/leistungen/mobilfunkfundamente",
-  },
   {
     id: "rohbau-betonarbeiten",
     slug: "rohbau-betonarbeiten",
@@ -134,8 +109,9 @@ export const services: Service[] = [
     description:
       "Individuelle Bauaufgaben, die technisches Verständnis, Erfahrung und flexible Lösungen erfordern.",
     longDescription:
-      "Sonderprojekte verlangen individuelle Fundament- und Konstruktionslösungen – von technischen Anlagenfundamenten bis zu maßgeschneiderten Betonbauteilen. Baudienstleistungen Hofmann verbindet handwerkliche Ausführung mit bautechnischem Verständnis und koordinierter Umsetzung nach Planung.",
+      "Sonderprojekte verlangen individuelle Fundament- und Konstruktionslösungen – von Mobilfunkfundamenten und technischen Anlagenfundamenten bis zu maßgeschneiderten Betonbauteilen. Baudienstleistungen Hofmann verbindet handwerkliche Ausführung mit bautechnischem Verständnis und koordinierter Umsetzung nach Planung.",
     items: [
+      "Mobilfunkfundamente",
       "Sonderfundamente",
       "Lichtmastfundamente",
       "Maschinenfundamente",

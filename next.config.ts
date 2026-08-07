@@ -9,6 +9,15 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  async redirects() {
+    return [
+      {
+        source: "/leistungen/mobilfunkfundamente",
+        destination: "/leistungen/spezialprojekte",
+        permanent: true,
+      },
+    ];
+  },
 };
 
 export default nextConfig;

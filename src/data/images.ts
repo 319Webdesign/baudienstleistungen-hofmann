@@ -12,10 +12,6 @@ export const images = {
     alt: "Thomas Hofmann – Maurermeister und staatlich geprüfter Bautechniker",
   },
   services: {
-    mobilfunk: {
-      src: "/projekte/Projekt_Abel_Lippstadt/IMG_0284web.webp",
-      alt: "Mobilfunkfundament mit Betonplatte und Leerrohr",
-    },
     rohbau: {
       src: "/betonarbeiten.png",
       alt: "Betonarbeiten – frisch betonierte Bodenplatte mit Abdichtung und Bewehrung",
@@ -29,8 +25,8 @@ export const images = {
       alt: "Außenanlagen – Steinsitzplatz und Pflasterarbeiten im Garten",
     },
     spezial: {
-      src: "https://images.unsplash.com/photo-1589939705384-5185137a7f0f?auto=format&fit=crop&w=1200&q=80",
-      alt: "Spezialfundament und Betonarbeiten",
+      src: "/projekte/Projekt_Abel_Lippstadt/IMG_0284web.webp",
+      alt: "Sonderprojekt – Mobilfunkfundament mit Betonplatte und Leerrohr",
     },
   },
   projects: {

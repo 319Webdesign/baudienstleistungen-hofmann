@@ -12,7 +12,7 @@ import { buildBreadcrumbJsonLd } from "@/lib/seo";
 export const metadata: Metadata = {
   title: "Leistungen",
   description:
-    "Mobilfunkfundamente, Rohbau, Betonarbeiten, Umbau, Sanierung, Erdarbeiten, Außenanlagen und Spezialprojekte – Baudienstleistungen Hofmann.",
+    "Rohbau, Betonarbeiten, Umbau, Sanierung, Erdarbeiten, Außenanlagen und Spezialprojekte – Baudienstleistungen Hofmann.",
 };
 
 export default function LeistungenPage() {
@@ -27,8 +27,8 @@ export default function LeistungenPage() {
       <PageHero
         eyebrow="Leistungen"
         title="Bauleistungen mit Substanz und technischem Verständnis"
-        description="Fünf klar definierte Schwerpunkte – von Mobilfunkfundamenten über Rohbau bis zu individuellen Sonderlösungen."
-        image={images.services.mobilfunk}
+        description="Vier klar definierte Schwerpunkte – von Rohbau und Betonarbeiten bis zu individuellen Sonderlösungen."
+        image={images.services.spezial}
         breadcrumbs={[
           { label: "Startseite", href: "/" },
           { label: "Leistungen" },
