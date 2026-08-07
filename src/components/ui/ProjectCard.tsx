@@ -33,6 +33,11 @@ export function ProjectCard({ project, index = 0 }: ProjectCardProps) {
           <span className="absolute left-4 top-4 rounded-md bg-white/95 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-anthracite">
             {project.category}
           </span>
+          {project.premium ? (
+            <span className="absolute right-4 top-4 rounded-md bg-orange px-3 py-1 text-xs font-semibold uppercase tracking-wide text-white shadow-sm">
+              Premium
+            </span>
+          ) : null}
         </div>
 
         <div className="flex flex-1 flex-col p-5 sm:p-6">

@@ -5,7 +5,6 @@ export type ProjectCategory =
   | "Rohbau"
   | "Betonarbeiten"
   | "Umbau & Sanierung"
-  | "Umbau & Abrissarbeiten"
   | "Abbruch"
   | "Außenanlagen"
   | "Spezialprojekt"
@@ -28,10 +27,11 @@ export type ProjectSlug =
   | "abriss-keisner"
   | "abriss-zoga-bau"
   | "urban-gross-biberau"
+  | "merzhof"
+  | "merzhof-einzaeunung"
   | "abel-ruesselsheim"
   | "breuninger"
-  | "schraeder-gessner"
-  | "zoga-bau";
+  | "schraeder-gessner";
 
 export type ProjectWorkIcon =
   | "shovel"
@@ -64,6 +64,16 @@ export type ProjectProcessStep = {
   description: string;
 };
 
+/** Kundenbewertung zu einem konkreten Projekt – nur setzen, wenn echt vorhanden */
+export type ProjectTestimonial = {
+  quote: string;
+  author: string;
+  /** z. B. Bauherr, Architekt, Auftraggeber */
+  role?: string;
+  /** Optional 1–5 Sterne */
+  rating?: 1 | 2 | 3 | 4 | 5;
+};
+
 export type Project = {
   id: string;
   slug: ProjectSlug;
@@ -72,6 +82,8 @@ export type Project = {
   coverFile?: string;
   /** Zwei Bilder für die Mittel-Sektion nach den Leistungen */
   midFiles?: [string, string];
+  /** Bild für die Herausforderung-Sektion */
+  challengeFile?: string;
   /** Bild für die Ergebnis-Sektion */
   resultFile?: string;
   category: ProjectCategory;
@@ -88,12 +100,19 @@ export type Project = {
   result: string;
   resultHighlights: string[];
   quote?: string;
+  /**
+   * Optional: echte Kundenstimmen nur zu diesem Projekt.
+   * Ohne Einträge erscheint die Sektion auf der Projektseite nicht.
+   */
+  testimonials?: ProjectTestimonial[];
   /** Optionaler Weiter-Link zur nächsten Projektphase */
   nextProject?: {
     href: string;
     label: string;
     description?: string;
   };
+  /** Premium-Referenz auf der Projektkarte hervorheben */
+  premium?: boolean;
   faqs: FAQItem[];
 };
 
@@ -252,63 +271,63 @@ export const projects: Project[] = [
     slug: "keisner",
     title: "Projekt Keisner",
     folder: "Projekt_Keisner",
-    coverFile: "IMG_0065web.webp",
-    midFiles: ["IMG_0064web.webp", "IMG_3300web.webp"],
-    category: "Umbau & Abrissarbeiten",
-    filterCategories: ["Umbau & Sanierung", "Außenanlagen"],
+    coverFile: "IMG_2087web.webp",
+    midFiles: ["IMG_2075web.webp", "IMG_2084web.webp"],
+    category: "Umbau & Sanierung",
+    filterCategories: ["Umbau & Sanierung"],
     description:
-      "Umbau und Abrissarbeiten im Bestand – Stahlträgereinbau nach Statik sowie Abriss der bestehenden Terrasse.",
+      "Umbau im Bestand mit fachgerechtem Stahlträgereinbau nach Statik – sicher abgestützt und präzise umgesetzt.",
     longDescription:
-      "Im Projekt Keisner wurden Umbau- und Abrissarbeiten im Bestand umgesetzt. Im Fokus standen der fachgerechte Einbau von Stahlträgern nach den vorliegenden statischen Vorgaben sowie der kontrollierte Abriss der bestehenden Terrasse. Arbeiten im Bestand erfordern besondere Sorgfalt: klare Abstützung, sichere Arbeitsabläufe und eine saubere Übergabe an die nachfolgenden Gewerke.",
+      "Im Projekt Keisner stand der Umbau im Bestand im Fokus: tragende Eingriffe wurden nach den vorliegenden statischen Vorgaben vorbereitet und mit einem fachgerechten Stahlträgereinbau umgesetzt. Arbeiten im bestehenden Gebäude erfordern besondere Sorgfalt – klare Abstützung, sichere Arbeitsabläufe und eine saubere Übergabe an die nachfolgenden Gewerke.",
     image: {
-      src: "/projekte/Projekt_Keisner/IMG_0065web.webp",
-      alt: "Projekt Keisner – Umbau, Stahlträgereinbau und Abrissarbeiten",
+      src: "/projekte/Projekt_Keisner/IMG_2087web.webp",
+      alt: "Projekt Keisner – Umbau und Stahlträgereinbau im Bestand",
     },
     href: "/projekte/keisner",
     meta: {
       location: "Reinheim",
       completion: "Abgeschlossen",
       duration: "8 Tage",
-      service: "Umbau und Abriss",
+      service: "Umbau & Sanierung",
     },
     challenge:
-      "Im Bestand mussten tragende Eingriffe und Abrissarbeiten so vorbereitet und ausgeführt werden, dass die Konstruktion während der gesamten Bauphase sicher bleibt. Der Stahlträgereinbau erforderte präzise Abstützung und Maßgenauigkeit nach Statik. Gleichzeitig war der Abriss der Terrasse so zu steuern, dass umliegende Bauteile geschützt bleiben und der Bauschutt geordnet entsorgt werden kann.",
+      "Im Bestand mussten tragende Eingriffe so vorbereitet und ausgeführt werden, dass die Konstruktion während der gesamten Bauphase sicher bleibt. Der Stahlträgereinbau erforderte präzise Abstützung, Maßgenauigkeit nach Statik und einen klaren Ablauf – ohne Beeinträchtigung der umliegenden Bausubstanz.",
     challengePoints: [
       "Sichere Arbeiten im bestehenden Gebäude",
       "Stahlträgereinbau nach statischen Vorgaben",
-      "Kontrollierter Abriss der Terrasse ohne Schäden am Bestand",
+      "Präzise Abstützung und Lastabtragung während der Umbauphase",
     ],
     works: [
       {
+        title: "Sicherung & Abstützung",
+        description:
+          "Vorbereitende Sicherung der Konstruktion, damit der Umbau kontrolliert und standsicher ablaufen kann.",
+        icon: "check",
+      },
+      {
         title: "Stahlträgereinbau",
         description:
-          "Fachgerechter Einbau der tragenden Stahlträger nach Statik – inklusive Abstützung und präziser Positionierung im Bestand.",
+          "Fachgerechter Einbau der tragenden Stahlträger nach Statik – inklusive präziser Positionierung und Verankerung im Bestand.",
         icon: "building",
       },
       {
-        title: "Abriss der Terrasse",
+        title: "Tragwerksanpassung",
         description:
-          "Kontrollierter Rückbau der bestehenden Terrasse inklusive Trennung der Bauteile und geordneter Entsorgung.",
-        icon: "hammer",
-      },
-      {
-        title: "Sicherung & Abstützung",
-        description:
-          "Vorbereitende Sicherung der Konstruktion, damit Umbau und Abriss sicher und kontrolliert ablaufen.",
-        icon: "check",
+          "Abstimmung der neuen Stahlkonstruktion auf die bestehenden Lasten und Anschlüsse im Gebäude.",
+        icon: "layers",
       },
       {
         title: "Saubere Übergabe",
         description:
-          "Aufräumen der Arbeitsbereiche und Übergabe an die nachfolgenden Ausbau- und Außenarbeiten.",
+          "Kontrolle der Einbauteile, Aufräumen der Arbeitsbereiche und Übergabe an die nachfolgenden Ausbaugewerke.",
         icon: "settings",
       },
     ],
     process: [
       {
-        title: "Sicherung",
+        title: "Planung & Sicherung",
         description:
-          "Zuerst wurde die bestehende Konstruktion abgestützt und die Arbeitsbereiche so vorbereitet, dass Umbau und Abriss sicher starten konnten.",
+          "Zuerst wurden Statik und Arbeitsablauf geprüft und die bestehende Konstruktion so abgestützt, dass der Umbau sicher starten konnte.",
       },
       {
         title: "Stahlträgereinbau",
@@ -316,9 +335,9 @@ export const projects: Project[] = [
           "Die Stahlträger wurden nach den statischen Vorgaben präzise eingebaut und fachgerecht im Bestand verankert.",
       },
       {
-        title: "Terrassenabriss",
+        title: "Ausrichtung & Kontrolle",
         description:
-          "Anschließend erfolgte der kontrollierte Abriss der Terrasse – inklusive Trennung der Bauteile und Schutz des umliegenden Bestands.",
+          "Maßhaltigkeit, Lastabtragung und Anschlüsse wurden geprüft – für eine dauerhaft tragfähige Lösung im Bestand.",
       },
       {
         title: "Abschluss",
@@ -327,15 +346,15 @@ export const projects: Project[] = [
       },
     ],
     result:
-      "Umbau und Abrissarbeiten wurden sicher und fachgerecht abgeschlossen. Die Stahlträger sitzen nach Vorgabe, die Terrasse ist zurückgebaut, und die Baustelle ist bereit für die weiteren Ausbau- und Außenarbeiten.",
+      "Der Umbau wurde sicher und fachgerecht abgeschlossen. Die Stahlträger sitzen nach Vorgabe, die Tragfähigkeit im Bestand ist gewährleistet, und die Baustelle ist bereit für die weiteren Ausbauarbeiten.",
     resultHighlights: [
       "Stahlträgereinbau nach Statik",
-      "Kontrollierter Abriss der Terrasse",
-      "Sichere, saubere Umsetzung im Bestand",
+      "Sichere Abstützung während der Umbauphase",
+      "Saubere, übergabefähige Umsetzung im Bestand",
     ],
     quote:
       "Im Bestand zählt nicht Tempo um jeden Preis – sondern Kontrolle, Erfahrung und eine klare Reihenfolge.",
-    faqs: defaultTrustFaqs("Reinheim und Umgebung", "Umbau- und Abriss"),
+    faqs: defaultTrustFaqs("Reinheim und Umgebung", "Umbau"),
   },
   {
     id: "abriss-keisner",
@@ -516,28 +535,30 @@ export const projects: Project[] = [
       },
     ],
     result:
-      "Durch den kontrollierten Rückbau konnte das Bestandsgebäude sicher und vollständig entfernt werden, ohne die angrenzende Bebauung zu beeinträchtigen. Das Grundstück stand anschließend vollständig für den Neubau zur Verfügung, der im nächsten Bauabschnitt ebenfalls durch Baudienstleistungen Hofmann realisiert wurde.",
+      "Durch den kontrollierten Rückbau konnte das Bestandsgebäude sicher und vollständig entfernt werden, ohne die angrenzende Bebauung zu beeinträchtigen. Das Grundstück stand anschließend vollständig für den Neubau zur Verfügung.",
     resultHighlights: [
       "Sicherer Rückbau trotz Grenzbebauung",
       "Fachgerechte Entkernung und Materialtrennung",
       "Präziser maschineller Abbruch",
       "Baufeld vollständig vorbereitet",
-      "Nahtloser Übergang zum anschließenden Rohbau",
+    ],
+    testimonials: [
+      {
+        quote:
+          "Wir sind äußerst zufrieden mit der Arbeit von Hofmann beim Abbruch und Rohbau unseres Projekts. Der Abbruch wurde präzise und sauber durchgeführt, während der Rohbau pünktlich und in erstklassiger Qualität abgeliefert wurde. Die Kommunikation war durchweg professionell und reibungslos, was die Zusammenarbeit sehr angenehm gemacht hat. Hofmann hat uns mit seiner exzellenten Vorbereitung und der hohen Ausführungsqualität überzeugt. Wer einen zuverlässigen Partner für Abbruch und Rohbau sucht, ist bei Hofmann genau richtig!",
+        author: "Arijanit Zogjani",
+        role: "Google-Bewertung",
+        rating: 5,
+      },
     ],
     quote:
       "Bei innerörtlichem Abbruch zählt nicht die Kraft der Maschine – sondern die Präzision der Planung.",
-    nextProject: {
-      href: "/projekte/zoga-bau",
-      label: "Weiter zum Projekt Rohbau Zoga Bau",
-      description:
-        "Auf dem freigemachten Grundstück entstand im nächsten Bauabschnitt der Neubau – ebenfalls durch Baudienstleistungen Hofmann.",
-    },
     faqs: defaultTrustFaqs("Groß-Zimmern und Umgebung", "Abbruch"),
   },
   {
     id: "urban-gross-biberau",
     slug: "urban-gross-biberau",
-    title: "Projekt Urban Groß-Biberau",
+    title: "Projekt Urban Groß-Bieberau",
     folder: "Urban",
     coverFile: "2efb34d2-9f03-4356-a643-1f737fd931caweb.webp",
     midFiles: ["IMG_1333web.webp", "IMG_8670web.webp"],
@@ -547,14 +568,14 @@ export const projects: Project[] = [
     description:
       "Hochwertige Gartengestaltung mit Muschelkalkmauern, Geoceramica-Terrasse, Pflasterflächen und Edelstahlseilzaun.",
     longDescription:
-      "In Groß-Biberau entstand für das Projekt Urban eine durchgängig geplante Außenanlage aus Naturstein, hochwertigen Belägen und präziser Detailarbeit. Muschelkalkmauern setzen klare Linien, die Terrasse wurde mit Geoceramica-Verbundplatten auf Drainbeton ausgeführt, und ergänzende Pflasterflächen, Wegeinfassungen, Eingangstreppen sowie ein Edelstahlseilzaun runden das Gesamtbild ab. Vom Aushub mit 9-Tonnen-Bagger bis zum verlegten Rollrasen: alles aus einer Hand – belastbar, sauber und mit Anspruch an Material und Handwerk.",
+      "In Groß-Bieberau entstand für das Projekt Urban eine durchgängig geplante Außenanlage aus Naturstein, hochwertigen Belägen und präziser Detailarbeit. Muschelkalkmauern setzen klare Linien, die Terrasse wurde mit Geoceramica-Verbundplatten auf Drainbeton ausgeführt, und ergänzende Pflasterflächen, Wegeinfassungen, Eingangstreppen sowie ein Edelstahlseilzaun runden das Gesamtbild ab. Vom Aushub mit 9-Tonnen-Bagger bis zum verlegten Rollrasen: alles aus einer Hand – belastbar, sauber und mit Anspruch an Material und Handwerk.",
     image: {
       src: "/projekte/Urban/2efb34d2-9f03-4356-a643-1f737fd931caweb.webp",
-      alt: "Projekt Urban Groß-Biberau – Gartenanlage mit Naturstein und Terrasse",
+      alt: "Projekt Urban Groß-Bieberau – Gartenanlage mit Naturstein und Terrasse",
     },
     href: "/projekte/urban-gross-biberau",
     meta: {
-      location: "Groß-Biberau",
+      location: "Groß-Bieberau",
       completion: "Abgeschlossen",
       duration: "nach Flächenumfang",
       service: "Außenanlagen & Steinarbeiten",
@@ -621,9 +642,246 @@ export const projects: Project[] = [
       "Geoceramica-Terrasse auf Drainbeton",
       "Pflaster, Treppen, Edelstahlseilzaun und Rollrasen",
     ],
+    testimonials: [
+      {
+        quote:
+          "Jetzt haben wir den Garten komplett fertig gestaltet bekommen. Das Ergebnis spricht für sich. Super Arbeit. Bei Problemen super Kommunikation! Wunderschöne Gestaltungsvorschläge und absolut zuverlässig. Immer wieder!\n\nVon Anfang bis Ende absolut Top. Super zuverlässig, nett und fachkundig. Sie haben bei uns die komplette Terrasse gestaltet und eine Muschelkalkmauer gesetzt. Alles ist super gelaufen, pünktlich geliefert und gefertigt worden. Herr Hofmann liebt seinen Job und dies merkt man. Er hat tolle Ideen und gute Alternativen und dies immer zu guten Preisen. Es wird schnell gearbeitet und alles sauber hinterlassen. Ich kann die Arbeit mit diesem Baudienstleister nur jedem weiterempfehlen.",
+        author: "CU",
+        role: "Google-Bewertung",
+        rating: 5,
+      },
+    ],
     quote:
       "Gute Außenanlagen erkennt man nicht nur am Material – sondern an der Präzision, mit der Stein, Belag und Grün ineinandergreifen.",
-    faqs: defaultTrustFaqs("Groß-Biberau und Umgebung", "Außenanlagen"),
+    faqs: defaultTrustFaqs("Groß-Bieberau und Umgebung", "Außenanlagen"),
+  },
+  {
+    id: "merzhof",
+    slug: "merzhof",
+    title: "Projekt Merzhof",
+    folder: "Projekt_Merzhof",
+    coverFile: "IMG_8763web.webp",
+    category: "Außenanlagen",
+    filterCategories: ["Außenanlagen"],
+    description:
+      "Rund 200 m² Hoffläche neu hergestellt – belastbar, wasserdurchlässig und mit Rasengittersteinen maschinell verlegt.",
+    longDescription:
+      "Im Rahmen dieses Projekts wurde eine rund 200 m² große Hoffläche vollständig neu hergestellt. Ziel war die Schaffung einer dauerhaft belastbaren und gleichzeitig wasserdurchlässigen Fläche durch den Einbau hochwertiger Rasengittersteine. Nach umfangreichen Erdarbeiten wurde der Unterbau fachgerecht hergestellt. Anschließend erfolgte die maschinelle Verlegung der Rasengittersteine mit moderner Verlegetechnik. Zum Abschluss wurden sämtliche Kammern mit hochwertigem Vegetationsboden verfüllt und die Fläche für die spätere Begrünung vorbereitet.",
+    image: {
+      src: "/projekte/Projekt_Merzhof/IMG_8763web.webp",
+      alt: "Projekt Merzhof – Hoffläche mit Rasengittersteinen und Vegetationsboden",
+    },
+    href: "/projekte/merzhof",
+    meta: {
+      location: "Rodau",
+      completion: "Abgeschlossen",
+      service: "Pflaster- & Außenanlagenbau",
+      size: "rund 200 m²",
+    },
+    challenge:
+      "Vor Beginn der Pflasterarbeiten musste die bestehende Hoffläche vollständig ausgehoben und für den neuen Oberbau vorbereitet werden. Aufgrund der großen Fläche war eine wirtschaftliche und gleichzeitig präzise Ausführung gefragt. Durch den Einsatz moderner Maschinentechnik konnten die Rasengittersteine effizient verlegt und ein gleichmäßiges Verlegebild erzielt werden. Abschließend wurden sämtliche Rasenkammern mit geeignetem Vegetationssubstrat verfüllt, sodass eine dauerhaft belastbare und begrünbare Oberfläche entstand.",
+    challengePoints: [
+      "Rund 200 m² Hoffläche",
+      "Umfangreiche Erdarbeiten im Bestand",
+      "Präziser Unterbau nach technischen Anforderungen",
+      "Maschinelle Verlegung mit Probst-Verlegezange",
+      "Wasserdurchlässige Flächenbefestigung",
+    ],
+    works: [
+      {
+        title: "Erdarbeiten",
+        description:
+          "Aushub der bestehenden Hoffläche sowie Vorbereitung des Planums in Zusammenarbeit mit einem Nachunternehmer.",
+        icon: "shovel",
+      },
+      {
+        title: "Unterbau",
+        description:
+          "Herstellung eines tragfähigen Untergrundes als Grundlage für die spätere Pflasterfläche.",
+        icon: "layers",
+      },
+      {
+        title: "Maschinelle Verlegung",
+        description:
+          "Verlegung der 10 cm starken Rasengittersteine mit einer Probst-Rasengitter-Verlegezange am Bagger für höchste Präzision und Wirtschaftlichkeit.",
+        icon: "brick",
+      },
+      {
+        title: "Vegetationsboden",
+        description:
+          "Fachgerechtes Einbringen hochwertigen Vegetationsbodens in sämtliche Rasenkammern.",
+        icon: "grid",
+      },
+      {
+        title: "Fertigstellung",
+        description:
+          "Kontrolle der Flächen, Nacharbeiten sowie Vorbereitung der Fläche für die spätere Begrünung.",
+        icon: "check",
+      },
+    ],
+    process: [
+      {
+        title: "Planung",
+        description:
+          "Bestandsaufnahme, Vermessung der Hoffläche sowie Planung der Erd- und Pflasterarbeiten.",
+      },
+      {
+        title: "Erdarbeiten",
+        description:
+          "Mit einem 14-Tonnen-Bagger wurde die vorhandene Fläche ausgehoben und für den neuen Aufbau vorbereitet.",
+      },
+      {
+        title: "Verlegung",
+        description:
+          "Die rund 200 m² Rasengittersteine wurden mit einer Probst-Verlegezange maschinell eingebaut. Dadurch konnte eine schnelle, präzise und gleichmäßige Verlegung sichergestellt werden.",
+      },
+      {
+        title: "Fertigstellung",
+        description:
+          "Nach Abschluss der Pflasterarbeiten wurden sämtliche Rasenkammern mit hochwertigem Vegetationsboden verfüllt. Die Fläche wurde gereinigt und als belastbare sowie dauerhaft versickerungsfähige Hoffläche an den Bauherrn übergeben.",
+      },
+    ],
+    result:
+      "Es entstand eine optisch hochwertige und funktionale Hoffläche, die hohe Belastbarkeit mit einer ökologisch sinnvollen Oberflächenbefestigung verbindet. Durch die maschinelle Verlegung konnten höchste Präzision und eine wirtschaftliche Ausführung gewährleistet werden. Die mit Vegetationsboden verfüllten Rasenkammern ermöglichen eine natürliche Begrünung und sorgen gleichzeitig für eine versickerungsfähige Oberfläche.",
+    resultHighlights: [
+      "Rund 200 m² Rasengittersteine verlegt",
+      "Präzise Maschinentechnik mit Probst-Verlegezange",
+      "Tragfähiger Unterbau fachgerecht hergestellt",
+      "Hochwertiger Vegetationsboden eingebaut",
+      "Dauerhaft belastbare und versickerungsfähige Hoffläche",
+    ],
+    testimonials: [
+      {
+        quote:
+          "Das Team Hoffmann hat geliefert. Sehr zu unsere absoluten Zufriedenheit. Zuverlässig, termintreu, kreativ und Top-Qualität. Auch die Kommunikation war sehr gut, so konnten aktuelle Hindernisse oder Ideen immer schnell gelöst werden.\n\nUnd trotz oftmals recht widrigen Wetterverhältnissen war immer gute Laune an der Baustelle vorherrschend..\n\nVielen Dank.",
+        author: "Michael Nick",
+        role: "Google-Bewertung",
+        rating: 5,
+      },
+    ],
+    quote:
+      "Die maschinelle Verlegung mit der Probst-Verlegezange ermöglicht nicht nur eine deutlich höhere Verlegeleistung, sondern sorgt auch für ein exaktes Fugenbild und eine gleichbleibend hohe Ausführungsqualität.",
+    nextProject: {
+      href: "/projekte/merzhof-einzaeunung",
+      label: "Weiter zur Merzhof Einzäunung",
+      description:
+        "Im nächsten Bauabschnitt entstand rund 350 Meter Zaunanlage aus Lärchen-Schwartebrettern – inklusive Jagdtoren und ergänzender Pflasterarbeiten.",
+    },
+    faqs: defaultTrustFaqs("Rodau und Umgebung", "Pflaster- und Außenanlagen"),
+  },
+  {
+    id: "merzhof-einzaeunung",
+    slug: "merzhof-einzaeunung",
+    title: "Projekt Merzhof Einzäunung",
+    folder: "Projekt_Merzhof_Einzaeunung",
+    coverFile: "IMG_9361web.webp",
+    category: "Außenanlagen",
+    filterCategories: ["Außenanlagen"],
+    description:
+      "Rund 350 Meter Zaunanlage aus Lärchen-Schwartebrettern – inklusive Jagdtoren und ergänzender Rasengitterflächen.",
+    longDescription:
+      "Nach der erfolgreichen Herstellung der Rasengitterflächen wurde Baudienstleistungen Hofmann mit einem weiteren Bauabschnitt beauftragt. Im Mittelpunkt stand die Einfriedung des weitläufigen Grundstücks durch eine hochwertige Zaunanlage aus Lärchen-Schwartebrettern. Auf einer Gesamtlänge von rund 350 Metern entstand eine robuste und optisch ansprechende Grundstückseinfassung. Ergänzend wurden weitere Rasengittersteine verlegt sowie zwei großformatige Jagdtore eingebaut. Trotz winterlicher Witterung konnten sämtliche Arbeiten termingerecht und in hoher Qualität abgeschlossen werden.",
+    image: {
+      src: "/projekte/Projekt_Merzhof_Einzaeunung/IMG_9361web.webp",
+      alt: "Projekt Merzhof Einzäunung – rund 350 Meter Zaunanlage aus Lärchenholz",
+    },
+    href: "/projekte/merzhof-einzaeunung",
+    meta: {
+      location: "Rodau",
+      completion: "Abgeschlossen",
+      service: "Zaun- & Außenanlagenbau",
+      size: "rund 350 m Zaunanlage",
+    },
+    challenge:
+      "Die Arbeiten fanden während der Wintermonate unter schwierigen Wetterbedingungen statt. Der lange Zaunverlauf von rund 350 Metern erforderte eine exakte Vermessung sowie eine präzise Ausführung über die gesamte Grundstücksgrenze. Für sämtliche Zaunpfosten wurden die Fundamente maschinell mit einem Erdbohrer hergestellt. Anschließend wurden die Pfosten lot- und fluchtgerecht gesetzt und einbetoniert. Die individuell gefertigten Lärchen-Schwartebretter wurden anschließend montiert und bilden heute eine langlebige und natürliche Grundstückseinfassung. Ein weiterer Bestandteil des Projekts war die Verlegung zusätzlicher Rasengittersteine sowie der Einbau zweier großformatiger Jagdtore mit Spannweiten von bis zu vier Metern.",
+    challengePoints: [
+      "Rund 350 Meter Zaunanlage",
+      "Winterbaustelle mit schwierigen Witterungsverhältnissen",
+      "Maschinelle Fundamentherstellung mit Erdbohrer",
+      "Individuell gefertigte Lärchen-Schwartebretter",
+      "Zwei großformatige Jagdtore eingebaut",
+    ],
+    works: [
+      {
+        title: "Vermessung & Absteckung",
+        description:
+          "Einmessen des gesamten Zaunverlaufs sowie Vorbereitung der Fundamentachsen.",
+        icon: "ruler",
+      },
+      {
+        title: "Fundamentarbeiten",
+        description:
+          "Herstellung sämtlicher Pfostenfundamente mit Bagger und Erdbohrer sowie fachgerechtes Einbetonieren der Zaunpfosten.",
+        icon: "layers",
+      },
+      {
+        title: "Zaunbau",
+        description:
+          "Liefern und Montieren der individuell gefertigten Schwartebretter aus hochwertigem Lärchenholz – auf rund 350 Metern Länge.",
+        icon: "building",
+      },
+      {
+        title: "Toranlagen",
+        description:
+          "Montage von zwei großformatigen Jagdtoren mit Spannweiten bis zu vier Metern einschließlich stabiler Pfostenkonstruktion.",
+        icon: "settings",
+      },
+      {
+        title: "Pflasterarbeiten",
+        description:
+          "Verlegung weiterer rund 50 m² Rasengittersteine zur Ergänzung der bereits hergestellten Hofflächen.",
+        icon: "brick",
+      },
+      {
+        title: "Fertigstellung",
+        description:
+          "Kontrolle sämtlicher Zaunfelder, Tore und Pflasterflächen sowie Übergabe der fertiggestellten Außenanlage.",
+        icon: "check",
+      },
+    ],
+    process: [
+      {
+        title: "Planung",
+        description:
+          "Aufmaß des Grundstücks, Festlegung des rund 350 Meter langen Zaunverlaufs sowie Planung der Toranlagen und Fundamentpunkte.",
+      },
+      {
+        title: "Fundamentarbeiten",
+        description:
+          "Mit einem hydraulischen Erdbohrer wurden sämtliche Fundamentlöcher hergestellt. Anschließend erfolgte das fachgerechte Einbetonieren aller Zaunpfosten.",
+      },
+      {
+        title: "Zaun- und Pflasterbau",
+        description:
+          "Nach dem Erhärten der Fundamente wurden die Lärchen-Schwartebretter montiert, die Jagdtore eingebaut und die zusätzlichen Rasengittersteine verlegt.",
+      },
+      {
+        title: "Fertigstellung",
+        description:
+          "Nach Abschluss aller Arbeiten wurden Zaunanlage, Tore und Pflasterflächen kontrolliert und als hochwertige, langlebige Außenanlage an den Bauherrn übergeben.",
+      },
+    ],
+    result:
+      "Entstanden ist eine hochwertige Grundstückseinfassung von rund 350 Metern Länge, die Funktionalität und natürliche Optik miteinander verbindet. Die individuell gefertigten Schwartebretter aus Lärchenholz verleihen der Anlage einen unverwechselbaren Charakter und fügen sich harmonisch in die Landschaft ein. Mit zwei großformatigen Jagdtoren sowie ergänzenden Pflasterarbeiten entstand ein Gesamtprojekt, das sowohl handwerklich als auch optisch überzeugt.",
+    resultHighlights: [
+      "Rund 350 Meter Zaunanlage errichtet",
+      "Individuelle Lärchen-Schwartebretter vom Sägewerk",
+      "Sämtliche Pfosten fachgerecht einbetoniert",
+      "Zwei Jagdtore mit bis zu 4 Metern Spannweite",
+      "Ergänzende Rasengitterflächen fachgerecht hergestellt",
+    ],
+    testimonials: [
+      {
+        quote:
+          "Das Team Hoffmann hat geliefert. Sehr zu unsere absoluten Zufriedenheit. Zuverlässig, termintreu, kreativ und Top-Qualität. Auch die Kommunikation war sehr gut, so konnten aktuelle Hindernisse oder Ideen immer schnell gelöst werden.\n\nUnd trotz oftmals recht widrigen Wetterverhältnissen war immer gute Laune an der Baustelle vorherrschend..\n\nVielen Dank.",
+        author: "Michael Nick",
+        role: "Google-Bewertung",
+        rating: 5,
+      },
+    ],
+    quote:
+      "Rund 350 Meter Zaunanlage – das zeigt, dass Baudienstleistungen Hofmann nicht nur kleine Gartenzäune baut, sondern auch großflächige Einfriedungen und anspruchsvolle Außenanlagen professionell realisiert.",
+    faqs: defaultTrustFaqs("Rodau und Umgebung", "Zaun- und Außenanlagen"),
   },
   {
     id: "abel-ruesselsheim",
@@ -810,71 +1068,12 @@ export const projects: Project[] = [
     ],
     faqs: defaultTrustFaqs("der Region", "Sonderfundament"),
   },
-  {
-    id: "zoga-bau",
-    slug: "zoga-bau",
-    title: "Rohbau Zoga Bau",
-    folder: "Projekt_Zoga_Bau_Rohbau",
-    category: "Rohbau",
-    filterCategories: ["Rohbau"],
-    description:
-      "Neubau und Rohbauarbeiten auf dem freigemachten Grundstück – der direkte Folgeabschnitt nach dem Abbruch.",
-    longDescription:
-      "Nach dem vollständigen Rückbau des Bestandsgebäudes entstand auf dem Grundstück in Groß-Zimmern der Neubau. Baudienstleistungen Hofmann übernahm die Rohbauarbeiten und führte das Vorhaben nach dem Abbruch nahtlos weiter – solide geplant und sauber umgesetzt.",
-    image: {
-      src: images.projects.pflaster.src,
-      alt: "Rohbau Zoga Bau – Neubau nach dem Abbruch",
-    },
-    href: "/projekte/zoga-bau",
-    meta: {
-      location: "Groß-Zimmern",
-      completion: "Abgeschlossen",
-      duration: "nach Projektumfang",
-      service: "Rohbau",
-    },
-    challenge:
-      "Nach dem Abbruch musste der Rohbau auf dem vorbereiteten Baufeld zügig und präzise starten. Entscheidend waren eine saubere Schnittstelle zum Rückbau, solide Fundament- und Rohbauqualität sowie eine klare Abstimmung der Bauabschnitte.",
-    challengePoints: [
-      "Nahtloser Anschluss an den Abbruch",
-      "Solide Fundament- und Rohbauausführung",
-      "Klare Bauabschnitte auf demselben Grundstück",
-    ],
-    works: [
-      {
-        title: "Baufeld & Fundament",
-        description: "Nutzung des vorbereiteten Baufeldes und solide Fundamentarbeiten.",
-        icon: "layers",
-      },
-      {
-        title: "Rohbau",
-        description: "Fachgerechte Ausführung der Rohbauarbeiten für den Neubau.",
-        icon: "brick",
-      },
-      {
-        title: "Betonarbeiten",
-        description: "Betonage und tragende Konstruktion nach den Anforderungen des Vorhabens.",
-        icon: "grid",
-      },
-      {
-        title: "Abschluss",
-        description: "Saubere Übergabe an die weiteren Ausbauschritte.",
-        icon: "check",
-      },
-    ],
-    process: defaultProcess,
-    result:
-      "Auf dem freigeräumten Grundstück entstand der Neubau als direkter Folgeabschnitt des Abbruchs – aus einer Hand geplant und umgesetzt.",
-    resultHighlights: [
-      "Direkter Anschluss an den Abbruch",
-      "Solide Rohbauqualität",
-      "Komplettleistung aus einer Hand",
-    ],
-    faqs: defaultTrustFaqs("Groß-Zimmern und Umgebung", "Rohbau"),
-  },
 ];
 
-/** Reihenfolge auf der Projektübersicht: Zoga, Keisner und Urban zuerst */
+/** Reihenfolge auf der Projektübersicht */
 const projectDisplayOrder: ProjectSlug[] = [
+  "merzhof",
+  "merzhof-einzaeunung",
   "abriss-zoga-bau",
   "keisner",
   "urban-gross-biberau",

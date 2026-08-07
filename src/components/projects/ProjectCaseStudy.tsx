@@ -20,6 +20,7 @@ import { ImageCarousel } from "@/components/ui/ImageCarousel";
 import { ProjectCard } from "@/components/ui/ProjectCard";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { metaIconMap, workIconMap } from "@/components/projects/projectIcons";
+import { ProjectTestimonials } from "@/components/projects/ProjectTestimonials";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { buildBreadcrumbJsonLd, buildFaqJsonLd } from "@/lib/seo";
 
@@ -56,7 +57,13 @@ export function ProjectCaseStudy({
     ...project.image,
     type: "image" as const,
   };
-  const challengeImage = imagesOnly[1] ?? imagesOnly[0] ?? fallbackImage;
+  const challengeImage =
+    (project.challengeFile
+      ? findGalleryImageByFile(imagesOnly, project.challengeFile)
+      : undefined) ??
+    imagesOnly[1] ??
+    imagesOnly[0] ??
+    fallbackImage;
   const midImageA =
     (project.midFiles?.[0]
       ? findGalleryImageByFile(imagesOnly, project.midFiles[0])
@@ -392,6 +399,11 @@ export function ProjectCaseStudy({
             </div>
           </FadeIn>
         </section>
+      ) : null}
+
+      {/* Kundenbewertungen – nur wenn für dieses Projekt hinterlegt */}
+      {project.testimonials && project.testimonials.length > 0 ? (
+        <ProjectTestimonials testimonials={project.testimonials} />
       ) : null}
 
       {/* Zitat */}
