@@ -29,6 +29,8 @@ export type ProjectSlug =
   | "urban-gross-biberau"
   | "merzhof"
   | "merzhof-einzaeunung"
+  | "podeste"
+  | "diel-georgenhausen"
   | "abel-ruesselsheim"
   | "breuninger"
   | "schraeder-gessner";
@@ -884,6 +886,218 @@ export const projects: Project[] = [
     faqs: defaultTrustFaqs("Rodau und Umgebung", "Zaun- und Außenanlagen"),
   },
   {
+    id: "podeste",
+    slug: "podeste",
+    title: "Projekt Podeste",
+    folder: "Projekt_Podeste",
+    coverFile: "038383B5-2E6A-4315-A398-3E9B8C13F839web.webp",
+    category: "Außenanlagen",
+    filterCategories: ["Außenanlagen"],
+    description:
+      "Zwei Eingangspodeste vollständig erneuert – mit Abdichtung, Wärmedämmung und individueller Pflastergestaltung.",
+    longDescription:
+      "Im Rahmen dieses Projekts wurden zwei in die Jahre gekommene Eingangspodeste in derselben Wohnstraße vollständig erneuert. Die vorhandenen Betonpodeste mit Fliesenbelag entsprachen weder optisch noch technisch den heutigen Anforderungen. Nach dem vollständigen Rückbau wurden die Untergründe neu aufgebaut, fachgerecht abgedichtet und wärmetechnisch verbessert. Anschließend entstanden zwei hochwertige Eingangsbereiche mit individueller Pflastergestaltung, passend zur jeweiligen Architektur der Gebäude.",
+    image: {
+      src: "/projekte/Projekt_Podeste/038383B5-2E6A-4315-A398-3E9B8C13F839web.webp",
+      alt: "Projekt Podeste – erneuerte Eingangspodeste mit Pflastergestaltung",
+    },
+    href: "/projekte/podeste",
+    meta: {
+      location: "Georgenhausen",
+      completion: "Abgeschlossen",
+      service: "Außenanlagen & Pflasterarbeiten",
+    },
+    challenge:
+      "Die bestehenden Eingangspodeste mussten vollständig zurückgebaut werden, ohne die angrenzenden Fassaden oder Türanlagen zu beschädigen. Besonderes Augenmerk lag auf dem fachgerechten Anschluss an die Haustüren. Hier wurden moderne Abdichtungsmaßnahmen, Dämmung sowie Kompriband eingesetzt, um einen dauerhaft dichten und wärmebrückenarmen Anschluss herzustellen. Obwohl beide Podeste in derselben Straße liegen, erhielt jedes Projekt eine individuelle Gestaltung mit unterschiedlichen Pflasterbelägen und Natursteineinfassungen.",
+    challengePoints: [
+      "Vollständiger Rückbau der alten Betonpodeste",
+      "Fachgerechte Abdichtung der Türanschlüsse",
+      "Wärmedämmung unter den Eingangsbereichen",
+      "Individuelle Pflastergestaltung",
+      "Saubere Anarbeitung an Bestand und Fassade",
+    ],
+    works: [
+      {
+        title: "Abbrucharbeiten",
+        description:
+          "Kompletter Rückbau der bestehenden Betonpodeste einschließlich Fliesenbelag.",
+        icon: "hammer",
+      },
+      {
+        title: "Untergrund & Abdichtung",
+        description:
+          "Herstellung des neuen Unterbaus mit fachgerechter Abdichtung, Wärmedämmung sowie Anschlüssen an die Türschwellen mittels Kompriband.",
+        icon: "layers",
+      },
+      {
+        title: "Randeinfassung",
+        description:
+          "Einbau hochwertiger Randsteine zur dauerhaften Einfassung der neuen Podeste.",
+        icon: "ruler",
+      },
+      {
+        title: "Pflasterarbeiten",
+        description:
+          "Verlegung von kleinformatigem Betonpflaster in zwei unterschiedlichen Gestaltungsvarianten – einmal kombiniert mit Muschelkalk, einmal mit einer harmonisch abgestimmten Pflasterfarbe.",
+        icon: "brick",
+      },
+      {
+        title: "Fertigstellung",
+        description:
+          "Präzise Anpassung an die vorhandenen Wegeflächen sowie Übergabe der komplett erneuerten Eingangsbereiche.",
+        icon: "check",
+      },
+    ],
+    process: [
+      {
+        title: "Bestandsaufnahme",
+        description:
+          "Aufmaß der vorhandenen Podeste und Planung der neuen Konstruktion einschließlich Abdichtungsdetails.",
+      },
+      {
+        title: "Rückbau",
+        description:
+          "Abbruch der alten Betonpodeste sowie Entfernung des Fliesenbelags bis auf den tragfähigen Untergrund.",
+      },
+      {
+        title: "Neuaufbau",
+        description:
+          "Herstellung des neuen Unterbaus, Einbau der Abdichtung, Wärmedämmung, Randsteine und fachgerechte Anarbeitung an die Haustüranschlüsse.",
+      },
+      {
+        title: "Pflaster & Fertigstellung",
+        description:
+          "Verlegung der neuen Pflasterflächen, abschließende Feinarbeiten und Übergabe zweier hochwertig gestalteter Eingangspodeste.",
+      },
+    ],
+    result:
+      "Die beiden Eingangsbereiche präsentieren sich heute nicht nur optisch deutlich hochwertiger, sondern erfüllen auch die aktuellen Anforderungen an Abdichtung und Dauerhaftigkeit. Durch die individuelle Gestaltung erhielt jedes Haus einen eigenen Charakter, während beide Podeste handwerklich auf demselben hohen Qualitätsniveau ausgeführt wurden.",
+    resultHighlights: [
+      "Alte Podeste vollständig erneuert",
+      "Fachgerechte Abdichtung und Wärmedämmung",
+      "Hochwertige Naturstein- und Pflastergestaltung",
+      "Individuelle Optik für beide Hauseingänge",
+      "Dauerhafte und saubere Ausführung bis ins Detail",
+    ],
+    quote:
+      "Nicht nur große Bauvorhaben zählen – auch kleinere, technisch anspruchsvolle Arbeiten wie Hauseingänge und Sanierungen verdienen dieselbe Sorgfalt und Fachkompetenz.",
+    faqs: defaultTrustFaqs("Georgenhausen und Umgebung", "Podest- und Pflaster"),
+  },
+  {
+    id: "diel-georgenhausen",
+    slug: "diel-georgenhausen",
+    title: "Projekt Diel Georgenhausen",
+    folder: "Projekt_Diel_Georgenhausen",
+    coverFile: "IMG_0516web.webp",
+    category: "Außenanlagen",
+    filterCategories: ["Außenanlagen"],
+    premium: true,
+    description:
+      "Premium-Terrasse mit großformatigen Platten im Kreuzfugenverband, Geländeaufbau bis 80 cm sowie Stufen und Winkelstützwänden.",
+    longDescription:
+      "Im Rahmen dieses Projekts entstand eine hochwertige Terrassenanlage mit großformatigen Betonplatten sowie einem seitlichen Zugangsweg entlang des Wohnhauses. Besonderes Augenmerk lag auf einer dauerhaft tragfähigen Konstruktion sowie einer präzisen Ausführung im anspruchsvollen Kreuzfugenverband. Aufgrund der vorhandenen Geländesituation musste die Terrasse im hinteren Bereich um bis zu 80 Zentimeter lagenweise aufgebaut und verdichtet werden. Ergänzend entstanden neue Stufenanlagen sowie eine dauerhaft stabile Einfassung der gesamten Außenanlage.",
+    image: {
+      src: "/projekte/Projekt_Diel_Georgenhausen/IMG_0516web.webp",
+      alt: "Projekt Diel Georgenhausen – Premium-Terrasse mit großformatigen Platten",
+    },
+    href: "/projekte/diel-georgenhausen",
+    meta: {
+      location: "Georgenhausen",
+      completion: "Abgeschlossen",
+      service: "Terrassen- & Außenanlagenbau",
+    },
+    challenge:
+      "Die größte Herausforderung bestand in der erheblichen Höhendifferenz des Geländes. Um eine dauerhaft standsichere Terrasse herzustellen, musste der Untergrund bis zu 80 Zentimeter lagenweise aufgefüllt und mit geeigneten Verdichtungsgeräten fachgerecht verdichtet werden. Zusätzlich verlangte die Verlegung der großformatigen 80 × 40 × 4 cm Terrassenplatten im Kreuzfugenverband höchste Präzision. Die Platten wurden deshalb mit einem Vakuumheber verlegt, um ein exaktes Fugenbild und eine beschädigungsfreie Verarbeitung sicherzustellen. Im Eingangsbereich wurden Winkelstützwände aus Beton eingebaut und mit massiven Blockstufen ergänzt. Den Abschluss bildete eine dauerhaft wasserdurchlässige Verfugung mit hochwertigem, unkrauthemmendem Pflasterfugenmörtel.",
+    challengePoints: [
+      "Geländeausgleich bis ca. 80 cm",
+      "Großformatplatten im Kreuzfugenverband",
+      "Verlegung mit Vakuumheber",
+      "Winkelstützwände und Blockstufen",
+      "Dauerhaft wasserdurchlässige Fugen",
+    ],
+    works: [
+      {
+        title: "Erdarbeiten",
+        description:
+          "Herstellung des Planums sowie lagenweiser Geländeaufbau mit fachgerechter Verdichtung bis zur erforderlichen Aufbauhöhe.",
+        icon: "shovel",
+      },
+      {
+        title: "Unterbau",
+        description:
+          "Einbau eines tragfähigen Untergrundes als Grundlage für die dauerhaft belastbare Terrassenkonstruktion.",
+        icon: "layers",
+      },
+      {
+        title: "Terrassenbau",
+        description:
+          "Verlegung großformatiger Terrassenplatten 80 × 40 × 4 cm mit gestrahlter Oberfläche im technisch anspruchsvollen Kreuzfugenverband unter Einsatz eines Vakuumhebers.",
+        icon: "grid",
+      },
+      {
+        title: "Wegebau",
+        description:
+          "Herstellung des seitlichen Zugangsweges einschließlich Randsteineinfassung und Pflasterarbeiten.",
+        icon: "brick",
+      },
+      {
+        title: "Stufen- & Winkelsteinarbeiten",
+        description:
+          "Einbau von Winkelstützwänden in Beton sowie Herstellung der Treppenanlage mit massiven Blockstufen.",
+        icon: "building",
+      },
+      {
+        title: "Verfugung & Fertigstellung",
+        description:
+          "Verfugung sämtlicher Pflaster- und Terrassenflächen mit hochwertigem, dauerhaft wasserdurchlässigem und unkrauthemmendem Pflasterfugenmörtel.",
+        icon: "check",
+      },
+    ],
+    process: [
+      {
+        title: "Planung",
+        description:
+          "Bestandsaufnahme, Höhenplanung sowie Festlegung der Terrassen-, Wege- und Treppenanlagen.",
+      },
+      {
+        title: "Erd- und Unterbauarbeiten",
+        description:
+          "Geländeausgleich durch lagenweisen Aufbau bis rund 80 Zentimeter, fachgerechte Verdichtung sowie Herstellung des tragfähigen Untergrundes.",
+      },
+      {
+        title: "Terrassen- und Wegebau",
+        description:
+          "Verlegung der großformatigen Terrassenplatten mit Vakuumheber im Kreuzfugenverband sowie Herstellung des seitlichen Zugangsweges einschließlich Randsteineinfassung.",
+      },
+      {
+        title: "Fertigstellung",
+        description:
+          "Einbau der Winkelstützwände und Blockstufen, Verfugung sämtlicher Flächen mit wasserdurchlässigem Pflasterfugenmörtel sowie abschließende Qualitätskontrolle und Übergabe.",
+      },
+    ],
+    result:
+      "Es entstand eine moderne, großzügige Terrassenanlage mit klarer Linienführung und hochwertiger Oberflächenwirkung. Durch den sorgfältigen Geländeaufbau, den präzisen Kreuzfugenverband und die fachgerechte Ausführung aller Anschlüsse überzeugt die Anlage sowohl technisch als auch optisch. Die Kombination aus großformatigen Terrassenplatten, sauber eingefassten Wegen, massiven Blockstufen und dauerhaft wasserdurchlässigen Fugen sorgt für eine langlebige Außenanlage mit hohem Wohn- und Nutzwert.",
+    resultHighlights: [
+      "Großformatige Terrasse im Kreuzfugenverband",
+      "Geländeaufbau bis ca. 80 cm fachgerecht hergestellt",
+      "Verlegung mit modernem Vakuumheber",
+      "Winkelstützwände und Blockstufen professionell eingebaut",
+      "Dauerhaft wasserdurchlässige und unkrauthemmende Verfugung",
+    ],
+    testimonials: [
+      {
+        quote:
+          "Wir haben mit Herrn Hofmann unsere Terrasse gebaut und sind rundum zufrieden! Von der ersten Beratung bis zur Fertigstellung lief alles absolut professionell und zuverlässig. Herr Hofmann hat sich viel Zeit genommen, unsere Wünsche zu verstehen, und mit tollen Ideen zur Gestaltung beigetragen.\n\nDie Ausführung war präzise, sauber und termingerecht – man merkt sofort, dass hier echtes Handwerk mit Leidenschaft gemacht wird. Auch nach Abschluss der Arbeiten stand Herr Hofmann bei Fragen jederzeit freundlich zur Verfügung.\n\nWir genießen jetzt jeden Tag unsere wunderschöne Terrasse und können Herrn Hofmann uneingeschränkt weiterempfehlen!",
+        author: "Bastian Diel",
+        role: "Google-Bewertung",
+        rating: 5,
+      },
+    ],
+    quote:
+      "Premium-Terrassenbau vereint Erdarbeiten, Geländeprofilierung, Stützkonstruktionen und präzise Plattenverlegung – mit dem Qualitätsanspruch von Baudienstleistungen Hofmann bis ins Detail.",
+    faqs: defaultTrustFaqs("Georgenhausen und Umgebung", "Terrassen- und Außenanlagen"),
+  },
+  {
     id: "abel-ruesselsheim",
     slug: "abel-ruesselsheim",
     title: "Projekt Abel Rüsselsheim",
@@ -1072,6 +1286,8 @@ export const projects: Project[] = [
 
 /** Reihenfolge auf der Projektübersicht */
 const projectDisplayOrder: ProjectSlug[] = [
+  "diel-georgenhausen",
+  "podeste",
   "merzhof",
   "merzhof-einzaeunung",
   "abriss-zoga-bau",
