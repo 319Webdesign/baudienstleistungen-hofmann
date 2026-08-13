@@ -701,6 +701,7 @@ export const projects: Project[] = [
     resultFile: "IMG_1487web.webp",
     category: "Außenanlagen",
     filterCategories: ["Außenanlagen"],
+    premium: true,
     description:
       "Hochwertige Gartengestaltung mit Muschelkalkmauern, Geoceramica-Terrasse, Pflasterflächen und Edelstahlseilzaun.",
     longDescription:
@@ -1422,12 +1423,12 @@ export const projects: Project[] = [
 const projectDisplayOrder: ProjectSlug[] = [
   "zoga-bau",
   "diel-georgenhausen",
+  "urban-gross-biberau",
   "podeste",
   "merzhof",
   "merzhof-einzaeunung",
   "abriss-zoga-bau",
   "keisner",
-  "urban-gross-biberau",
 ];
 
 function sortByDisplayOrder(list: Project[]): Project[] {
