@@ -135,10 +135,10 @@ export const audiences: Audience[] = [
 ];
 
 export const aboutHighlights = [
-  "persönlicher Ansprechpartner",
-  "praxisnahe Beratung",
-  "fachliche Koordination",
-  "zuverlässige Projektabwicklung",
+  "Maurermeister seit 1999",
+  "Staatlich geprüfter Bautechniker",
+  "Persönliche Projektbetreuung",
+  "Verantwortung – beruflich & ehrenamtlich",
 ] as const;
 
 export const projectTypes = [

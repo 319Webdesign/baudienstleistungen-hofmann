@@ -20,17 +20,13 @@ export default function ImpressumPage() {
           <div>
             <h2 className="text-xl font-bold text-anthracite">Angaben gemäß § 5 TMG</h2>
             <p className="mt-3">
-              {siteConfig.name}
+              {siteConfig.legalName}
               <br />
               Inhaber: {siteConfig.owner}
               <br />
               {siteConfig.contact.address.street}
               <br />
               {siteConfig.contact.address.zip} {siteConfig.contact.address.city}
-            </p>
-            <p className="mt-3 text-sm text-orange">
-              Hinweis: Adressdaten sind Platzhalter und müssen vor Veröffentlichung
-              durch vollständige und korrekte Angaben ersetzt werden.
             </p>
           </div>
 
@@ -50,8 +46,13 @@ export default function ImpressumPage() {
             <p className="mt-3">
               Umsatzsteuer-Identifikationsnummer gemäß § 27 a Umsatzsteuergesetz:
               <br />
-              [USt-IdNr. eintragen – sofern vorhanden]
+              {siteConfig.vatId}
             </p>
+          </div>
+
+          <div>
+            <h2 className="text-xl font-bold text-anthracite">Steuernummer</h2>
+            <p className="mt-3">{siteConfig.taxId}</p>
           </div>
 
           <div>

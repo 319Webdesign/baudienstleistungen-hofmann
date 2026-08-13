@@ -26,7 +26,7 @@ export default function DatenschutzPage() {
           <div>
             <h2 className="text-xl font-bold text-anthracite">1. Verantwortlicher</h2>
             <p className="mt-3">
-              {siteConfig.name}
+              {siteConfig.legalName}
               <br />
               {siteConfig.owner}
               <br />

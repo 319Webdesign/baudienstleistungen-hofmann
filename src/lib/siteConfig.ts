@@ -1,15 +1,18 @@
 /**
  * Zentrale Unternehmens- und SEO-Konfiguration.
- * Platzhalter klar markiert – bitte durch echte Daten ersetzen.
  */
 export const siteConfig = {
   name: "Baudienstleistungen Hofmann",
+  legalName: "Baudienstleistungen Thomas Hofmann",
   shortName: "Hofmann",
   owner: "Thomas Hofmann",
   tagline: "Maurermeister & Bautechniker",
   description:
     "Baudienstleistungen Hofmann – fachgerechte Bauausführung, technische Kompetenz und persönliche Betreuung.",
   url: "https://www.beispiel-domain.de", // TODO: Echte Domain eintragen
+  ersteHilfeUrl: "https://www.erstehilfe-hofmann.de",
+  vatId: "DE277475934",
+  taxId: "00882831411",
 
   brand: {
     primary: "#1C3D5A",
@@ -20,20 +23,20 @@ export const siteConfig = {
   },
 
   contact: {
-    phone: "[Telefonnummer eintragen]",
-    phoneHref: "tel:+49XXXXXXXXXXX", // TODO: Echte Nummer
-    email: "[E-Mail-Adresse eintragen]",
-    emailHref: "mailto:kontakt@beispiel.de", // TODO: Echte E-Mail
-    whatsapp: "https://wa.me/49XXXXXXXXXXX", // TODO: WhatsApp-Platzhalter
+    phone: "0171 1971248",
+    phoneHref: "tel:+491711971248",
+    email: "team-hofmann@email.de",
+    emailHref: "mailto:team-hofmann@email.de",
+    whatsapp: "https://wa.me/491711971248",
     address: {
-      street: "[Straße und Hausnummer]",
-      zip: "[PLZ]",
-      city: "[Ort]",
-      region: "[Region / Landkreis]",
+      street: "Kantstraße 5",
+      zip: "64354",
+      city: "Reinheim",
+      region: "Hessen",
       country: "Deutschland",
-      full: "[Straße und Hausnummer], [PLZ] [Ort]",
+      full: "Kantstraße 5, 64354 Reinheim",
     },
-    serviceArea: "[Einsatzgebiet – Region / Umkreis]",
+    serviceArea: "Reinheim und Umgebung",
   },
 
   hours: {
@@ -56,12 +59,11 @@ export const siteConfig = {
     defaultDescription:
       "Baudienstleistungen Hofmann steht für Rohbau, Betonarbeiten, Umbau, Sanierung, Erdarbeiten und individuelle Bauprojekte mit Meister- und Technikerkompetenz.",
     locale: "de_DE",
-    // Lokal SEO – Platzhalter
     location: {
-      city: "[Ort]",
-      region: "[Region]",
-      district: "[Landkreis]",
-      serviceArea: "[Einsatzgebiet]",
+      city: "Reinheim",
+      region: "Hessen",
+      district: "Darmstadt-Dieburg",
+      serviceArea: "Reinheim und Umgebung",
     },
   },
 

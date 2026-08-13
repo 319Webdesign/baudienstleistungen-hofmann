@@ -1,7 +1,8 @@
 import Image from "next/image";
-import { Check } from "lucide-react";
+import { ArrowUpRight, Check } from "lucide-react";
 import { images } from "@/data/images";
 import { aboutHighlights } from "@/data/content";
+import { siteConfig } from "@/lib/siteConfig";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Button } from "@/components/ui/Button";
 import { FadeIn } from "@/components/ui/FadeIn";
@@ -33,26 +34,35 @@ export function AboutSection() {
         <FadeIn direction="from-center-right" delay={80}>
           <SectionHeading
             eyebrow="Über mich"
-            title="Handwerk, Technik und Erfahrung"
+            title="Handwerk, Technik und Verantwortung"
             light
           />
           <div className="mt-6 space-y-4 leading-relaxed text-white/75">
             <p>
-              Thomas Hofmann ist Maurermeister und staatlich geprüfter
-              Bautechniker. Seine Erfahrung verbindet praktische Bauausführung
-              mit technischem Verständnis und einem geschulten Blick für
-              tragfähige Lösungen.
+              Bauen ist für mich mehr als ein Beruf – es ist seit über 25 Jahren
+              ein wesentlicher Teil meines Lebens.
             </p>
             <p>
-              Ob klassischer Rohbau, anspruchsvoller Umbau, Stahlträgereinbau
-              oder individuell geplantes Fundament: Jedes Projekt wird persönlich
-              betrachtet, sorgfältig vorbereitet und zuverlässig umgesetzt.
+              Seit 1999 bin ich Maurermeister und staatlich geprüfter
+              Bautechniker. In dieser Zeit habe ich sowohl als selbstständiger
+              Unternehmer als auch viele Jahre im technischen Vertrieb
+              gearbeitet. Diese Kombination aus praktischer Baustellenerfahrung,
+              technischem Verständnis und Beratung prägt meine Arbeit bis heute.
             </p>
             <p>
-              Bei umfangreicheren Bauvorhaben arbeitet Baudienstleistungen
-              Hofmann mit bewährten Fachbetrieben und Nachunternehmern zusammen.
-              Dadurch können auch gewerkeübergreifende Leistungen koordiniert und
-              professionell ausgeführt werden.
+              Mit Baudienstleistungen Hofmann stehe ich persönlich für meine
+              Projekte ein – vom ersten Gespräch über die technische Lösung bis
+              zur fachgerechten Ausführung. Bei größeren Aufgaben arbeite ich
+              mit einem bewährten Netzwerk aus Fachbetrieben und
+              Nachunternehmern zusammen.
+            </p>
+            <p>
+              Verantwortung endet für mich aber nicht auf der Baustelle.
+              Ehrenamtlich engagiere ich mich als Sanitäter und First Responder
+              und gebe meine Erfahrung als Erste-Hilfe-Ausbilder weiter. Denn ob
+              auf der Baustelle oder im Notfall: Wenn es darauf ankommt, zählen
+              Fachwissen, Verlässlichkeit und die Bereitschaft, Verantwortung zu
+              übernehmen.
             </p>
           </div>
 
@@ -68,8 +78,17 @@ export function AboutSection() {
             ))}
           </ul>
 
-          <div className="mt-8">
+          <div className="mt-8 flex flex-col items-start gap-4">
             <Button href="/ueber-mich">Mehr über Thomas Hofmann</Button>
+            <a
+              href={siteConfig.ersteHilfeUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 text-sm font-medium text-orange-light transition-colors hover:text-white"
+            >
+              Mehr über mein Engagement und meine Erste-Hilfe-Kurse
+              <ArrowUpRight className="h-4 w-4 shrink-0" aria-hidden />
+            </a>
           </div>
         </FadeIn>
       </div>
