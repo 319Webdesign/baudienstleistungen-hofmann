@@ -155,6 +155,20 @@ export function ProjectCaseStudy({
               <h1 className="mt-4 text-3xl font-bold leading-tight text-primary sm:text-4xl lg:text-[2.75rem]">
                 {project.title}
               </h1>
+              {project.previousProject ? (
+                <div className="mt-5 rounded-xl border border-orange/20 bg-orange/5 px-4 py-4 text-sm leading-relaxed text-muted sm:text-base">
+                  {project.previousProject.description ? (
+                    <p>{project.previousProject.description}</p>
+                  ) : null}
+                  <Link
+                    href={project.previousProject.href}
+                    className="mt-3 inline-flex items-center gap-1 font-semibold text-primary transition-colors hover:text-orange"
+                  >
+                    {project.previousProject.label}
+                    <ArrowUpRight className="h-4 w-4" aria-hidden />
+                  </Link>
+                </div>
+              ) : null}
               <p className="mt-5 text-base leading-relaxed text-muted sm:text-lg">
                 {project.longDescription}
               </p>

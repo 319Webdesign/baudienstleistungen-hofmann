@@ -26,6 +26,7 @@ export type ProjectSlug =
   | "keisner"
   | "abriss-keisner"
   | "abriss-zoga-bau"
+  | "zoga-bau"
   | "urban-gross-biberau"
   | "merzhof"
   | "merzhof-einzaeunung"
@@ -107,6 +108,12 @@ export type Project = {
    * Ohne Einträge erscheint die Sektion auf der Projektseite nicht.
    */
   testimonials?: ProjectTestimonial[];
+  /** Optional: Hinweis auf vorherige Projektphase (z. B. Abbruch → Rohbau) */
+  previousProject?: {
+    href: string;
+    label: string;
+    description?: string;
+  };
   /** Optionaler Weiter-Link zur nächsten Projektphase */
   nextProject?: {
     href: string;
@@ -555,7 +562,134 @@ export const projects: Project[] = [
     ],
     quote:
       "Bei innerörtlichem Abbruch zählt nicht die Kraft der Maschine – sondern die Präzision der Planung.",
+    nextProject: {
+      href: "/projekte/zoga-bau",
+      label: "Weiter zum Rohbau Zoga Bau",
+      description:
+        "Auf dem freigemachten Grundstück entstand im nächsten Bauabschnitt der komplette Rohbau des Neubaus – ebenfalls durch Baudienstleistungen Hofmann.",
+    },
     faqs: defaultTrustFaqs("Groß-Zimmern und Umgebung", "Abbruch"),
+  },
+  {
+    id: "zoga-bau",
+    slug: "zoga-bau",
+    title: "Projekt Zoga Bau – Rohbau",
+    folder: "Projekt_Zoga_Bau_Rohbau",
+    coverFile: "IMG_0793web.webp",
+    category: "Rohbau",
+    filterCategories: ["Rohbau"],
+    premium: true,
+    description:
+      "Kompletter Rohbau des Neubaus nach dem Abbruch – Bodenplatte, KS-Mauerwerk, Filigrandecken und Fertigteiltreppen aus einer Hand.",
+    longDescription:
+      "Nach dem erfolgreichen Rückbau des bestehenden Fachwerkhauses wurde Baudienstleistungen Hofmann auch mit der Ausführung des kompletten Rohbaus des Neubaus beauftragt. Damit konnte das Bauvorhaben aus einer Hand weitergeführt werden – vom Abbruch des Bestandsgebäudes bis zur Errichtung des neuen Wohnhauses. Nach den Erd- und Leitungsarbeiten entstanden Bodenplatte, Mauerwerk, Stahlbetondecken, Fertigteiltreppen und sämtliche tragenden Bauteile des Gebäudes. Der Neubau wurde in hochwertiger Kalksandsteinbauweise mit großformatigen KS-Planelementen erstellt und innerhalb weniger Wochen bis zum Dachgeschoss fertiggestellt.",
+    image: {
+      src: "/projekte/Projekt_Zoga_Bau_Rohbau/IMG_0793web.webp",
+      alt: "Projekt Zoga Bau – Rohbau des Neubaus in Kalksandsteinbauweise",
+    },
+    href: "/projekte/zoga-bau",
+    meta: {
+      location: "Groß-Zimmern",
+      completion: "Rohbau abgeschlossen",
+      service: "Rohbau & Neubau",
+    },
+    previousProject: {
+      href: "/projekte/abriss-zoga-bau",
+      label: "Zum Abbruch-Projekt Zoga Bau",
+      description:
+        "Dieses Projekt knüpft unmittelbar an unser Referenzprojekt „Zoga Bau – Abbruch“ an. Nach dem vollständigen Rückbau des Bestandsgebäudes wurden wir auch mit dem kompletten Rohbau des Neubaus beauftragt. So entstand das gesamte Bauvorhaben – vom Abbruch bis zum fertigen Rohbau – aus einer Hand.",
+    },
+    challenge:
+      "Nach dem zuvor ausgeführten Gebäudeabbruch musste zunächst das Gelände wieder aufgebaut und auf Straßenniveau hergestellt werden. Dazu wurden tragfähige Verfüllmaterialien lagenweise eingebaut und mit modernen Verdichtungsgeräten verdichtet. Anschließend erfolgten die komplette Leitungsverlegung, die Herstellung der Bodenplatte mit 16 cm Perimeterdämmung sowie sämtliche Stahlbeton- und Mauerwerksarbeiten. Besonders anspruchsvoll waren der Einsatz großformatiger Kalksandstein-Planelemente, die Montage mehrerer Fertigteiltreppen und der Einhub der Filigrandecken mit einem 75-Tonnen-Autokran. Auch die Herstellung des aufwendig geschalten Stahlbeton-Ringbalkens im Giebelbereich stellte höchste Anforderungen an Präzision und Schalungsbau.",
+    challengePoints: [
+      "Fortsetzung des zuvor ausgeführten Abbruchprojekts",
+      "Komplettes Rohbauprojekt aus einer Hand",
+      "Großformatige KS-Planelemente",
+      "75-Tonnen-Autokran für Decken und Treppen",
+      "Anspruchsvolle Stahlbeton- und Schalungsarbeiten",
+    ],
+    works: [
+      {
+        title: "Erd- und Leitungsbau",
+        description:
+          "Auffüllung des Kellers mit tragfähigem Material bis Oberkante Straßenniveau, lagenweise Verdichtung sowie Herstellung sämtlicher Grundleitungen und Versorgungsleitungen.",
+        icon: "shovel",
+      },
+      {
+        title: "Bodenplatte",
+        description:
+          "Herstellung der Bodenplatte einschließlich 16 cm Perimeterdämmung, Bewehrung und Betonage nach statischer Berechnung.",
+        icon: "layers",
+      },
+      {
+        title: "Mauerwerksbau",
+        description:
+          "Errichtung des kompletten Gebäudes aus 17,5 cm starken KS-Planelementen Quattro unter Einsatz eines Versetzkrans für höchste Präzision und Wirtschaftlichkeit.",
+        icon: "brick",
+      },
+      {
+        title: "Stahlbetondecken",
+        description:
+          "Montage der Filigrandecken, Durchführung der Bewehrungsarbeiten sowie Betonage der Geschossdecken.",
+        icon: "grid",
+      },
+      {
+        title: "Fertigteiltreppen",
+        description:
+          "Einbau der Fertigteilpodeste sowie einer zweiläufigen Treppenanlage mit Zwischenpodest und einer rund 4,5 Tonnen schweren viertelgewendelten Stahlbetontreppe.",
+        icon: "building",
+      },
+      {
+        title: "Schalungs- und Betonarbeiten",
+        description:
+          "Herstellung des aufwendig geschalten Stahlbeton-Ringbalkens sowie sämtlicher Stahlbetonbauteile im Dachgeschoss.",
+        icon: "settings",
+      },
+    ],
+    process: [
+      {
+        title: "Tiefbau & Vorbereitung",
+        description:
+          "Nach dem Abbruch des Bestandsgebäudes wurde das Gelände wieder aufgebaut. Kellerbereiche wurden lagenweise verfüllt und mit modernen Verdichtungsanbaugeräten verdichtet. Anschließend erfolgten sämtliche Grundleitungen und Hausanschlüsse.",
+      },
+      {
+        title: "Bodenplatte",
+        description:
+          "Nach dem Einbau der Perimeterdämmung wurden Bewehrung und Bodenplatte hergestellt und betoniert. Damit war die Grundlage für den Rohbau geschaffen.",
+      },
+      {
+        title: "Mauerwerks- und Stahlbetonarbeiten",
+        description:
+          "Das Gebäude entstand aus großformatigen KS-Planelementen, die mit einem Versetzkran verarbeitet wurden. Dadurch konnten beide Vollgeschosse jeweils innerhalb von etwa einer Woche erstellt werden. Parallel wurden Filigrandecken, Bewehrungsarbeiten und Betonagen ausgeführt.",
+      },
+      {
+        title: "Fertigstellung des Rohbaus",
+        description:
+          "Nach der Montage der Fertigteiltreppen mit einem 75-Tonnen-Autokran wurden die Giebel hergestellt. Besonders aufwendig war die Schalung des Stahlbeton-Ringbalkens auf der Terrassenseite, der später die großflächige Verglasung aufnimmt. Bereits Mitte Dezember war der komplette Rohbau fertiggestellt.",
+      },
+    ],
+    result:
+      "Aus dem zuvor abgebrochenen Bestandsgebäude entstand innerhalb weniger Wochen ein moderner, hochwertiger Neubau in massiver Kalksandsteinbauweise. Durch den Einsatz moderner Hebetechnik, großformatiger Planelemente und einer präzisen Baustellenorganisation konnten sämtliche Arbeiten wirtschaftlich und termingerecht ausgeführt werden. Das Projekt zeigt eindrucksvoll die Leistungsfähigkeit von Baudienstleistungen Hofmann – von der ersten Erdbewegung bis zum fertigen Rohbau.",
+    resultHighlights: [
+      "Kompletter Neubau nach eigenem Abbruch",
+      "Bodenplatte mit 16 cm Perimeterdämmung",
+      "Hochwertiger Rohbau aus KS-Planelementen",
+      "Filigrandecken und Fertigteiltreppen montiert",
+      "Aufwendige Stahlbeton- und Schalungsarbeiten",
+      "Fertigstellung des Rohbaus in nur rund zehn Wochen",
+    ],
+    testimonials: [
+      {
+        quote:
+          "Wir sind äußerst zufrieden mit der Arbeit von Hofmann beim Abbruch und Rohbau unseres Projekts. Der Abbruch wurde präzise und sauber durchgeführt, während der Rohbau pünktlich und in erstklassiger Qualität abgeliefert wurde. Die Kommunikation war durchweg professionell und reibungslos, was die Zusammenarbeit sehr angenehm gemacht hat. Hofmann hat uns mit seiner exzellenten Vorbereitung und der hohen Ausführungsqualität überzeugt. Wer einen zuverlässigen Partner für Abbruch und Rohbau sucht, ist bei Hofmann genau richtig!",
+        author: "Arijanit Zogjani",
+        role: "Google-Bewertung",
+        rating: 5,
+      },
+    ],
+    quote:
+      "Vom Abbruch bis zum fertigen Rohbau aus einer Hand – so entsteht ein Bauvorhaben ohne Brüche in Planung, Qualität und Verantwortung.",
+    faqs: defaultTrustFaqs("Groß-Zimmern und Umgebung", "Rohbau"),
   },
   {
     id: "urban-gross-biberau",
@@ -1284,8 +1418,9 @@ export const projects: Project[] = [
   },
 ];
 
-/** Reihenfolge auf der Projektübersicht */
+/** Reihenfolge innerhalb der Premium- bzw. Standard-Gruppe */
 const projectDisplayOrder: ProjectSlug[] = [
+  "zoga-bau",
   "diel-georgenhausen",
   "podeste",
   "merzhof",
@@ -1295,7 +1430,7 @@ const projectDisplayOrder: ProjectSlug[] = [
   "urban-gross-biberau",
 ];
 
-export function getOrderedProjects(list: Project[] = projects): Project[] {
+function sortByDisplayOrder(list: Project[]): Project[] {
   const preferred: Project[] = [];
   for (const slug of projectDisplayOrder) {
     const match = list.find((project) => project.slug === slug);
@@ -1305,6 +1440,13 @@ export function getOrderedProjects(list: Project[] = projects): Project[] {
     (project) => !projectDisplayOrder.includes(project.slug),
   );
   return preferred.concat(rest);
+}
+
+/** Premium-Projekte immer zuerst, danach die definierte Reihenfolge */
+export function getOrderedProjects(list: Project[] = projects): Project[] {
+  const premium = sortByDisplayOrder(list.filter((project) => project.premium));
+  const regular = sortByDisplayOrder(list.filter((project) => !project.premium));
+  return premium.concat(regular);
 }
 
 export function getProjectBySlug(slug: string): Project | undefined {
