@@ -13,12 +13,12 @@ export const images = {
   },
   services: {
     rohbau: {
-      src: "/betonarbeiten.png",
-      alt: "Betonarbeiten – frisch betonierte Bodenplatte mit Abdichtung und Bewehrung",
+      src: "/projekte/Projekt_Zoga_Bau_Rohbau/IMG_0793web.webp",
+      alt: "Rohbau – Kalksandsteinmauerwerk und Fertigteildecken eines Neubaus",
     },
     umbau: {
-      src: "/umbau.png",
-      alt: "Umbau und Sanierung – Stahlträger und Öffnung im Bestand",
+      src: "/umbau-titel.png",
+      alt: "Umbau und Sanierung – Stahlträgereinbau und Kernsanierung im Bestand",
     },
     erdarbeiten: {
       src: "/aussenanlagen.png",

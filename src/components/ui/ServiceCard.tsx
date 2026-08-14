@@ -17,7 +17,7 @@ export function ServiceCard({ service, index = 0, badge }: ServiceCardProps) {
     <FadeIn delay={index * 80} className="h-full">
       <Link
         href={service.href}
-        className="group relative block h-full min-h-[420px] overflow-hidden rounded-[1.25rem] shadow-[0_12px_40px_rgba(28,61,90,0.12)] transition-all duration-500 hover:-translate-y-1.5 hover:shadow-[0_20px_50px_rgba(28,61,90,0.18)] sm:min-h-[460px] lg:min-h-[480px]"
+        className="group relative block h-full min-h-[420px] overflow-hidden rounded-[1.25rem] bg-primary shadow-[0_12px_40px_rgba(28,61,90,0.12)] transition-all duration-500 hover:-translate-y-1.5 hover:shadow-[0_20px_50px_rgba(28,61,90,0.18)] sm:min-h-[460px] lg:min-h-[480px]"
         aria-label={`${service.title} – Mehr erfahren`}
       >
         <Image
