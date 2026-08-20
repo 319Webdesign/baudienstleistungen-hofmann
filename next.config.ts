@@ -16,6 +16,11 @@ const nextConfig: NextConfig = {
         destination: "/leistungen/spezialprojekte",
         permanent: true,
       },
+      {
+        source: "/projekte/breuninger",
+        destination: "/projekte",
+        permanent: true,
+      },
     ];
   },
 };

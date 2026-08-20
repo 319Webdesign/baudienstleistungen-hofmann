@@ -40,7 +40,7 @@ export const images = {
     },
     anbau: {
       src: "/projekte/Projekt_Abel_Rüsselsheim/IMG_1695web.webp",
-      alt: "Projekt Abel Rüsselsheim – Rohbau",
+      alt: "Mobilfunkstandort Rüsselsheim – Rohbau",
     },
     pflaster: {
       src: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=1000&q=80",
@@ -49,10 +49,6 @@ export const images = {
     lichtmast: {
       src: "/projekte/Projekt_Schräder_Geßner/IMG_8713web.webp",
       alt: "Projekt Schräder - Geßner – Fundament für einen Lichtmast",
-    },
-    hebebuehne: {
-      src: "https://images.unsplash.com/photo-1621905252507-b35492cc74b4?auto=format&fit=crop&w=1000&q=80",
-      alt: "Betonfundament nach technischen Vorgaben",
     },
   },
   details: {

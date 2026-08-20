@@ -1,4 +1,4 @@
-import { images, type ImageAsset } from "./images";
+import type { ImageAsset } from "./images";
 import type { FAQItem } from "./faqs";
 
 export type ProjectCategory =
@@ -33,7 +33,6 @@ export type ProjectSlug =
   | "podeste"
   | "diel-georgenhausen"
   | "abel-ruesselsheim"
-  | "breuninger"
   | "schraeder-gessner";
 
 export type ProjectWorkIcon =
@@ -1235,7 +1234,7 @@ export const projects: Project[] = [
   {
     id: "abel-ruesselsheim",
     slug: "abel-ruesselsheim",
-    title: "Projekt Abel Rüsselsheim",
+    title: "Mobilfunkstandort Rüsselsheim",
     folder: "Projekt_Abel_Rüsselsheim",
     coverFile: "IMG_1695web.webp",
     category: "Mobilfunkfundamente",
@@ -1243,10 +1242,10 @@ export const projects: Project[] = [
     description:
       "Ausführung der Rohbauarbeiten vom Fundament bis zum Mauerwerk. Solide geplant und sauber umgesetzt.",
     longDescription:
-      "Beim Projekt Abel Rüsselsheim standen Rohbau- und Fundamentarbeiten im Fokus. Von der Vorbereitung bis zur fertigen Ausführung wurde das Vorhaben solide geplant und sauber umgesetzt – passgenau für die technischen Anforderungen vor Ort und mit Blick auf eine belastbare, dauerhafte Lösung.",
+      "Beim Mobilfunkstandort Rüsselsheim standen Rohbau- und Fundamentarbeiten im Fokus. Von der Vorbereitung bis zur fertigen Ausführung wurde das Vorhaben solide geplant und sauber umgesetzt – passgenau für die technischen Anforderungen vor Ort und mit Blick auf eine belastbare, dauerhafte Lösung.",
     image: {
       src: "/projekte/Projekt_Abel_Rüsselsheim/IMG_1695web.webp",
-      alt: "Projekt Abel Rüsselsheim – Rohbau",
+      alt: "Mobilfunkstandort Rüsselsheim – Rohbau",
     },
     href: "/projekte/abel-ruesselsheim",
     meta: {
@@ -1292,68 +1291,7 @@ export const projects: Project[] = [
       "Saubere Rohbauqualität",
       "Klarer Projektabschluss",
     ],
-    faqs: defaultTrustFaqs("Rüsselsheim und Umgebung", "Rohbau"),
-  },
-  {
-    id: "breuninger",
-    slug: "breuninger",
-    title: "Projekt Breuninger",
-    folder: "Projekt_Breuninger",
-    category: "Betonarbeiten",
-    filterCategories: ["Betonarbeiten", "Spezialprojekte"],
-    description:
-      "Herstellung eines passgenauen Betonfundaments nach den technischen Anforderungen der geplanten Hebebühne.",
-    longDescription:
-      "Im Projekt Breuninger wurde ein passgenaues Betonfundament nach den technischen Anforderungen einer geplanten Hebebühne hergestellt. Maßgenauigkeit, Tragfähigkeit und eine saubere Ausführung standen dabei im Mittelpunkt – damit die Anlage später sicher und passgenau montiert werden kann.",
-    image: {
-      src: images.projects.hebebuehne.src,
-      alt: "Projekt Breuninger – Betonfundament für eine Hebebühne",
-    },
-    href: "/projekte/breuninger",
-    meta: {
-      location: "nach Absprache",
-      completion: "Abgeschlossen",
-      duration: "nach technischen Vorgaben",
-      service: "Betonfundament",
-    },
-    challenge:
-      "Für die Hebebühne war ein Fundament mit hoher Maßgenauigkeit erforderlich. Abweichungen hätten die Montage erschwert – deshalb standen Planungstreue und präzise Betonarbeiten im Vordergrund.",
-    challengePoints: [
-      "Hohe Maßgenauigkeit",
-      "Technische Vorgaben der Anlage",
-      "Belastbare Betonausführung",
-    ],
-    works: [
-      {
-        title: "Vorbereitung",
-        description: "Einmessen und Vorbereiten des Fundamentbereichs.",
-        icon: "ruler",
-      },
-      {
-        title: "Schalung",
-        description: "Passgenaue Schalung für die Fundamentform.",
-        icon: "layers",
-      },
-      {
-        title: "Bewehrung",
-        description: "Bewehrung nach den technischen Anforderungen.",
-        icon: "grid",
-      },
-      {
-        title: "Betonage",
-        description: "Herstellung des belastbaren Betonfundaments.",
-        icon: "brick",
-      },
-    ],
-    process: defaultProcess,
-    result:
-      "Das Fundament wurde passgenau und belastbar hergestellt. Die Voraussetzungen für die Montage der Hebebühne sind damit fachgerecht geschaffen.",
-    resultHighlights: [
-      "Passgenaue Ausführung",
-      "Technisch abgestimmtes Fundament",
-      "Saubere Betonqualität",
-    ],
-    faqs: defaultTrustFaqs("der Region", "Betonfundament"),
+    faqs: defaultTrustFaqs("Rüsselsheim und Umgebung", "Mobilfunkfundament"),
   },
   {
     id: "schraeder-gessner",
