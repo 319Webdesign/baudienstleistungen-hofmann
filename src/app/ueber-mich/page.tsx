@@ -62,6 +62,7 @@ export default function UeberMichPage() {
         title={`${siteConfig.owner} – Handwerk, Technik und Erfahrung`}
         description="Maurermeister und staatlich geprüfter Bautechniker mit Fokus auf persönliche Betreuung und fachgerechte Bauausführung."
         image={images.about}
+        imageClassName="object-[center_32%]"
         breadcrumbs={[
           { label: "Startseite", href: "/" },
           { label: "Über mich" },
@@ -77,7 +78,7 @@ export default function UeberMichPage() {
                 alt={images.about.alt}
                 fill
                 sizes="(max-width: 1024px) 100vw, 40vw"
-                className="object-cover"
+                className="object-cover object-top"
               />
             </div>
             <ul className="mt-6 space-y-3">

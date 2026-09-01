@@ -1353,6 +1353,15 @@ export const projects: Project[] = [
       "Stabile Fundamentbasis",
       "Saubere Ausführung",
     ],
+    testimonials: [
+      {
+        quote:
+          "Zuerst das Wichtigste:\n\nZuverlässig, engagiert, geschmackvoll, schnell, faire Preise – und vor allem professionell!\n\nWir haben Herrn Hofmann über eine Empfehlung gefunden und würden ihn ebenfalls uneingeschränkt weiterempfehlen.\n\nHerr Hofmann nimmt sich viel Zeit, um alles ausführlich zu besprechen, und entwickelt schnell ein Gespür dafür, was man als Kunde möchte. Er bringt gerne eigene Ideen ein, wenn gewünscht, und findet hervorragende Lösungen für bestehende oder neue „Problemstellen“. Auch vorhandene Materialien bezieht er gerne mit ein – das spart Geld und ist nachhaltig.\n\nBesonders hervorheben möchten wir seine Zuverlässigkeit – das ist heute leider sehr selten geworden. Herr Hofmann und sein Team arbeiten äußerst sauber – wir haben nie einen Bauleiter gebraucht – alles lief wie am Schnürchen!\n\nEinfach TOP!!!",
+        author: "Schräder / Geßner",
+        role: "Google-Bewertung",
+        rating: 5,
+      },
+    ],
     faqs: defaultTrustFaqs("der Region", "Sonderfundament"),
   },
 ];

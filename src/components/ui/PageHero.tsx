@@ -8,6 +8,7 @@ type PageHeroProps = {
   title: string;
   description?: string;
   image: { src: string; alt: string };
+  imageClassName?: string;
   breadcrumbs?: Array<{ label: string; href?: string }>;
   compact?: boolean;
 };
@@ -17,6 +18,7 @@ export function PageHero({
   title,
   description,
   image,
+  imageClassName,
   breadcrumbs,
   compact = false,
 }: PageHeroProps) {
@@ -33,7 +35,7 @@ export function PageHero({
         fill
         priority
         sizes="100vw"
-        className="object-cover"
+        className={cn("object-cover", imageClassName)}
       />
       <div
         className="absolute inset-0 bg-gradient-to-r from-primary via-primary/82 to-primary/50"

@@ -8,7 +8,7 @@ export const images = {
     alt: "Mauerarbeiten und Rohbau auf der Baustelle",
   },
   about: {
-    src: "/thomas-hofmann.png",
+    src: "/über-mich.jpeg",
     alt: "Thomas Hofmann – Maurermeister und staatlich geprüfter Bautechniker",
   },
   services: {
