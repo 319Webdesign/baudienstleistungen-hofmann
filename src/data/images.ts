@@ -47,8 +47,8 @@ export const images = {
       alt: "Pflasterarbeiten und Außenanlage",
     },
     lichtmast: {
-      src: "/projekte/Projekt_Schräder_Geßner/IMG_8713web.webp",
-      alt: "Projekt Schräder - Geßner – Fundament für einen Lichtmast",
+      src: "/projekte/Projekt_Schräder_Geßner/terrasse.jpeg",
+      alt: "Projekt Schräder · Geßner – Lärchenholzterrasse und neu gestalteter Außenbereich",
     },
   },
   details: {

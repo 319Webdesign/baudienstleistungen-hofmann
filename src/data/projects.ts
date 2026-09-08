@@ -1296,62 +1296,90 @@ export const projects: Project[] = [
   {
     id: "schraeder-gessner",
     slug: "schraeder-gessner",
-    title: "Projekt Schräder - Geßner",
+    title: "Projekt Schräder · Geßner",
     folder: "Projekt_Schräder_Geßner",
-    coverFile: "IMG_8713web.webp",
-    category: "Spezialprojekt",
-    filterCategories: ["Spezialprojekte", "Betonarbeiten"],
+    coverFile: "terrasse.jpeg",
+    challengeFile: "land.jpeg",
+    midFiles: ["hof.jpeg", "vorgarten.jpeg"],
+    resultFile: "terrasse.jpeg",
+    category: "Außenanlagen",
+    filterCategories: ["Außenanlagen"],
     description:
-      "Individuelle Fundamentlösung für einen Lichtmast – fachgerecht vorbereitet, bewehrt und betoniert.",
+      "Neugestaltung des Außenbereichs mit Natursteinfindlingen, Lärchenholzterrasse und Geländemodellierung.",
     longDescription:
-      "Beim Projekt Schräder - Geßner wurde eine individuelle Fundamentlösung für einen Lichtmast umgesetzt. Vorbereitung, Bewehrung und Betonage erfolgten fachgerecht und abgestimmt auf die technischen Vorgaben – damit der Mast sicher und dauerhaft steht.",
+      "Bei diesem Projekt wurde der Außenbereich rund um das Wohnhaus umfassend neu gestaltet. Von den Erd- und Geländearbeiten über die Gestaltung mit großen Natursteinfindlingen bis zur hochwertigen Lärchenholzterrasse entstand eine Außenanlage, bei der Funktion, Material und Gestaltung aufeinander abgestimmt wurden.",
     image: {
-      src: "/projekte/Projekt_Schräder_Geßner/IMG_8713web.webp",
-      alt: "Projekt Schräder - Geßner – Fundament für einen Lichtmast",
+      src: "/projekte/Projekt_Schräder_Geßner/terrasse.jpeg",
+      alt: "Projekt Schräder · Geßner – Lärchenholzterrasse und neu gestalteter Außenbereich",
     },
     href: "/projekte/schraeder-gessner",
     meta: {
       location: "nach Absprache",
       completion: "Abgeschlossen",
-      duration: "kurzfristig umsetzbar",
-      service: "Sonderfundament",
+      service: "Außenanlagen & Terrassenbau",
     },
     challenge:
-      "Lichtmastfundamente brauchen eine individuelle Dimensionierung und eine saubere Ausführung. Die Herausforderung lag darin, technische Vorgaben präzise umzusetzen und das Fundament belastbar herzustellen.",
+      "Ziel war es, die unterschiedlichen Geländehöhen rund um das Gebäude sinnvoll miteinander zu verbinden und gleichzeitig einen hochwertigen, natürlich wirkenden Außenbereich zu schaffen. Insbesondere im Bereich der Stellplätze musste das Gelände dauerhaft abgefangen und eine klare Trennung zwischen Nutz- und Pflanzflächen geschaffen werden. Dabei sollten sich Naturstein, Holz und Bepflanzung harmonisch in das vorhandene Grundstück einfügen.",
     challengePoints: [
-      "Individuelle Fundamentdimensionierung",
-      "Technische Vorgaben des Mastes",
-      "Sichere, dauerhafte Ausführung",
+      "Geländemodellierung und Höhenausgleich",
+      "Dauerhafte Abfangung mit Natursteinfindlingen",
+      "Verbindung von Funktion und natürlicher Gestaltung",
     ],
     works: [
       {
-        title: "Vorbereitung",
-        description: "Aushub und Vorbereitung des Fundamentpunktes.",
+        title: "Erd- & Baggerarbeiten",
+        description:
+          "Modellierung und Vorbereitung der unterschiedlichen Geländeebenen.",
         icon: "shovel",
       },
       {
-        title: "Schalung & Bewehrung",
-        description: "Passgenaue Vorbereitung der Konstruktion.",
+        title: "Natursteinarbeiten",
+        description:
+          "Setzen großformatiger Findlinge zur Abfangung und Gestaltung des Geländes.",
+        icon: "layers",
+      },
+      {
+        title: "Terrassenbau",
+        description:
+          "Hochwertige Lärchenholzterrasse einschließlich kompletter Unterkonstruktion.",
         icon: "grid",
       },
       {
-        title: "Betonage",
-        description: "Fachgerechte Herstellung des Fundaments.",
+        title: "Außenanlagen",
+        description:
+          "Feinplanum aus Splitt sowie Einbau von Vegetationsboden zur anschließenden Bepflanzung.",
         icon: "brick",
       },
+    ],
+    process: [
       {
-        title: "Sonderlösung",
-        description: "Umsetzung nach individueller technischer Planung.",
-        icon: "settings",
+        title: "Vorbereitung",
+        description:
+          "Bestand und Geländehöhen wurden aufgenommen und die verschiedenen Bereiche der Außenanlage gemeinsam abgestimmt.",
+      },
+      {
+        title: "Erdarbeiten",
+        description:
+          "Mit dem Bagger wurde das Gelände modelliert und der Untergrund für die weitere Gestaltung vorbereitet.",
+      },
+      {
+        title: "Gestaltung",
+        description:
+          "Große Natursteinfindlinge wurden gesetzt, Flächen mit Splitt fein abgezogen und Vegetationsboden für die spätere Bepflanzung eingebaut.",
+      },
+      {
+        title: "Terrassenbau & Fertigstellung",
+        description:
+          "Die Lärchenholzterrasse wurde einschließlich Unterkonstruktion hergestellt und die verschiedenen Bereiche zu einer harmonischen Gesamtanlage zusammengeführt.",
       },
     ],
-    process: defaultProcess,
     result:
-      "Das Sonderfundament wurde fachgerecht hergestellt und bildet eine stabile Basis für den Lichtmast – präzise, belastbar und sauber ausgeführt.",
+      "Entstanden ist eine hochwertige und natürlich wirkende Außenanlage, bei der die unterschiedlichen Materialien bewusst zusammenspielen: massiver Naturstein, warmes Lärchenholz und bepflanzte Grünbereiche. Die gesetzten Findlinge fangen das Gelände im Bereich der Stellplätze dauerhaft ab und werden gleichzeitig zum gestalterischen Element. Die Lärchenholzterrasse schafft einen hochwertigen Aufenthaltsbereich direkt am Haus.",
     resultHighlights: [
-      "Individuelle Sonderlösung",
-      "Stabile Fundamentbasis",
-      "Saubere Ausführung",
+      "Hochwertige Lärchenholzterrasse",
+      "Geländegestaltung mit Natursteinfindlingen",
+      "Saubere und dauerhafte Ausführung",
+      "Harmonisches Gesamtbild",
     ],
     testimonials: [
       {
@@ -1362,7 +1390,7 @@ export const projects: Project[] = [
         rating: 5,
       },
     ],
-    faqs: defaultTrustFaqs("der Region", "Sonderfundament"),
+    faqs: defaultTrustFaqs("der Region", "Terrassen- und Außenanlagen"),
   },
 ];
 
@@ -1371,6 +1399,7 @@ const projectDisplayOrder: ProjectSlug[] = [
   "zoga-bau",
   "diel-georgenhausen",
   "urban-gross-biberau",
+  "schraeder-gessner",
   "podeste",
   "merzhof",
   "merzhof-einzaeunung",
