@@ -1,35 +1,32 @@
 import type { MetadataRoute } from "next";
-import { siteConfig } from "@/lib/siteConfig";
+import { canonicalUrl } from "@/lib/seo";
 import { services } from "@/data/services";
 import { projects } from "@/data/projects";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const base = siteConfig.url;
   const staticRoutes = [
-    "",
+    "/",
     "/leistungen",
     "/projekte",
     "/ueber-mich",
     "/kontakt",
-    "/impressum",
-    "/datenschutz",
   ];
 
   return [
     ...staticRoutes.map((path) => ({
-      url: `${base}${path}`,
+      url: canonicalUrl(path),
       lastModified: new Date(),
       changeFrequency: "monthly" as const,
-      priority: path === "" ? 1 : 0.7,
+      priority: path === "/" ? 1 : 0.7,
     })),
     ...services.map((service) => ({
-      url: `${base}${service.href}`,
+      url: canonicalUrl(service.href),
       lastModified: new Date(),
       changeFrequency: "monthly" as const,
       priority: 0.8,
     })),
     ...projects.map((project) => ({
-      url: `${base}${project.href}`,
+      url: canonicalUrl(project.href),
       lastModified: new Date(),
       changeFrequency: "monthly" as const,
       priority: 0.75,

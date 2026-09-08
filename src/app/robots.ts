@@ -6,8 +6,9 @@ export default function robots(): MetadataRoute.Robots {
     rules: {
       userAgent: "*",
       allow: "/",
-      disallow: [],
+      disallow: ["/api/"],
     },
     sitemap: `${siteConfig.url}/sitemap.xml`,
+    host: "www.baudienstleistungen-hofmann.de",
   };
 }

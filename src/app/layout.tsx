@@ -5,7 +5,7 @@ import { Footer } from "@/components/layout/Footer";
 import { MobileContactBar } from "@/components/layout/MobileContactBar";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { siteConfig } from "@/lib/siteConfig";
-import { buildLocalBusinessJsonLd } from "@/lib/seo";
+import { buildLocalBusinessJsonLd, defaultOgImage } from "@/lib/seo";
 import "./globals.css";
 
 const archivo = Archivo({
@@ -20,16 +20,8 @@ const sourceSans = Source_Sans_3({
   display: "swap",
 });
 
-const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL ??
-  (process.env.VERCEL_URL
-    ? `https://${process.env.VERCEL_URL}`
-    : process.env.NODE_ENV === "development"
-      ? "http://localhost:3000"
-      : siteConfig.url);
-
 export const metadata: Metadata = {
-  metadataBase: new URL(siteUrl),
+  metadataBase: new URL(siteConfig.url),
   title: {
     default: siteConfig.seo.defaultTitle,
     template: siteConfig.seo.titleTemplate,
@@ -49,6 +41,7 @@ export const metadata: Metadata = {
     siteName: siteConfig.name,
     title: siteConfig.seo.defaultTitle,
     description: siteConfig.seo.defaultDescription,
+    images: [defaultOgImage],
   },
   robots: {
     index: true,

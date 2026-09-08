@@ -1,6 +1,24 @@
 import { siteConfig } from "@/lib/siteConfig";
 import type { FAQItem } from "@/data/faqs";
 
+/** Absolute Canonical-/OG-URL auf der Produktionsdomain. */
+export function canonicalUrl(path: string = "/"): string {
+  const normalized =
+    !path || path === "/"
+      ? "/"
+      : path.startsWith("/")
+        ? path
+        : `/${path}`;
+  return new URL(normalized, `${siteConfig.url}/`).href;
+}
+
+export const defaultOgImage = {
+  url: "/mauer.webp",
+  width: 1920,
+  height: 1080,
+  alt: "Mauerarbeiten und Rohbau auf der Baustelle",
+} as const;
+
 export function buildLocalBusinessJsonLd() {
   return {
     "@context": "https://schema.org",
@@ -13,7 +31,7 @@ export function buildLocalBusinessJsonLd() {
     email: siteConfig.contact.email,
     vatID: siteConfig.vatId,
     taxID: siteConfig.taxId,
-    image: `${siteConfig.url}/og-image.jpg`,
+    image: `${siteConfig.url}${defaultOgImage.url}`,
     founder: {
       "@type": "Person",
       name: siteConfig.owner,

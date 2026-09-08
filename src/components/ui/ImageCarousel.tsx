@@ -234,6 +234,8 @@ export function ImageCarousel({ items, className }: ImageCarouselProps) {
                   muted
                   playsInline
                   preload={isActive ? "auto" : "metadata"}
+                  width={1600}
+                  height={1000}
                   className={cn(
                     "absolute inset-0 h-full w-full bg-anthracite object-contain transition-opacity duration-300",
                     isActive
@@ -324,6 +326,8 @@ export function ImageCarousel({ items, className }: ImageCarouselProps) {
                       muted
                       playsInline
                       preload="metadata"
+                      width={192}
+                      height={128}
                       className="absolute inset-0 h-full w-full object-cover"
                       aria-hidden
                     />

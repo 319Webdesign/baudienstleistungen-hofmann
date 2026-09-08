@@ -7,6 +7,7 @@ import {
 } from "@/data/projects";
 import { loadProjectGallery } from "@/lib/loadProjectGallery";
 import { ProjectCaseStudy } from "@/components/projects/ProjectCaseStudy";
+import { canonicalUrl } from "@/lib/seo";
 
 type PageProps = {
   params: Promise<{ slug: string }>;
@@ -22,9 +23,22 @@ export async function generateMetadata({
   const { slug } = await params;
   const project = getProjectBySlug(slug);
   if (!project) return {};
+  const canonical = canonicalUrl(project.href);
   return {
     title: project.title,
     description: project.description,
+    alternates: {
+      canonical,
+    },
+    openGraph: {
+      url: canonical,
+      images: [
+        {
+          url: project.image.src,
+          alt: project.image.alt,
+        },
+      ],
+    },
   };
 }
 

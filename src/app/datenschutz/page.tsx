@@ -1,10 +1,19 @@
 import type { Metadata } from "next";
 import { siteConfig } from "@/lib/siteConfig";
+import { canonicalUrl } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "Datenschutz",
   description: `Datenschutzerklärung von ${siteConfig.name}`,
   robots: { index: false, follow: true },
+  alternates: {
+    canonical: canonicalUrl("/datenschutz"),
+  },
+  openGraph: {
+    url: canonicalUrl("/datenschutz"),
+    title: "Datenschutz",
+    description: `Datenschutzerklärung von ${siteConfig.name}`,
+  },
 };
 
 export default function DatenschutzPage() {

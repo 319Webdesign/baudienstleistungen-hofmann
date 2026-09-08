@@ -1,10 +1,19 @@
 import type { Metadata } from "next";
 import { siteConfig } from "@/lib/siteConfig";
+import { canonicalUrl } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "Impressum",
   description: `Impressum von ${siteConfig.name}`,
   robots: { index: false, follow: true },
+  alternates: {
+    canonical: canonicalUrl("/impressum"),
+  },
+  openGraph: {
+    url: canonicalUrl("/impressum"),
+    title: "Impressum",
+    description: `Impressum von ${siteConfig.name}`,
+  },
 };
 
 export default function ImpressumPage() {

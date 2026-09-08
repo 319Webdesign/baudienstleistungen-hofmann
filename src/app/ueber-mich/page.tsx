@@ -9,12 +9,18 @@ import { Button } from "@/components/ui/Button";
 import { FadeIn } from "@/components/ui/FadeIn";
 import { CTASection } from "@/components/sections/CTASection";
 import { JsonLd } from "@/components/seo/JsonLd";
-import { buildBreadcrumbJsonLd } from "@/lib/seo";
+import { buildBreadcrumbJsonLd, canonicalUrl } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "Über mich",
   description:
     "Thomas Hofmann – Maurermeister und staatlich geprüfter Bautechniker. Persönliche Betreuung, handwerkliche Ausführung und technische Kompetenz.",
+  alternates: {
+    canonical: canonicalUrl("/ueber-mich"),
+  },
+  openGraph: {
+    url: canonicalUrl("/ueber-mich"),
+  },
 };
 
 const sections = [

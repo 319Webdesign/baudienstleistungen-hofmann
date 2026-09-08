@@ -10,12 +10,19 @@ import { TestimonialSection } from "@/components/sections/TestimonialSection";
 import { FAQSection } from "@/components/sections/FAQSection";
 import { CTASection } from "@/components/sections/CTASection";
 import { siteConfig } from "@/lib/siteConfig";
+import { canonicalUrl } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: {
     absolute: siteConfig.seo.defaultTitle,
   },
   description: siteConfig.seo.defaultDescription,
+  alternates: {
+    canonical: canonicalUrl("/"),
+  },
+  openGraph: {
+    url: canonicalUrl("/"),
+  },
 };
 
 export default function HomePage() {

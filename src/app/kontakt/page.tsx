@@ -3,12 +3,18 @@ import { images } from "@/data/images";
 import { PageHero } from "@/components/ui/PageHero";
 import { ContactSection } from "@/components/sections/ContactSection";
 import { JsonLd } from "@/components/seo/JsonLd";
-import { buildBreadcrumbJsonLd } from "@/lib/seo";
+import { buildBreadcrumbJsonLd, canonicalUrl } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "Kontakt",
   description:
     "Projekt anfragen bei Baudienstleistungen Hofmann – persönliche Beratung zu Rohbau, Umbau, Betonarbeiten und Sonderprojekten.",
+  alternates: {
+    canonical: canonicalUrl("/kontakt"),
+  },
+  openGraph: {
+    url: canonicalUrl("/kontakt"),
+  },
 };
 
 export default function KontaktPage() {

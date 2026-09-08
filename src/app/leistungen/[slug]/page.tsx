@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/Button";
 import { FadeIn } from "@/components/ui/FadeIn";
 import { CTASection } from "@/components/sections/CTASection";
 import { JsonLd } from "@/components/seo/JsonLd";
-import { buildBreadcrumbJsonLd } from "@/lib/seo";
+import { buildBreadcrumbJsonLd, canonicalUrl } from "@/lib/seo";
 
 type PageProps = {
   params: Promise<{ slug: string }>;
@@ -23,9 +23,22 @@ export async function generateMetadata({
   const { slug } = await params;
   const service = getServiceBySlug(slug);
   if (!service) return {};
+  const canonical = canonicalUrl(service.href);
   return {
     title: service.title,
     description: service.description,
+    alternates: {
+      canonical,
+    },
+    openGraph: {
+      url: canonical,
+      images: [
+        {
+          url: service.image.src,
+          alt: service.image.alt,
+        },
+      ],
+    },
   };
 }
 

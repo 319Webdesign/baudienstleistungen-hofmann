@@ -7,12 +7,18 @@ import { Button } from "@/components/ui/Button";
 import { FadeIn } from "@/components/ui/FadeIn";
 import { CTASection } from "@/components/sections/CTASection";
 import { JsonLd } from "@/components/seo/JsonLd";
-import { buildBreadcrumbJsonLd } from "@/lib/seo";
+import { buildBreadcrumbJsonLd, canonicalUrl } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "Leistungen",
   description:
     "Rohbau, Betonarbeiten, Umbau, Sanierung, Erdarbeiten, Außenanlagen und Spezialprojekte – Baudienstleistungen Hofmann.",
+  alternates: {
+    canonical: canonicalUrl("/leistungen"),
+  },
+  openGraph: {
+    url: canonicalUrl("/leistungen"),
+  },
 };
 
 export default function LeistungenPage() {

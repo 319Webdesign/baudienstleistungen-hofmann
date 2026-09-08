@@ -5,12 +5,18 @@ import { ProjectFilter } from "@/components/ui/ProjectFilter";
 import { CTASection } from "@/components/sections/CTASection";
 import { FadeIn } from "@/components/ui/FadeIn";
 import { JsonLd } from "@/components/seo/JsonLd";
-import { buildBreadcrumbJsonLd } from "@/lib/seo";
+import { buildBreadcrumbJsonLd, canonicalUrl } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "Projekte",
   description:
     "Ausgewählte Bauprojekte von Baudienstleistungen Hofmann – Rohbau, Umbau, Betonarbeiten, Außenanlagen und Spezialfundamente.",
+  alternates: {
+    canonical: canonicalUrl("/projekte"),
+  },
+  openGraph: {
+    url: canonicalUrl("/projekte"),
+  },
 };
 
 export default function ProjektePage() {

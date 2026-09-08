@@ -9,7 +9,7 @@ export const siteConfig = {
   tagline: "Maurermeister & Bautechniker",
   description:
     "Baudienstleistungen Hofmann – fachgerechte Bauausführung, technische Kompetenz und persönliche Betreuung.",
-  url: "https://www.beispiel-domain.de", // TODO: Echte Domain eintragen
+  url: "https://www.baudienstleistungen-hofmann.de",
   ersteHilfeUrl: "https://www.erstehilfe-hofmann.de",
   vatId: "DE277475934",
   taxId: "00882831411",

@@ -52,6 +52,7 @@ export function Header() {
             alt="Baudienstleistungen Hofmann"
             width={160}
             height={160}
+            sizes="160px"
             priority
             className="h-[4.25rem] w-auto object-contain sm:h-[4.75rem]"
           />
