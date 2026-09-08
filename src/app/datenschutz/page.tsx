@@ -114,8 +114,7 @@ export default function DatenschutzPage() {
               8. Aktualität dieser Erklärung
             </h2>
             <p className="mt-3">
-              Stand: Platzhalter – Datum der finalen rechtlichen Freigabe
-              eintragen.
+              Stand: 08.09.2026
             </p>
           </div>
         </div>

@@ -11,6 +11,10 @@ export const images = {
     src: "/über-mich.jpeg",
     alt: "Thomas Hofmann – Maurermeister und staatlich geprüfter Bautechniker",
   },
+  aboutStart: {
+    src: "/übermich-start.jpeg",
+    alt: "Thomas Hofmann – Maurermeister und staatlich geprüfter Bautechniker",
+  },
   services: {
     rohbau: {
       src: "/projekte/Projekt_Zoga_Bau_Rohbau/IMG_0793web.webp",

@@ -14,8 +14,8 @@ export function AboutSection() {
         <FadeIn direction="from-center-left">
           <div className="relative aspect-[4/5] overflow-hidden rounded-xl shadow-[0_20px_50px_rgba(0,0,0,0.25)] sm:aspect-[5/6]">
             <Image
-              src={images.about.src}
-              alt={images.about.alt}
+              src={images.aboutStart.src}
+              alt={images.aboutStart.alt}
               fill
               sizes="(max-width: 1024px) 100vw, 50vw"
               className="object-cover object-top"

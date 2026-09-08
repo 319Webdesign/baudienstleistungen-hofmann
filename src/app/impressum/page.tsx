@@ -63,8 +63,6 @@ export default function ImpressumPage() {
               Berufsbezeichnung: Maurermeister / staatlich geprüfter Bautechniker
               <br />
               Verliehen in: Bundesrepublik Deutschland
-              <br />
-              [Zuständige Kammer / Aufsichtsbehörde – sofern erforderlich eintragen]
             </p>
           </div>
 
