@@ -20,6 +20,7 @@ const securityHeaders = [
 ];
 
 const nextConfig: NextConfig = {
+  serverExternalPackages: ["nodemailer"],
   poweredByHeader: false,
   trailingSlash: false,
   images: {
