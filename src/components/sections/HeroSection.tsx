@@ -34,7 +34,7 @@ export function HeroSection() {
           <h1 className="mt-4 text-[2.5rem] font-bold leading-[1.15] text-white sm:text-5xl lg:text-[3.25rem]">
             Ihr Baudienstleister für
             <br />
-            Rohbau, Umbau und Betonarbeiten in Reinheim
+            Rohbau, Umbau und Betonarbeiten aus Reinheim
           </h1>
           <p className="mt-6 max-w-2xl text-base leading-relaxed text-white/80 sm:text-lg">
             Von Rohbau und Betonarbeiten über Umbau und Sanierung bis zu
