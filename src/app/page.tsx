@@ -6,7 +6,6 @@ import { AboutSection } from "@/components/sections/AboutSection";
 import { ProjectSection } from "@/components/sections/ProjectSection";
 import { ProcessSection } from "@/components/sections/ProcessSection";
 import { AudienceSection } from "@/components/sections/AudienceSection";
-import { TestimonialSection } from "@/components/sections/TestimonialSection";
 import { FAQSection } from "@/components/sections/FAQSection";
 import { CTASection } from "@/components/sections/CTASection";
 import { siteConfig } from "@/lib/siteConfig";
@@ -35,7 +34,6 @@ export default function HomePage() {
       <ProjectSection />
       <ProcessSection />
       <AudienceSection />
-      <TestimonialSection />
       <FAQSection />
       <CTASection />
     </>
